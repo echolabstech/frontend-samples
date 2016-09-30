@@ -1,0 +1,14 @@
+*.DS_Store
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.tiff
+*.svg
+*.git
+*.mp4
+*.mpg*
+*.mpeg*
+*.mov
+*.avi
+*.zip

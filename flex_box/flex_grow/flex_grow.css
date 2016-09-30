@@ -1,0 +1,36 @@
+body {
+	margin: 0px;
+}
+
+.full-screen {
+	background-color: gray;
+	position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.content {
+	width: 80%;
+	margin: auto;
+
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.display {
+  /*flex-grow: 2;*/
+  flex: 2 2 60%;
+  order: 1;
+
+  border: 3px solid rgba(0,0,0,.2);
+}
+
+.flyers {
+  /*flex-grow: 1;*/
+  flex: 1 1 40%;
+  order: 2;
+
+  border: 3px solid rgba(0,0,0,.2);
+}
