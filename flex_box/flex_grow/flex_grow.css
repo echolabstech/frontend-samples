@@ -11,6 +11,10 @@ body {
   bottom: 0;
 }
 
+div {
+  padding: 1%;
+}
+
 .content {
 	width: 80%;
 	margin: auto;
@@ -20,17 +24,15 @@ body {
 }
 
 .display {
-  /*flex-grow: 2;*/
   flex: 2 2 60%;
   order: 1;
-
-  border: 3px solid rgba(0,0,0,.2);
 }
 
 .flyers {
-  /*flex-grow: 1;*/
   flex: 1 1 40%;
   order: 2;
+}
 
-  border: 3px solid rgba(0,0,0,.2);
+img {
+  width: 100%;
 }
