@@ -10,5 +10,7 @@
 *.mpg*
 *.mpeg*
 *.mov
+*.ogv
+*.webm
 *.avi
 *.zip
