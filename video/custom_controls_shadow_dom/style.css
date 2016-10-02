@@ -4,7 +4,7 @@
 	position: relative;
 }
 
-#video-controls {
+/*#video-controls {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -29,11 +29,7 @@
 		color-stop(0.13, rgb(3,113,168)),
 		color-stop(1, rgb(0,136,204))
 	);
-}
-
-#video-container:hover #video-controls {
-	opacity: .9;
-}
+}*/
 
 button {
 	background: rgba(0,0,0,.5);
@@ -45,14 +41,34 @@ button {
 	border-radius: 3px;
 }
 
-button:hover {
-	cursor: pointer;
+video::-webkit-media-controls-current-time-display,
+video::-webkit-media-controls-time-remaining-display,
+video::-webkit-media-controls-timeline,
+video::-webkit-media-controls-mute-button, 
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-toggle-closed-captions-button, 
+video::-webkit-media-controls-fullscreen-button {
+	display: none !important;
 }
 
-#seek-bar {
-	width: 360px;
+video::-webkit-media-controls-panel {
+	background-color: rgba(0, 0, 0, 0.0);
 }
 
-#volume-bar {
-	width: 60px;
+video::-webkit-media-controls {
+ 	/*display:none !important;*/
+}
+
+video::-webkit-media-controls-enclosure {
+ 	/*display:none !important;*/
+ 	position: absolute;
+ 	top: 45%;
+ 	left: 40%;
+}
+
+video::-webkit-media-controls-play-button {
+    -webkit-appearance: media-exit-fullscreen-button;
+    width: 64px;
+    height: 64px;
+	color: red;
 }
