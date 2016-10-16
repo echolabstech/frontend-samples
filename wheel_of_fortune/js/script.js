@@ -1,13 +1,56 @@
-let spinButton = document.getElementById("spin_button");
+let storageKey = "prizes";
+
+if (!localStorage.getItem(storageKey)) {
+    createStorage(storageKey);
+}
+var prizes = JSON.parse(localStorage.getItem(storageKey));
+
+function createStorage() {
+    const PRIZE_TYPES = {
+        'phonepocket': 600,
+        'pens': 600,
+        'wipes': 600,
+        'notes': 575,
+        'carcharger': 50,
+        'phonecharger': 25,
+        'lipbalm': 25,
+        'giftcard': 25,
+    }
+    const PRIZE_KEYS = Object.keys(PRIZE_TYPES);
+
+    const PRIZES = new Array(2500).fill('');
+    PRIZES.forEach(function(element, index) {
+        let prizeindex = Math.round((Math.random() * 7));
+
+        if (!element) {
+            while (PRIZE_TYPES[PRIZE_KEYS[prizeindex]] < 1) {
+                prizeindex = Math.round((Math.random() * 7));
+            }
+
+            if (PRIZE_TYPES[PRIZE_KEYS[prizeindex]] > 0) {
+                PRIZES[index] = PRIZE_KEYS[prizeindex];
+                PRIZE_TYPES[PRIZE_KEYS[prizeindex]]--;
+            }
+        }
+    });
+
+    if (PRIZES) {   
+        localStorage.setItem("prizes", JSON.stringify(PRIZES));
+    }
+}
+
+let spinButton = document.getElementsByClassName("spin_button")[0];
 spinButton.addEventListener("click", function(event) {
-  console.log('spinButton clicked');
+    wheel.body.angularVelocity = Math.random() * (20 - 25) + 20;
+    wheelSpinning = true;
+    wheelStopped = false;
 }, false);
 
 const TWO_PI = Math.PI * 2;
 const HALF_PI = Math.PI * 0.5;
 // canvas settings
-var viewWidth = 768,
-    viewHeight = 768,
+var viewWidth = window.innerWidth,
+    viewHeight = window.innerHeight,
     viewCenterX = viewWidth * 0.5,
     viewCenterY = viewHeight * 0.5,
     drawingCanvas = document.getElementById("drawing_canvas"),
@@ -37,26 +80,17 @@ var wheelSpinning = false,
 
 var particles = [];
 
-var statusLabel = document.getElementById('status_label');
-
 window.onload = function() {
     initDrawingCanvas();
     initPhysics();
 
     requestAnimationFrame(loop);
-
-    statusLabel.innerHTML = 'Give it a good spin!';
 };
 
 function initDrawingCanvas() {
     drawingCanvas.width = viewWidth;
     drawingCanvas.height = viewHeight;
     ctx = drawingCanvas.getContext('2d');
-
-    drawingCanvas.addEventListener('mousemove', updateMouseBodyPosition);
-    drawingCanvas.addEventListener('mousedown', checkStartDrag);
-    drawingCanvas.addEventListener('mouseup', checkEndDrag);
-    drawingCanvas.addEventListener('mouseout', checkEndDrag);
 }
 
 function updateMouseBodyPosition(e) {
@@ -79,7 +113,6 @@ function checkStartDrag(e) {
     if (wheelSpinning === true) {
         wheelSpinning = false;
         wheelStopped = true;
-        statusLabel.innerHTML = "Impatience will not be rewarded.";
     }
 }
 
@@ -92,12 +125,8 @@ function checkEndDrag(e) {
             if ( Math.abs(wheel.body.angularVelocity) > 7.5) {
                 wheelSpinning = true;
                 wheelStopped = false;
-                console.log('good spin');
-                statusLabel.innerHTML = '...clack clack clack clack clack clack...'
             }
             else {
-                console.log('sissy');
-                statusLabel.innerHTML = 'Come on, you can spin harder than that.'
             }
         }
     }
@@ -130,7 +159,7 @@ function initPhysics() {
         arrowX = wheelX,
         arrowY = wheelY + wheelRadius + 0.625;
 
-    wheel = new Wheel(wheelX, wheelY, wheelRadius, 32, 0.25, 7.5);
+    wheel = new Wheel(wheelX, wheelY, wheelRadius, 15, 0.25, 7.5);
     wheel.body.angle = (Math.PI / 32.5);
     wheel.body.angularVelocity = 5;
     arrow = new Arrow(arrowX, arrowY, 0.5, 1.5);
@@ -176,10 +205,8 @@ function update() {
 
         if (win) {
             spawnPartices();
-            statusLabel.innerHTML = 'Woop woop!'
         }
         else {
-            statusLabel.innerHTML = 'Too bad! Invite a Facebook friend to try again!';
         }
     }
 }
@@ -222,6 +249,9 @@ function Wheel(x, y, radius, segments, pinRadius, pinDistance) {
 
     this.deltaPI = TWO_PI / this.segments;
 
+    this.tx = this.x;
+    this.ty = this.y;
+
     this.createBody();
     this.createPins();
 }
@@ -255,43 +285,55 @@ Wheel.prototype = {
         }
     },
     gotLucky:function() {
-        var currentRotation = wheel.body.angle % TWO_PI,
-            currentSegment = Math.floor(currentRotation / this.deltaPI);
-
-        return (currentSegment % 2 === 0);
+        console.log(prizes);
+        return true;
     },
     draw:function() {
         // TODO this should be cached in a canvas, and drawn as an image
         // also, more doodads
         ctx.save();
         ctx.translate(this.pX, this.pY);
-
         ctx.beginPath();
-        ctx.fillStyle = '#DB9E36';
+        ctx.fillStyle = '#000000';
         ctx.arc(0, 0, this.pRadius + 24, 0, TWO_PI);
         ctx.fill();
-        ctx.fillRect(-12, 0, 24, 400);
-
         ctx.rotate(-this.body.angle);
 
         for (var i = 0; i < this.segments; i++) {
-            ctx.fillStyle = (i % 2 === 0) ? '#BD4932' : '#FFFAD5';
+            ctx.fillStyle = this.getPieColor(i);
             ctx.beginPath();
             ctx.arc(0, 0, this.pRadius, i * this.deltaPI, (i + 1) * this.deltaPI);
             ctx.lineTo(0, 0);
             ctx.closePath();
             ctx.fill();
+
+            ctx.save();
+            ctx.rotate(i * this.deltaPI);
+            ctx.font = 'normal Arial';
+            ctx.fillStyle = "black";
+            ctx.fillText("Hello", (this.pRadius / 2), 0);
+            ctx.restore();
         }
 
         ctx.fillStyle = '#401911';
 
         this.pPinPositions.forEach(function(p) {
+            ctx.fillStyle = '#000000';
             ctx.beginPath();
             ctx.arc(p[0], p[1], this.pPinRadius, 0, TWO_PI);
             ctx.fill();
         }, this);
 
         ctx.restore();
+    },
+    getPieColor:function(index) {
+        if (index % 3 === 0) {
+            return '#B5121B'; //red
+        } else if (index % 3 === 1) {
+            return '#FFFFFF'; //white
+        } else if (index % 3 === 2) {
+            return '#0C4569'; //blue
+        }
     }
 };
 /////////////////////////////
