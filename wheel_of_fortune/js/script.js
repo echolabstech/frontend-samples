@@ -78,14 +78,14 @@ drawingCanvas.addEventListener("touchstart", spinWheel);
 drawingCanvas.addEventListener("touchend", spinWheel);
 
 var SEGMENT_ANGLES = {
-    'phonepocket': 15,
-    'pens': 6.5,
-    'wipes': 10,
-    'notes': 14.158,
-    'carcharger': 7.5,
-    'phonecharger': 15,
-    'lipbalm': 12.5,
-    'giftcard': 13.5
+    'phonepocket': 13.2,
+    'pens': 8.1,
+    'wipes': 14.158,
+    'notes': 15,
+    'carcharger': 8.72,
+    'phonecharger': 10,
+    'lipbalm': 8.43,
+    'giftcard': 7.78
 }
 
 var prize_counter = 0;
@@ -99,7 +99,7 @@ function spinWheel() {
         let prize = prizes[prize_counter];
         prize_counter++;
         wheel.body.angularVelocity = SEGMENT_ANGLES[prize];
-        console.log(prize);
+        console.log(prize+' '+SEGMENT_ANGLES[prize]);
         wheelSpinning = true;
         wheelStopped = false;
     }
@@ -178,16 +178,16 @@ function initPhysics() {
     });
     world.addContactMaterial(contactMaterial);
 
-    var wheelRadius = 8,
+    var wheelRadius = 16,
         wheelX = physicsCenterX,
-        wheelY = wheelRadius + 4,
+        wheelY = physicsCenterY,
         arrowX = wheelX,
         arrowY = wheelY + wheelRadius + 0.625;
 
-    wheel = new Wheel(wheelX, wheelY, wheelRadius, 15, 0.25, 7.5);
+    wheel = new Wheel(wheelX, wheelY, wheelRadius, 15, 0.25, 15);
     wheel.body.angle = (Math.PI / 180) * 0;
     wheel.body.angularVelocity = 0;
-    arrow = new Arrow(arrowX, arrowY, 0.5, 1.5);
+    arrow = new Arrow(arrowX, arrowY, 1, 3);
     mouseBody = new p2.Body();
 
     world.addBody(mouseBody);
@@ -378,7 +378,7 @@ Wheel.prototype = {
         ctx.fillStyle = '#401911';
 
         this.pPinPositions.forEach(function(p) {
-            ctx.fillStyle = '#000000';
+            ctx.fillStyle = '#401911';
             ctx.beginPath();
             ctx.arc(p[0], p[1], this.pPinRadius, 0, TWO_PI);
             ctx.fill();
