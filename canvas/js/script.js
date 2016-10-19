@@ -1,4 +1,26 @@
-var canvas = document.getElementById('canvas');
+var canvas = document.getElementsByClassName('canvas')[0];
+canvas.addEventListener("click", spinWheel);
+canvas.addEventListener("touchstart", spinWheel);
+canvas.addEventListener("touchend", spinWheel);
+
+function spinWheel(target) {
+    let boundingRectangle = canvas.getBoundingClientRect();
+
+    console.log(event.target+'left:'+boundingRectangle.left);
+    console.log(event.target+'top:'+boundingRectangle.top);
+    console.log(event.target+'right:'+boundingRectangle.right);
+    console.log(event.target+'bottom:'+boundingRectangle.bottom);
+    console.log('mouse X: '+event.clientX);
+    console.log('mouse Y: '+event.clientY);
+    console.log('spin button radius:'+(75 / 4));
+    let mousex = event.clientX;
+    let mousey = event.clientY;
+
+    if ((mousex >= 25 && mousex <= 125) && (mousey >= 25 && mousey <= 125)) {
+        console.log('spin the wheel');
+    }
+}
+
 if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
     let colors = ["orange", "red", "blue", "brown", "yellow", "gray"];
@@ -24,6 +46,15 @@ if (canvas.getContext) {
     }
 
     ctx.restore();
+
+    x = 75;
+    y = 75;
+    radius = 75;
+    radians = (Math.PI / 180);
+    startangle = radians * 0;
+    endangle = radians * 360;
+    anticlockwise = false;
+    drawArc(ctx, x, y, (radius / 4), startangle, endangle, anticlockwise, strokestyle="gray");
 }
 
 function drawIcon(ctx,src,dx,dy,dh,dw,rotation) {
@@ -82,10 +113,12 @@ function drawText(ctx,x,y,rotation) {
     ctx.restore();
 }
 
-function drawArc(ctx,x,y,radius,startangle,endangle,anticlockwise,fillstyle) {
-    ctx.fillStyle = fillstyle;
+function drawArc(ctx,x,y,radius,startangle,endangle,anticlockwise,fillstyle,strokestyle) {
+    ctx.fillStyle = fillstyle || "black";
+    ctx.strokeStyle = strokestyle || "black";
     ctx.beginPath();
     ctx.arc(x, y, radius, startangle, endangle, anticlockwise);
+    ctx.fill();
     ctx.stroke();
 }
 
