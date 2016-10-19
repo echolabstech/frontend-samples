@@ -1,3 +1,44 @@
+let storageKey = "prizes";
+
+if (!localStorage.getItem(storageKey)) {
+    createStorage(storageKey);
+}
+var prizes = JSON.parse(localStorage.getItem(storageKey));
+
+function createStorage() {
+    const PRIZE_TYPES = {
+        'phonepocket': 600,
+        'pens': 600,
+        'wipes': 600,
+        'notes': 575,
+        'carcharger': 50,
+        'phonecharger': 25,
+        'lipbalm': 25,
+        'giftcard': 25,
+    }
+    const PRIZE_KEYS = Object.keys(PRIZE_TYPES);
+
+    const PRIZES = new Array(2500).fill('');
+    PRIZES.forEach(function(element, index) {
+        let prizeindex = Math.round((Math.random() * 7));
+
+        if (!element) {
+            while (PRIZE_TYPES[PRIZE_KEYS[prizeindex]] < 1) {
+                prizeindex = Math.round((Math.random() * 7));
+            }
+
+            if (PRIZE_TYPES[PRIZE_KEYS[prizeindex]] > 0) {
+                PRIZES[index] = PRIZE_KEYS[prizeindex];
+                PRIZE_TYPES[PRIZE_KEYS[prizeindex]]--;
+            }
+        }
+    });
+
+    if (PRIZES) {   
+        localStorage.setItem("prizes", JSON.stringify(PRIZES));
+    }
+}
+
 const TWO_PI = Math.PI * 2;
 const HALF_PI = Math.PI * 0.5;
 // canvas settings
@@ -36,13 +77,29 @@ drawingCanvas.addEventListener("click", spinWheel);
 drawingCanvas.addEventListener("touchstart", spinWheel);
 drawingCanvas.addEventListener("touchend", spinWheel);
 
+var SEGMENT_ANGLES = {
+    'phonepocket': 15,
+    'pens': 6.5,
+    'wipes': 10,
+    'notes': 14.158,
+    'carcharger': 7.5,
+    'phonecharger': 15,
+    'lipbalm': 12.5,
+    'giftcard': 13.5
+}
+
+var prize_counter = 0;
+
 function spinWheel() {
     let mousex = event.clientX;
     let mousey = event.clientY;
 
     if ((mousex >= (wheel.pX - ((wheel.pRadius + 24) / 4)) && (mousex <= wheel.pX + ((wheel.pRadius + 24) / 4))) && (mousey >= (wheel.pY - ((wheel.pRadius + 24) / 4)) && (mousey <= (wheel.pY + ((wheel.pRadius + 24) / 4))))) {
         initPhysics();
-        wheel.body.angularVelocity = 14.158;
+        let prize = prizes[prize_counter];
+        prize_counter++;
+        wheel.body.angularVelocity = SEGMENT_ANGLES[prize];
+        console.log(prize);
         wheelSpinning = true;
         wheelStopped = false;
     }
@@ -269,15 +326,12 @@ Wheel.prototype = {
 
             this.body.addShape(pin, [x, y]);
             this.pPinPositions[i] = [x * ppm, -y * ppm];
-            // console.log('pin '+i+' is at '+this.pPinPositions[i]);
         }
     },
     gotLucky:function() {
         var currentRotation = wheel.body.angle % TWO_PI,
             currentSegment = Math.floor(currentRotation / this.deltaPI);
 
-        console.log('wheel body angle '+wheel.body.angle);
-        console.log('segment angles:'+wheel.segmentAngles);
         return (currentSegment % 2 === 0);
     },
     draw:function() {
@@ -293,9 +347,6 @@ Wheel.prototype = {
 
         for (var i = 0; i < this.segments; i++) {
             this.segmentAngles[i] = [i * this.deltaPI, (i + 1) * this.deltaPI];
-            // console.log('segment:'+i+' at radian: '+this.segmentAngles[i]);
-            // console.log('wheel angle: '+this.body.angle);
-            // console.log('slice '+i+', startangle: '+(i * this.deltaPI)+', endangle: '+((i + 1) * this.deltaPI));
 
             ctx.fillStyle = this.getPieColor(i);
             ctx.beginPath();
