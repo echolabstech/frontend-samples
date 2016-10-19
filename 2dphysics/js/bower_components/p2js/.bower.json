@@ -1,0 +1,15 @@
+{
+  "name": "p2js",
+  "homepage": "https://github.com/schteppe/p2.js",
+  "version": "0.7.1",
+  "_release": "0.7.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.7.1",
+    "commit": "d83c483f912362fd6e57c74b0634ea3f1f3e0c82"
+  },
+  "_source": "https://github.com/schteppe/p2.js.git",
+  "_target": "^0.7.1",
+  "_originalSource": "p2js",
+  "_direct": true
+}

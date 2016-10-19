@@ -1,44 +1,3 @@
-let storageKey = "prizes";
-
-if (!localStorage.getItem(storageKey)) {
-    createStorage(storageKey);
-}
-var prizes = JSON.parse(localStorage.getItem(storageKey));
-
-function createStorage() {
-    const PRIZE_TYPES = {
-        'phonepocket': 600,
-        'pens': 600,
-        'wipes': 600,
-        'notes': 575,
-        'carcharger': 50,
-        'phonecharger': 25,
-        'lipbalm': 25,
-        'giftcard': 25,
-    }
-    const PRIZE_KEYS = Object.keys(PRIZE_TYPES);
-
-    const PRIZES = new Array(2500).fill('');
-    PRIZES.forEach(function(element, index) {
-        let prizeindex = Math.round((Math.random() * 7));
-
-        if (!element) {
-            while (PRIZE_TYPES[PRIZE_KEYS[prizeindex]] < 1) {
-                prizeindex = Math.round((Math.random() * 7));
-            }
-
-            if (PRIZE_TYPES[PRIZE_KEYS[prizeindex]] > 0) {
-                PRIZES[index] = PRIZE_KEYS[prizeindex];
-                PRIZE_TYPES[PRIZE_KEYS[prizeindex]]--;
-            }
-        }
-    });
-
-    if (PRIZES) {   
-        localStorage.setItem("prizes", JSON.stringify(PRIZES));
-    }
-}
-
 const TWO_PI = Math.PI * 2;
 const HALF_PI = Math.PI * 0.5;
 // canvas settings
@@ -82,8 +41,8 @@ function spinWheel() {
     let mousey = event.clientY;
 
     if ((mousex >= (wheel.pX - ((wheel.pRadius + 24) / 4)) && (mousex <= wheel.pX + ((wheel.pRadius + 24) / 4))) && (mousey >= (wheel.pY - ((wheel.pRadius + 24) / 4)) && (mousey <= (wheel.pY + ((wheel.pRadius + 24) / 4))))) {
-        console.log('spin the wheel');
-        wheel.body.angularVelocity = 20;
+        initPhysics();
+        wheel.body.angularVelocity = 14.158;
         wheelSpinning = true;
         wheelStopped = false;
     }
@@ -169,8 +128,8 @@ function initPhysics() {
         arrowY = wheelY + wheelRadius + 0.625;
 
     wheel = new Wheel(wheelX, wheelY, wheelRadius, 15, 0.25, 7.5);
-    wheel.body.angle = (Math.PI / 32.5);
-    wheel.body.angularVelocity = 5;
+    wheel.body.angle = (Math.PI / 180) * 0;
+    wheel.body.angularVelocity = 0;
     arrow = new Arrow(arrowX, arrowY, 0.5, 1.5);
     mouseBody = new p2.Body();
 
@@ -261,6 +220,25 @@ function Wheel(x, y, radius, segments, pinRadius, pinDistance) {
     this.tx = this.x;
     this.ty = this.y;
 
+    this.prizes = [
+                    'Gift Card',
+                    'Phone Pocket',
+                    'Pen',
+                    'Wipes',
+                    'Post-It-Notes',
+                    'Car Charger',
+                    'Phone Pocket',
+                    'Pen',
+                    'Wipes',
+                    'Post-It-Notes',
+                    'Phone Charger',
+                    'Phone Pocket',
+                    'Pen',
+                    'Wipes',
+                    'Lip Balm',
+                  ]
+    this.segmentAngles = new Array(this.prizes.length);
+
     this.createBody();
     this.createPins();
 }
@@ -291,11 +269,16 @@ Wheel.prototype = {
 
             this.body.addShape(pin, [x, y]);
             this.pPinPositions[i] = [x * ppm, -y * ppm];
+            // console.log('pin '+i+' is at '+this.pPinPositions[i]);
         }
     },
     gotLucky:function() {
-        console.log(prizes);
-        return true;
+        var currentRotation = wheel.body.angle % TWO_PI,
+            currentSegment = Math.floor(currentRotation / this.deltaPI);
+
+        console.log('wheel body angle '+wheel.body.angle);
+        console.log('segment angles:'+wheel.segmentAngles);
+        return (currentSegment % 2 === 0);
     },
     draw:function() {
         // TODO this should be cached in a canvas, and drawn as an image
@@ -309,6 +292,11 @@ Wheel.prototype = {
         ctx.rotate(-this.body.angle);
 
         for (var i = 0; i < this.segments; i++) {
+            this.segmentAngles[i] = [i * this.deltaPI, (i + 1) * this.deltaPI];
+            // console.log('segment:'+i+' at radian: '+this.segmentAngles[i]);
+            // console.log('wheel angle: '+this.body.angle);
+            // console.log('slice '+i+', startangle: '+(i * this.deltaPI)+', endangle: '+((i + 1) * this.deltaPI));
+
             ctx.fillStyle = this.getPieColor(i);
             ctx.beginPath();
             ctx.arc(0, 0, this.pRadius, i * this.deltaPI, (i + 1) * this.deltaPI);
@@ -316,15 +304,17 @@ Wheel.prototype = {
             ctx.closePath();
             ctx.fill();
 
+            // prize title
             ctx.save();
             ctx.rotate((i + 1) * this.deltaPI);
             ctx.translate((this.pRadius / 2), -15);
             ctx.rotate((Math.PI / 180) * -10);
             ctx.font = 'normal Arial';
             ctx.fillStyle = "black";
-            ctx.fillText("Hello", 0, 0);
+            ctx.fillText(this.prizes[i], 0, 0);
             ctx.restore();
 
+            // prize icon
             ctx.save();
             ctx.rotate(i * this.deltaPI);
             ctx.translate((this.pRadius / 1.35), 20);
