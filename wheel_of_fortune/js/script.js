@@ -39,13 +39,6 @@ function createStorage() {
     }
 }
 
-let spinButton = document.getElementsByClassName("spin_button")[0];
-spinButton.addEventListener("click", function(event) {
-    wheel.body.angularVelocity = Math.random() * (20 - 25) + 20;
-    wheelSpinning = true;
-    wheelStopped = false;
-}, false);
-
 const TWO_PI = Math.PI * 2;
 const HALF_PI = Math.PI * 0.5;
 // canvas settings
@@ -79,6 +72,22 @@ var wheelSpinning = false,
     wheelStopped = true;
 
 var particles = [];
+
+drawingCanvas.addEventListener("click", spinWheel);
+drawingCanvas.addEventListener("touchstart", spinWheel);
+drawingCanvas.addEventListener("touchend", spinWheel);
+
+function spinWheel() {
+    let mousex = event.clientX;
+    let mousey = event.clientY;
+
+    if ((mousex >= (wheel.pX - ((wheel.pRadius + 24) / 4)) && (mousex <= wheel.pX + ((wheel.pRadius + 24) / 4))) && (mousey >= (wheel.pY - ((wheel.pRadius + 24) / 4)) && (mousey <= (wheel.pY + ((wheel.pRadius + 24) / 4))))) {
+        console.log('spin the wheel');
+        wheel.body.angularVelocity = 20;
+        wheelSpinning = true;
+        wheelStopped = false;
+    }
+}
 
 window.onload = function() {
     initDrawingCanvas();
@@ -333,6 +342,25 @@ Wheel.prototype = {
             ctx.arc(p[0], p[1], this.pPinRadius, 0, TWO_PI);
             ctx.fill();
         }, this);
+
+        // spin button
+        ctx.beginPath();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.strokeStyle = '#000000'
+        ctx.arc(0, 0, (this.pRadius + 24) / 4, 0, TWO_PI);
+        ctx.fill();
+        ctx.stroke();
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 2;
+        ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+
+        // spin button text
+        ctx.beginPath();
+        ctx.font = 'normal Arial';
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.fillText("Click to Spin", 0, 0);
 
         ctx.restore();
     },
