@@ -362,7 +362,7 @@ Wheel.prototype = {
             ctx.rotate((Math.PI / 180) * -10);
             ctx.font = 'normal Arial';
             ctx.fillStyle = "black";
-            ctx.fillText(this.prizes[i], 0, 0);
+            ctx.fillText(this.prizes[i], 0, -20);
             ctx.restore();
 
             // prize icon
@@ -371,7 +371,7 @@ Wheel.prototype = {
             ctx.translate((this.pRadius / 1.35), 20);
             ctx.rotate((Math.PI / 180) * 12);
             let icon = document.getElementsByClassName("phone-charger")[0];
-            ctx.drawImage(icon, 0, -7, 35, 35);
+            ctx.drawImage(icon, 30, 20, 35, 35);
             ctx.restore();
         }
 
