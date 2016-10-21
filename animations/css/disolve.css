@@ -1,0 +1,25 @@
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.box {
+	position: absolute;
+	height: 100px;
+	width: 100px;
+}
+
+.red {
+	background-color: red;
+}
+
+.blue {
+	background-color: blue;
+}
