@@ -1,35 +1,41 @@
-{
-	let redirectButton = document.getElementsByClassName("redirect-screensaver")[0];
-	redirectButton.addEventListener("click", redirectToScreenSaver);
+var timeOfLastInteraction = {
+	time: getCurrentTime(),
+	screensave_is_playing: false
+}
 
-	let startappButton = document.getElementsByClassName("startapp")[0];
-	startappButton.addEventListener("click", startScreenSaverWorker);
+function getCurrentTime() {
+	let time = Date.now();
 
-	var last_time_of_interaction = getCurrentTime();
-
-	window.addEventListener("click", updateLastInteractionTime);
-
-	function redirectToScreenSaver() {
-		window.location.assign("screensaver.html");
+	if (!time) {
+		return Date.getTime();
+	} else {
+		return time;
 	}
+}
 
-	function startScreenSaverWorker() {
-		console.log('start worker thread');
-	}
+function updateLastInteractionTime() {
+	console.log('activity detected');
+	timeOfLastInteraction['time'] = getCurrentTime();
+}
 
-	function getCurrentTime() {
-		let time = Date.now();
+window.setInterval(function(getCurrentTime, timeOfLastInteraction) {
+	let timeElapsed = getCurrentTime() - timeOfLastInteraction['time'];
 
-		if (!time) {
-			return Date.getTime();
-		} else {
-			return time;
+	if (timeElapsed > 5000) {
+		if (!timeOfLastInteraction['screensave_is_playing']) {
+			timeOfLastInteraction['screensave_is_playing'] = true;
+			playScreenSaver();
 		}
+	} else {
+		timeOfLastInteraction['time'] = getCurrentTime();
 	}
+}, 5000, getCurrentTime, timeOfLastInteraction);
 
-	function updateLastInteractionTime() {
-		console.log('previous time of interaction:'+last_time_of_interaction);
-		last_time_of_interaction = getCurrentTime();
-		console.log('current time of interaction:'+last_time_of_interaction);
-	}
+function playScreenSaver() {
+	let iframe = document.getElementsByClassName("screen-saver")[0];
+	iframe.setAttribute("src", "screensaver.html");
+}
+
+window.onload = function() {
+	window.addEventListener("click", updateLastInteractionTime);
 }
