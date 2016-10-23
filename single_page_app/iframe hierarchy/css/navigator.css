@@ -1,0 +1,49 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+	background-color: gray;
+}
+
+iframe {
+	width: 100%;
+	height: 100%;
+
+	z-index: 0;
+}
+
+.full-screen {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+.fadeIn {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.swipeIn {
+	visibility: visible;
+  	opacity: 1;
+  	transition: opacity 2s linear;	
+}
+
+.in-yo-face {
+	position: absolute;
+	left: 0px !important;
+	z-index: 1;
+}
+
+.hide-on-right {
+	left: 100%;
+}
