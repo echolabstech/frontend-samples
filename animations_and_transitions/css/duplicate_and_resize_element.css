@@ -1,0 +1,39 @@
+body {
+	background-color: white;
+	overflow-x: hidden;
+}
+
+main {
+	padding: 1%;
+}
+
+header {
+	text-align: center;
+	position: relative;
+}
+
+h1 {
+	font-size: 5em;
+}
+
+.full-screen {
+	position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.flex-row {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: stretch;
+	justify-content: flex-start;
+}
+
+.flex-column {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-around;
+}

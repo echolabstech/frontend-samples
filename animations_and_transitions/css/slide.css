@@ -1,0 +1,18 @@
+.box {
+	position: absolute;
+	border-style: solid;
+    border-width: 1px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    left: 100%;
+    top: 10%;
+    background-color: #0000FF;
+    transition: width 2s, height 2s, left 2s, transform 2s;
+}
+
+.box.change {
+    width: 200px;
+    height: 200px;
+    left: 0%;
+}
