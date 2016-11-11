@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Take picture with camera</title>
+	<link rel="stylesheet" href="camera.css">
+</head>
+<body>
+	<div id="camera_info"></div>
+    <div id="stream_stats"></div>
+
+	<div id="camera">
+      <div class="placeholder">
+        Your browser does not support camera access.<br>
+        We recommend
+        <a href="https://www.google.com/chrome/" target="_blank">Chrome</a>
+        &mdash; modern, secure, fast browser from Google.<br>
+        It's free.
+      </div>
+    </div>
+
+    <div><button id="take_snapshots">Take more snapshots</button></div>
+    <div id="snapshots"></div>
+
+	<input type="text" id="api_url" placeholder="https://example.com/upload"><br>
+    <div id="upload_status"></div>
+    <div id="upload_result"></div>
+
+    <script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+	</script>
+	<script type="text/javascript"
+  		src="./jpeg_camera-master/dist/canvas-to-blob.min.js">
+	</script>
+	<script type="text/javascript"
+  		src="./jpeg_camera-master/dist/jpeg_camera_no_flash.js">
+	</script>
+    <script type="text/javascript" src="camera.js"></script>
+</body>
+</html>
