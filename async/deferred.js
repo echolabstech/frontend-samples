@@ -18,6 +18,8 @@
 			console.log(10+arg);
 		}).catch(function(arg) { // call fail callback(s)
 			console.log(11+arg);
+		}).then(function() {
+			console.log('fail fail fail');
 		});
 
 		d.always(function(arg) {
