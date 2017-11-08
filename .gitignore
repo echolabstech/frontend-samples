@@ -17,3 +17,4 @@
 *.mov
 *.avi
 *.zip
+node_modules/
