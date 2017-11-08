@@ -10,3 +10,5 @@ function component() {
 }
 
 document.body.appendChild(component());
+
+console.log('this was compiled via webpack!');
