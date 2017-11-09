@@ -1,5 +1,12 @@
 {
 	"scripts": {
 		"build": "webpack"
+	},
+	"devDependencies": {
+		"css-loader": "^0.28.7",
+		"style-loader": "^0.19.0"
+	},
+	"dependencies": {
+		"webpack": "^3.8.1"
 	}
 }
