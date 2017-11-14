@@ -2,23 +2,29 @@ import _ from 'lodash'
 import './styles.css'
 import HP from './hp.jpg'
 import Data from './data.xml'
+import printMe from './print.js'
 
 function component() {
-  var element = document.createElement('div');
+    let element = document.createElement('div');
+    // Lodash, now imported by this script
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.classList.add('hello');
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
+    // add image to our existing div
+    let harryPotter = new Image();
+    harryPotter.src = HP;
+    element.appendChild(harryPotter);
 
-  // add image to our existing div
-  let harryPotter = new Image();
-  harryPotter.src = HP;
+    // show asset we loaded
+    console.log(Data);
 
-  element.appendChild(harryPotter);
+    // use function we imported
+    let btn = document.createElement('button');
+    btn.innerHTML = 'Click me and check the console';
+    btn.onclick = printMe;
+    element.appendChild(btn);
 
-  console.log(Data);
-
-  return element;
+    return element;
 }
 
 document.body.appendChild(component());
