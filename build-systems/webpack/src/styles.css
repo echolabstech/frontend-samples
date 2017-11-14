@@ -1,4 +1,13 @@
+@font-face {
+  font-family: 'MyFont';
+  src:  url('./font2.woff2') format('woff2'),
+        url('./font1.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
 .hello {
 	color: red;
 	background: url('./hp.jpg');
+	font-family: 'MyFont';
 }
