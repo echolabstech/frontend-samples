@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import './styles.css'
 import HP from './hp.jpg'
+import Data from './data.xml'
 
 function component() {
   var element = document.createElement('div');
@@ -14,6 +15,8 @@ function component() {
   harryPotter.src = HP;
 
   element.appendChild(harryPotter);
+
+  console.log(Data);
 
   return element;
 }
