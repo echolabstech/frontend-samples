@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -11,9 +12,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
-  	new HtmlWebpackPlugin({
-  		title: 'Output Management'
-  	})
+  	new CleanWebpackPlugin(['dist/*.*'], {dry: false, verbose: true}),
+  	new HtmlWebpackPlugin({title: 'Output Management'})
   ],
   module: {
   	rules: [
