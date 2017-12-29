@@ -20,27 +20,35 @@ class RootDisplay extends React.Component {
 			border: '1px solid black',
 			borderRadius: '5px',
 		}
+
+		this.state = {
+			isClicked: false,
+			shiftKey: false,
+			mountChild: true,
+		}
 	}
 
 	render() {
+		const counterDisplay = this.state.mountChild ? (<CounterDisplay isClicked={this.state.isClicked}
+								shiftKey={this.state.shiftKey}
+								unmount={this.unmount.bind(this)} />) : null;
 		return (
 			<div style={this.style}>
-				<CounterDisplay ref={this.setChildRef} />
-				<button type="submit" onClick={this.onClickListener}>+</button>
+				{counterDisplay}
+				<button type="submit" onClick={this.onClickListener.bind(this)}>+</button>
 			</div>
 		);
 	}
 
-	setChildRef = child => {
-		this.child = child;
+	unmount(childComponent) {
+		this.setState(prevState => ({mountChild: false}), () => {
+			ReactDOM.unmountComponentAtNode(document.querySelector('#mount-point'));
+		});
 	}
 
-	onClickListener = event => {
-		this.child.onClickListener(event);
-	}
-
-	componentDidMount() {
-		console.log('componentDidMount');
+	onClickListener(event) {
+		const shiftKey = event.shiftKey;
+		this.setState(prevState => ({isClicked: true, shiftKey}));
 	}
 }
 
@@ -56,31 +64,39 @@ class CounterDisplay extends React.Component {
 		this.state = {
 			counter: 0,
 		}
+
+		this.unmount = props.unmount;
 	}
 
 	componentWillMount() {
 		console.log('componentWillMount');
 	}
 
+	/**
+	* Wasn't able to get this to call when conditionally
+	* removing child components from render. Even when calling
+	* unmountComponentAtNode() on the top-level mount-point.
+	*/
 	componentWillUnMount() {
 		console.log('componentWillUnMount');
 	}
 
-	componentWillUpdate(newProps, newState) {
-		console.log('componentWillUpdate with newProps: ', newProps, 'and newState: ', newState);
+	componentWillUpdate(nextProps, nextState) {
+		console.log('componentWillUpdate');
 	}
 
-	shouldComponentUpdate(newProps, newState) {
+	shouldComponentUpdate(nextProps, nextState) {
 		console.log('ShouldComponentUpdate');
 
-		// if (newState.counter >= 2) {
-		// 	// need to call ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this)) from top-level container
-		// 	return false;
-		// }
+		if (nextState.counter >= 5) {
+			this.unmount(this);
+			return false;
+		}
 		return true;
 	}
 
-	render = () => {
+	render() {
+		console.log('render');
 		return (<p><span style={this.style}>{this.state.counter}</span></p>);
 	}
 
@@ -92,23 +108,18 @@ class CounterDisplay extends React.Component {
 		console.log('componentDidUpdate');
 	}
 
-	componentDidUnMount() {
-		console.log('componentDidUnMount');
-	}
-
-	componentWillReceiveProps(newProps) {
+	componentWillReceiveProps(nextProps) {
 		console.log('componentWillReceiveProps');
+		if (nextProps.isClicked) {
+			this.incrementCounter(nextProps.shiftKey);
+		}
 	}
 
-	onClickListener(event) {
-		this.incrementCounter(event);
-	}
-
-	incrementCounter = (event) => {
-		console.log('incrementing counter');
+	incrementCounter = (shiftKey) => {
+		console.log('setState');
 		let counter = this.state.counter;
 
-		if (event.shiftKey) {
+		if (shiftKey) {
 			counter += 10;
 		} else {
 			counter += 1;
