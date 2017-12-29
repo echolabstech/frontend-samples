@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+ <head>
+  <title>How events traverse the DOM tree</title>
+ </head>
+ <body>
+  <div id="foobar">
+    <div id="barfoo">
+      <p>Hello <span id=x>world</span>!</p>
+    </div>
+  </div>
+
+  <div id="dont-visit-me">
+      <div id="dont-visit-me-either">
+        don't visit me
+      </div>
+    </div>
+  <script>
+   function test(e) {
+     console.log(e.target, e.currentTarget, e.eventPhase)
+   }
+
+   // start at the root (Depth first search: preorder)
+   window.addEventListener("hey", test, true)
+
+   // move down each child node, in order, from L-R
+   document.addEventListener("hey", test, true)
+
+   // capture = true means call eventListener callback on the way down the tree hierarchy
+   document.body.addEventListener("hey", test, true)
+
+   // capture = false means call eventListener callback on the way back up the tree hierarchy
+   const foobar = document.querySelector('#foobar');
+   foobar.addEventListener('hey', test, false);
+
+   const barfoo = document.querySelector('#barfoo');
+   barfoo.addEventListener('hey', test, false);
+
+   // bubbles = true means send the event back up the tree hierarchy
+   var ev = new Event("hey", {bubbles:true});
+   document.getElementById("x").dispatchEvent(ev)
+  </script>
+ </body>
+</html>
