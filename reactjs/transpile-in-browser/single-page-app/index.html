@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>building a SPA with react router</title>
+	<style>
+		body {
+			background-color: #FFCC00;
+			padding: 20px;
+			margin: 0px;
+		}
+
+		h1, h2, p, ul, li {
+			font-family: Helvitica, Arial, sans-serif;
+		}
+
+		ul.header li {
+			display: inline;
+			list-style-type: none;
+			margin: 0px;
+		}
+
+		ul.header {
+			background-color: #111;
+			padding: 0px;
+		}
+
+		ul.header li a {
+			color: #FFF;
+			font-weight: bold;
+			text-decoration: none;
+			padding: 20px;
+			display: inline-block;
+		}
+
+		.content {
+			background-color: #FFF;
+			padding: 20px;
+		}
+
+		.content h2 {
+			padding: 0px;
+			margin: 0px;
+		}
+
+		.content li {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="mount-point"></div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/4.2.0/react-router.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/4.2.2/react-router-dom.js"></script>
+	<script src="https://unpkg.com/history/umd/history.js"></script>
+	<script type="text/babel" src="./index.jsx"></script>
+</body>
+</html>
