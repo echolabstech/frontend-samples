@@ -1,5 +1,19 @@
+function log(msg) {
+	console.log(msg);
+}
+
 // first identify a palindrome
-const samplePalindrome = "mom"
+const samplePalindrome = "mom".split('');
+let match = false;
+let index = 0;
+while(samplePalindrome.length > 1 && index <= samplePalindrome.length) {
+	if (samplePalindrome.pop() === samplePalindrome.shift()) {
+		match = true;
+	} else {
+		match = false;
+		break;
+	}
+}
 
 // identify not a palindrome
 const notPalindrome = "tom"
