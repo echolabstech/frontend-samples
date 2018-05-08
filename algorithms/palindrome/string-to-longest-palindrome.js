@@ -19,8 +19,21 @@ if (is_palindrome("mom") && !is_palindrome("tom") && !is_palindrome("i")) {
 	log('uhh ohh, you broke something');
 }
 
-// find the palindrome in a simple string
-const containsPalindrome = "i love mom"
+// put each letter into a bin
+const string = "literary";
+const buckets = {}
+string.split(' ').forEach((word) => {
+	word.split('').forEach((letter) => {
+		if (letter in buckets) {
+			buckets[letter] += 1;
+		} else {
+			buckets[letter] = 1;
+		}
+	});
+});
+log(buckets);
 
-// find the longest palindrome
-const palindromeString = "i love mom and dad, but not the racecar"
+// Find the longest palindrome
+
+// calclate space and time complexity
+
