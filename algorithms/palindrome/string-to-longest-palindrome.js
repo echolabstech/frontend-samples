@@ -2,21 +2,17 @@ function log(msg) {
 	console.log(msg);
 }
 
-// first identify a palindrome
-const samplePalindrome = "mom".split('');
-let match = false;
-let index = 0;
-while(samplePalindrome.length > 1 && index <= samplePalindrome.length) {
-	if (samplePalindrome.pop() === samplePalindrome.shift()) {
-		match = true;
-	} else {
-		match = false;
-		break;
-	}
-}
+function is_palindrome(string) {
+	if (string.length == 1) return false;
 
-// identify not a palindrome
-const notPalindrome = "tom"
+	let letters = string.split('');
+	while(letters.length > 1) {
+		if (letters.pop() !== letters.shift()) {
+			return false;
+		}
+	}
+	return true;
+}
 
 // find the palindrome in a simple string
 const containsPalindrome = "i love mom"
