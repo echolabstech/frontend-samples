@@ -13,6 +13,11 @@ function is_palindrome(string) {
 	}
 	return true;
 }
+if (is_palindrome("mom") && !is_palindrome("tom") && !is_palindrome("i")) {
+	log('is_palindrome() still works');
+} else {
+	log('uhh ohh, you broke something');
+}
 
 // find the palindrome in a simple string
 const containsPalindrome = "i love mom"
