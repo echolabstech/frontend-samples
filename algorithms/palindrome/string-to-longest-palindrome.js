@@ -1,16 +1,22 @@
+let isWorthTrying = false;
 const palindrome = [];
 const bucket = {};
 const testWords = ['abbccc', 'bbccc', 'eabccab', 'gfdeabcbbacca', 'abc'];
+const testWord = testWords[0];
 
-getLetterBucket(bucket, testWords[0]);
-initializePalindrome(palindrome, bucket);
-insertLetters(palindrome, bucket);
-log(bucket);
-log(palindrome);
+isWorthTrying = getLetterBucket(bucket, testWord);
+if (isWorthTrying) {
+	initializePalindrome(palindrome, bucket);
+	insertLetters(palindrome, bucket);
+	log(bucket);
+	log(palindrome);
 
-const word = palindrome.join('');
-const is_palindrome = isPalindrome(word);
-log((is_palindrome) ? `${word} is palindrome` : `${word} is NOT palindrome`);
+	const word = palindrome.join('');
+	const is_palindrome = isPalindrome(word);
+	log(`${testWord} as a palindrome: ${word}`);
+} else {
+	log(`${testWord} is NOT a palindrome.`);
+}
 
 function log(msg) {
 	console.log(msg);
@@ -34,13 +40,16 @@ if (isPalindrome("mom") && !isPalindrome("tom") && !isPalindrome("i")) {
 }
 
 function getLetterBucket(bucket, word) {
+	let isWorthTrying = false;
 	word.split('').forEach((letter) => {
 		if (letter in bucket) {
 			bucket[letter] += 1;
+			isWorthTrying = true;
 		} else {
 			bucket[letter] = 1;
 		}
 	});
+	return isWorthTrying;
 }
 
 function initializePalindrome(palindrome, bucket) {
