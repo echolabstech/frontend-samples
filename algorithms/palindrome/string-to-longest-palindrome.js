@@ -30,7 +30,44 @@ function getLetterBucket(word) {
 	});
 	return letters;
 }
-const bucket = getLetterBucket("abbccc");
+
+const wordWithUniqueLetter = "abbccc";
+const wordWithOutUniqueLetter = "bbccc";
+const bucket = getLetterBucket(wordWithOutUniqueLetter);
+const palindrome = [];
+
+function initializePalindrome(palindrome, bucket) {
+	// if unique letters, pick one, center in string, drop the others
+	let uniqueLetter;
+	Object.entries(bucket).forEach((pair) => {
+		const letter = pair[0];
+		const count = pair[1];
+		if (count === 1) {
+			if (!uniqueLetter) {
+				uniqueLetter = letter;
+			}
+			delete bucket[letter];
+		}
+	});
+	if (uniqueLetter) {
+		palindrome.push(uniqueLetter);
+		return;
+	}
+
+	// if no unique letters, pick a letter with odd count, center in string
+	Object.entries(bucket).forEach((pair) => {
+		const letter = pair[0];
+		let count = pair[1];
+		if (count % 2 === 1) {
+			for (let index = 0; index < count; index++) {
+				palindrome.push(letter);
+			}
+			delete bucket[letter];
+			return;
+		}
+	});
+}
+initializePalindrome(palindrome, bucket);
 log(bucket);
 
 // Find the longest palindrome
