@@ -1,7 +1,8 @@
-const testWords = ['abbccc', 'bbccc', 'eabccab', 'gfdeabcbbacca', 'abc'];
-const bucket = getLetterBucket(testWords[4]);
 const palindrome = [];
+const bucket = {};
+const testWords = ['abbccc', 'bbccc', 'eabccab', 'gfdeabcbbacca', 'abc'];
 
+getLetterBucket(bucket, testWords[0]);
 initializePalindrome(palindrome, bucket);
 insertLetters(palindrome, bucket);
 log(bucket);
@@ -32,16 +33,14 @@ if (isPalindrome("mom") && !isPalindrome("tom") && !isPalindrome("i")) {
 	log('uhh ohh, you broke something');
 }
 
-function getLetterBucket(word) {
-	const letters = {}
+function getLetterBucket(bucket, word) {
 	word.split('').forEach((letter) => {
-		if (letter in letters) {
-			letters[letter] += 1;
+		if (letter in bucket) {
+			bucket[letter] += 1;
 		} else {
-			letters[letter] = 1;
+			bucket[letter] = 1;
 		}
 	});
-	return letters;
 }
 
 function initializePalindrome(palindrome, bucket) {
