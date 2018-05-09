@@ -6,7 +6,10 @@ const testWord = testWords[0];
 
 isWorthTrying = getLetterBucket(bucket, testWord);
 if (isWorthTrying) {
-	initializePalindrome(palindrome, bucket);
+	const pushedUniqueLetter = mayPushOneUniqueLetter(palindrome, bucket);
+	if (!pushedUniqueLetter) {
+		mayPushOneOddCountLetter(palindrome, bucket);
+	}
 	insertLetters(palindrome, bucket);
 	log(bucket);
 	log(palindrome);
@@ -52,8 +55,7 @@ function getLetterBucket(bucket, word) {
 	return isWorthTrying;
 }
 
-function initializePalindrome(palindrome, bucket) {
-	// if unique letters, pick one, center in string, drop the others
+function mayPushOneUniqueLetter(palindrome, bucket) {
 	let uniqueLetter;
 	Object.entries(bucket).forEach((pair) => {
 		const letter = pair[0];
@@ -67,10 +69,12 @@ function initializePalindrome(palindrome, bucket) {
 	});
 	if (uniqueLetter) {
 		palindrome.push(uniqueLetter);
-		return;
+		return true;
 	}
+	return false;
+}
 
-	// if no unique letters, pick a letter with odd count, center in string
+function mayPushOneOddCountLetter(palindrome, bucket) {
 	Object.entries(bucket).forEach((pair) => {
 		const letter = pair[0];
 		let count = pair[1];
