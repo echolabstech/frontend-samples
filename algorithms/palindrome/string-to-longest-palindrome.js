@@ -68,9 +68,25 @@ function initializePalindrome(palindrome, bucket) {
 	});
 }
 initializePalindrome(palindrome, bucket);
-log(bucket);
 
-// Find the longest palindrome
+function insertLetters(palindrome, bucket) {
+	Object.entries(bucket).forEach((pair) => {
+		const letter = pair[0];
+		let count = pair[1];
+		if (count % 2 === 1) {
+			count -= 1;
+		}
+		for (let index = 0; index < count; index += 2) {
+			palindrome.push(letter);
+			palindrome.splice(0,0,letter);
+		}
+		delete bucket[letter];
+	});
+}
+insertLetters(palindrome, bucket);
+log(bucket);
+log(palindrome);
+// if no unique letters or odd counts, start iteration early
 
 // calclate space and time complexity
 
