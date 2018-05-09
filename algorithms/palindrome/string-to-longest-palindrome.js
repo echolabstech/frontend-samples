@@ -1,7 +1,7 @@
 let isWorthTrying = false;
 const palindrome = [];
 const bucket = {};
-const testWords = ['abbccc', 'bbccc', 'eabccab', 'gfdeabcbbacca', 'abc'];
+const testWords = ['abbccc', 'bbccc', 'eccaabb', 'gfdebbbaaaccc', 'abc', 'heavy', 'bbbbbcccaaa', 'bbbbbcccaaaaa', 'bbbbbaaccc'];
 const testWord = testWords[0];
 
 isWorthTrying = getLetterBucket(bucket, testWord);
@@ -75,9 +75,11 @@ function mayPushOneUniqueLetter(palindrome, bucket) {
 }
 
 function mayPushOneOddCountLetter(palindrome, bucket) {
-	Object.entries(bucket).forEach((pair) => {
-		const letter = pair[0];
-		let count = pair[1];
+	const pairs = Object.entries(bucket);
+	let index = pairs.length -1;
+	while (index > 0) {
+		const letter = pairs[index][0];
+		let count = pairs[index][1];
 		if (count % 2 === 1) {
 			for (let index = 0; index < count; index++) {
 				palindrome.push(letter);
@@ -85,7 +87,8 @@ function mayPushOneOddCountLetter(palindrome, bucket) {
 			delete bucket[letter];
 			return;
 		}
-	});
+		index -= 1;
+	}
 }
 
 function insertLetters(palindrome, bucket) {
