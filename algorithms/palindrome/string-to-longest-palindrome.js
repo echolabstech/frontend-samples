@@ -19,19 +19,19 @@ if (is_palindrome("mom") && !is_palindrome("tom") && !is_palindrome("i")) {
 	log('uhh ohh, you broke something');
 }
 
-// put each letter into a bin
-const string = "literary";
-const buckets = {}
-string.split(' ').forEach((word) => {
+function getLetterBucket(word) {
+	const letters = {}
 	word.split('').forEach((letter) => {
-		if (letter in buckets) {
-			buckets[letter] += 1;
+		if (letter in letters) {
+			letters[letter] += 1;
 		} else {
-			buckets[letter] = 1;
+			letters[letter] = 1;
 		}
 	});
-});
-log(buckets);
+	return letters;
+}
+const bucket = getLetterBucket("abbccc");
+log(bucket);
 
 // Find the longest palindrome
 
