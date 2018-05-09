@@ -1,11 +1,11 @@
-let isWorthTrying = false;
+let atLeastOneNonUniqueLetterInBucket = false;
 const palindrome = [];
 const bucket = {};
-const testWords = ['abbccc', 'bbccc', 'eccaabb', 'gfdebbbaaaccc', 'abc', 'heavy', 'bbbbbcccaaa', 'bbbbbcccaaaaa', 'bbbbbaaccc'];
+const testWords = ['test', 'abbccc', 'bbccc', 'eccaabb', 'gfdebbbaaaccc', 'abc', 'heavy', 'bbbbbcccaaa', 'bbbbbcccaaaaa', 'bbbbbaaccc'];
 const testWord = testWords[0];
 
-isWorthTrying = getLetterBucket(bucket, testWord);
-if (isWorthTrying) {
+atLeastOneNonUniqueLetterInBucket = getLetterBucket(bucket, testWord);
+if (atLeastOneNonUniqueLetterInBucket) {
 	const pushedUniqueLetter = mayPushOneUniqueLetter(palindrome, bucket);
 	if (!pushedUniqueLetter) {
 		mayPushOneOddCountLetter(palindrome, bucket);
@@ -18,6 +18,12 @@ if (isWorthTrying) {
 } else {
 	log(`${testWord} is NOT a palindrome.`);
 }
+
+log(`isPalindrome() complexity: space is O(n) and time is O(n/2) - pop and shift reduce array size by half`);
+log(`getLetterBucket() complexity: space is O(n) and time is O(n)`);
+log(`mayPushOneUniqueLetter() complexity: space is O(n) and time is O(n)`);
+log(`mayPushOneOddCountLetter() complexity: space is O(n) and time is O(n+p) - iterate on pairs of letters + at most itearte on 1 count of letters`);
+log(`insertLetters() complexity: space is O(n) and time is O(n*p) - itearte on pairs of letters X itearte on count of letters`);
 
 function log(msg) {
 	console.log(msg);
@@ -98,6 +104,3 @@ function insertLetters(palindrome, bucket) {
 		delete bucket[letter];
 	});
 }
-
-// calclate space and time complexity
-
