@@ -11,8 +11,6 @@ if (isWorthTrying) {
 		mayPushOneOddCountLetter(palindrome, bucket);
 	}
 	insertLetters(palindrome, bucket);
-	log(bucket);
-	log(palindrome);
 
 	const word = palindrome.join('');
 	const is_palindrome = isPalindrome(word);
@@ -35,11 +33,6 @@ function isPalindrome(string) {
 		}
 	}
 	return true;
-}
-if (isPalindrome("mom") && !isPalindrome("tom") && !isPalindrome("i")) {
-	log('isPalindrome() still works');
-} else {
-	log('uhh ohh, you broke something');
 }
 
 function getLetterBucket(bucket, word) {
