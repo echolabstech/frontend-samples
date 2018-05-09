@@ -1,8 +1,21 @@
+const testWords = ['abbccc', 'bbccc', 'eabccab', 'gfdeabcbbacca', 'abc'];
+const bucket = getLetterBucket(testWords[4]);
+const palindrome = [];
+
+initializePalindrome(palindrome, bucket);
+insertLetters(palindrome, bucket);
+log(bucket);
+log(palindrome);
+
+const word = palindrome.join('');
+const is_palindrome = isPalindrome(word);
+log((is_palindrome) ? `${word} is palindrome` : `${word} is NOT palindrome`);
+
 function log(msg) {
 	console.log(msg);
 }
 
-function is_palindrome(string) {
+function isPalindrome(string) {
 	if (string.length == 1) return false;
 
 	let letters = string.split('');
@@ -13,8 +26,8 @@ function is_palindrome(string) {
 	}
 	return true;
 }
-if (is_palindrome("mom") && !is_palindrome("tom") && !is_palindrome("i")) {
-	log('is_palindrome() still works');
+if (isPalindrome("mom") && !isPalindrome("tom") && !isPalindrome("i")) {
+	log('isPalindrome() still works');
 } else {
 	log('uhh ohh, you broke something');
 }
@@ -30,11 +43,6 @@ function getLetterBucket(word) {
 	});
 	return letters;
 }
-
-const wordWithUniqueLetter = "abbccc";
-const wordWithOutUniqueLetter = "bbccc";
-const bucket = getLetterBucket(wordWithOutUniqueLetter);
-const palindrome = [];
 
 function initializePalindrome(palindrome, bucket) {
 	// if unique letters, pick one, center in string, drop the others
@@ -67,7 +75,6 @@ function initializePalindrome(palindrome, bucket) {
 		}
 	});
 }
-initializePalindrome(palindrome, bucket);
 
 function insertLetters(palindrome, bucket) {
 	Object.entries(bucket).forEach((pair) => {
@@ -83,10 +90,6 @@ function insertLetters(palindrome, bucket) {
 		delete bucket[letter];
 	});
 }
-insertLetters(palindrome, bucket);
-log(bucket);
-log(palindrome);
-// if no unique letters or odd counts, start iteration early
 
 // calclate space and time complexity
 
