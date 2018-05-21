@@ -66,19 +66,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./muralens/create-a-neighborhood.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./muralens/batch-create-neighborhoods.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./muralens/create-a-neighborhood.js":
-/*!*******************************************!*\
-  !*** ./muralens/create-a-neighborhood.js ***!
-  \*******************************************/
+/***/ "./muralens/batch-create-neighborhoods.js":
+/*!************************************************!*\
+  !*** ./muralens/batch-create-neighborhoods.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const sanityClient = __webpack_require__(/*! @sanity/client */ \"./muralens/node_modules/@sanity/client/lib/sanityClient.js\")\nconst client = sanityClient({\n  projectId: 'mjtpwlkb',\n  dataset: 'development',\n  token: 'skI6dx1UzDRXX80orrc3inefx3FycYbBA6aR4veed3ydbK1VsN6epel5xmvUAtL8eDRLREcc80LHSesWgGnHcsb5rDXHMB1ScuHjDVCe6IaEzXBt7Z2LrCWB88HKOjAhjRgNJk8zPUDwndVjY7jUB4QlGBqw5VxvxUfHCdvoEbEoJFcj8Kku'\n});\n\nconst newNeighborhood = {\n  _type: 'neighborhood',\n  name: 'Eastern Market'\n}\n\nclient.create(newNeighborhood).then(res => {\n  console.log(`New neighborhood \"${res.name}\" was created, document ID is ${res._id}`);\n})\n.catch((error) => {\n\tconsole.log(error);\n});\n\n//# sourceURL=webpack:///./muralens/create-a-neighborhood.js?");
+eval("const sanityClient = __webpack_require__(/*! @sanity/client */ \"./muralens/node_modules/@sanity/client/lib/sanityClient.js\")\nconst client = sanityClient({\n  projectId: 'mjtpwlkb',\n  dataset: 'development',\n  token: 'skI6dx1UzDRXX80orrc3inefx3FycYbBA6aR4veed3ydbK1VsN6epel5xmvUAtL8eDRLREcc80LHSesWgGnHcsb5rDXHMB1ScuHjDVCe6IaEzXBt7Z2LrCWB88HKOjAhjRgNJk8zPUDwndVjY7jUB4QlGBqw5VxvxUfHCdvoEbEoJFcj8Kku'\n});\nconst newNeighborhood = {\n  _type: 'neighborhood',\n  name: 'Eastern Market',\n}\n\nconst concurrencyLimit = 10;\nconst concurrencyCounter = 0;\nfetch('./locations.json')\n.then((response) => response.json())\n.then((neighborhoods) => {\n\tneighborhoods.forEach((neighborhood) => {\n\t\t// use _.throttle for concurrency\n\t\tclient.create(neighborhood).then(res => {\n\t\t  console.log(`New neighborhood \"${res.name}\" was created, document ID is ${res._id}`);\n\t\t})\n\t\t.catch((error) => {\n\t\t\tconsole.log(error);\n\t\t});\n\t});\n})\n.catch((error) => {\n\tconsole.log(error);\n});\n\n//# sourceURL=webpack:///./muralens/batch-create-neighborhoods.js?");
 
 /***/ }),
 
