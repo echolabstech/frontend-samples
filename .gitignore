@@ -13,3 +13,5 @@
 *.avi
 *.zip
 node_modules/
+bundle.js
+package.json
