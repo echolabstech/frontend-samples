@@ -25,7 +25,10 @@
     "prop-types": "^15.6",
     "react": "^16.2",
     "react-dom": "^16.2",
-    "react-icons": "^2.2.5"
+    "react-icons": "^2.2.5",
+    "webpack": "^4.8.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack-cli": "^2.1.3"
+  }
 }

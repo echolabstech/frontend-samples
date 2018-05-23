@@ -3,9 +3,9 @@ const path = require('path');
 module.exports = {
 	watch: true,
 	mode: 'development',
-	entry: './muralens/batch-create-neighborhoods.js',
+	entry: './fetch-neighborhoods.js',
 	output: {
-		filename: './muralens/bundle.js',
+		filename: './bundle.js',
 		path: path.resolve(__dirname)
 	}
 };
