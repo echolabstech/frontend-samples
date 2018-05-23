@@ -20,13 +20,14 @@ function fetchFromAPI() {
 
 function fetchFromLocal() {
 	fetch('locations.json')
-	.then((response) => {return response.json();})
+	.then((response) => {
+		return response.json();
+	})
 	.then(response => {
-		debugger;
-	  console.log('all neighborhoods: ', response.data);
+		console.log('all neighborhoods: ', response);
 	})
 	.catch(error => {
-	  console.error('Oh no, error occured: ', error);
+		console.error('Oh no, error occured: ', error);
 	});
 }
 
