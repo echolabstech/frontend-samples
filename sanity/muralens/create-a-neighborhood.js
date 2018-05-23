@@ -2,7 +2,7 @@ const sanityClient = require('@sanity/client')
 const client = sanityClient({
   projectId: 'mjtpwlkb',
   dataset: 'development',
-  token: 'skI6dx1UzDRXX80orrc3inefx3FycYbBA6aR4veed3ydbK1VsN6epel5xmvUAtL8eDRLREcc80LHSesWgGnHcsb5rDXHMB1ScuHjDVCe6IaEzXBt7Z2LrCWB88HKOjAhjRgNJk8zPUDwndVjY7jUB4QlGBqw5VxvxUfHCdvoEbEoJFcj8Kku'
+  token: 'skpSgBjz0MwmOn1yXHjnKnOTZji5wLio1jmXYhB4AbQJ0MR2ZVWiAU2ypKtbuCS8hwQsb4UIBxfZH4MKXxmqHP75ZTtNMlSynczsIYpfKkJezCwANBL5cLSIDj2eOqGdXavyNR2c5i52fY83DNv5mspfjEE3o8XNsHX0G2tQAHgVos5fnahj'
 });
 
 const newNeighborhood = {
