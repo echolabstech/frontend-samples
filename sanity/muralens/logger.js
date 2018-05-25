@@ -1,22 +1,22 @@
 class Logger {
-	log(message) {
-		console.log(message);
+	log(...messages) {
+		console.log(...messages);
 	}
 
-	debug(message) {
-		console.debug(message);
+	debug(...messages) {
+		console.debug(...messages);
 	}
 
-	info(message) {
-		console.info(message);
+	info(...messages) {
+		console.info(...messages);
 	}
 
-	error(message) {
-		console.error(message);
+	error(...messages) {
+		console.error(...messages);
 	}
 
-	warn(message) {
-		console.warn(message);
+	warn(...messages) {
+		console.warn(...messages);
 	}
 }
 
