@@ -15,3 +15,7 @@ node_modules/webpack/bin/webpack.js --config webpack.config.js
 ```
 ./node_modules/@sanity/cli/bin/sanity start
 ```
+## run local webserver for CORS
+```
+python3 -m http.server 8000
+```
