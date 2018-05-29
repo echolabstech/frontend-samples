@@ -13,3 +13,4 @@
 *.avi
 *.zip
 package.json
+node_modules/
