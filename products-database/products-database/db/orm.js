@@ -1,3 +1,4 @@
+const path = require('path');
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('products', 'admin', 'p@ssw0rd', {
   host: 'localhost',
@@ -52,7 +53,20 @@ function initDB() {
         }
     });
 
-    // force: true will drop the table if it already exists
+    // const csvFilePath=`${path.join(__dirname)}/products.csv`;
+    // const csvFilePath=`${path.join(__dirname)}/new-products.csv`;
+    const csvFilePath=`${path.join(__dirname)}/data-example-1.csv`;
+
+    const csv=require('csvtojson');
+    csv()
+    .fromFile(csvFilePath)
+    .then((jsonObj)=>{
+        console.log(jsonObj);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
     // Products.sync({force: true}).then(() => {
     //   // Table created
     //   return Products.create({
