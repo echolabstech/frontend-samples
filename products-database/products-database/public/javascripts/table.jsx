@@ -13,9 +13,37 @@ class TransactionTable extends React.Component {
 					Unit: 'lb',
 					xFor: 1,
 					Cost: '$0.44'
+				},
+				{
+					ID: 321654,
+					Description: 'apples',
+					lastSold: '9/6/2017',
+					ShelfLife: '7d',
+					Department: 'Produce',
+					Price: '$1.49',
+					Unit: 'lb',
+					xFor: 1,
+					Cost: '$0.20'
+				},
+				{
+					ID :95175,
+					Description: 'Strawberry',
+					lastSold: '9/7/2017',
+					ShelfLife: '3d',
+					Department: 'Produce',
+					Price: '$2.49',
+					Unit: 'lb',
+					xFor: 1,
+					Cost: '$0.10'
 				}
 			]
 		};
+	}
+
+	fuzzySearch(filter, row) {
+		const word = row[filter.id].toLowerCase();
+		const searchTerm = filter.value.toLowerCase();
+		return word.includes(searchTerm);
 	}
 
 	render() {
@@ -26,7 +54,9 @@ class TransactionTable extends React.Component {
 			},
 			{
 				Header: 'Description',
-				accessor: 'Description'
+				accessor: 'Description',
+				filterMethod: this.fuzzySearch,
+				filterable: true
 			},
 			{
 				Header: 'Last Sale',
