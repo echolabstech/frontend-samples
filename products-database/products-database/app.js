@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var sequelize = require('./db/orm.js');
+
 var app = express();
 
 // view engine setup
