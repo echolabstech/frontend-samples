@@ -40,4 +40,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// database setup
+app.set('db', sequelize);
+
 module.exports = app;
