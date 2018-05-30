@@ -1,43 +1,20 @@
 class TransactionTable extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			products: [
-				{
-					ID: 753542,
-					Description: 'banana',
-					lastSold: '9/5/2017',
-					ShelfLife: '4d',
-					Department: 'Produce',
-					Price: '$2.99',
-					Unit: 'lb',
-					xFor: 1,
-					Cost: '$0.44'
-				},
-				{
-					ID: 321654,
-					Description: 'apples',
-					lastSold: '9/6/2017',
-					ShelfLife: '7d',
-					Department: 'Produce',
-					Price: '$1.49',
-					Unit: 'lb',
-					xFor: 1,
-					Cost: '$0.20'
-				},
-				{
-					ID :95175,
-					Description: 'Strawberry',
-					lastSold: '9/7/2017',
-					ShelfLife: '3d',
-					Department: 'Produce',
-					Price: '$2.49',
-					Unit: 'lb',
-					xFor: 1,
-					Cost: '$0.10'
-				}
-			]
-		};
+		this.state = {products: [{}]};
+
+		fetch('/api/products')
+		.then((response) => {
+			console.log(response);
+			return response.json();
+		})
+		.then((products) => {
+			console.log(products);
+			this.setState({products});
+		})
+		.catch((error) => {
+			console.log(error);
+		});
 	}
 
 	fuzzySearch(filter, row) {
