@@ -6,10 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{title}</title>
     <link rel="stylesheet" href="https://unpkg.com/react-table@latest/react-table.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
   <body>
+
+  <header class="navbar-fixed-top">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Products</a>
+      </div>
+    </nav>
+  </header>
   
-  <div id="products-database"></div>
+  <div class="container">
+    <div id="products-database"></div>
+  </div>
+
+  <footer>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid text-center">
+        <a class="navbar" target="_blank" href="https://www.heb.com">Copyright &copy; 2018 H-E-B</a>
+      </div>
+    </nav>
+  </footer>
 
 	<!-- external javascript libraries -->  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
