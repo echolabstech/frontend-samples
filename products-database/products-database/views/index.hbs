@@ -9,38 +9,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- could probably move some blocking code here -->
   </head>
-  <body>
-
-  <header class="navbar-fixed-top">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Products</a>
-      </div>
-    </nav>
-  </header>
   
-  <div class="container">
-    <div id="products-database"></div>
-  </div>
+  <body>
+    <!-- investigate material-ui for responsive layout https://material-ui.com/layout/grid/-->
+    <header class="navbar-fixed-top">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Products</a>
+        </div>
+      </nav>
+    </header>
+    
+    <div class="container">
+      <div id="products-database"></div>
+    </div>
 
-  <footer>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid text-center">
-        <a class="navbar" target="_blank" href="https://www.heb.com">Copyright &copy; 2018 H-E-B</a>
-      </div>
-    </nav>
-  </footer>
+    <footer>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid text-center">
+          <a class="navbar" target="_blank" href="https://www.heb.com">Copyright &copy; 2018 H-E-B</a>
+        </div>
+      </nav>
+    </footer>
 
-	<!-- cleanup: replace external javascript libraries with npm installs -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/react-table@latest/react-table.js"></script>
-  <script src="https://unpkg.com/react-table@latest/react-table.min.js"></script>
+  	<!-- cleanup: replace external javascript libraries with npm installs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-table@latest/react-table.js"></script>
+    <script src="https://unpkg.com/react-table@latest/react-table.min.js"></script>
 
-  <!-- cleanup: setup webpack and babel-->
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-	
-	<!-- application javascript files -->
-	<script type="text/babel" src="./javascripts/table.jsx"></script>
+    <!-- cleanup: setup webpack and babel-->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  	
+  	<!-- application javascript files -->
+  	<script type="text/babel" src="./javascripts/table.jsx"></script>
   </body>
 </html>
