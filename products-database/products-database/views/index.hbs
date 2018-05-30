@@ -7,6 +7,7 @@
     <title>{title}</title>
     <link rel="stylesheet" href="https://unpkg.com/react-table@latest/react-table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- could probably move some blocking code here -->
   </head>
   <body>
 
@@ -30,17 +31,16 @@
     </nav>
   </footer>
 
-	<!-- cleanup: replace external javascript libraries with npm installs -->  
+	<!-- cleanup: replace external javascript libraries with npm installs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/react-table@latest/react-table.js"></script>
   <script src="https://unpkg.com/react-table@latest/react-table.min.js"></script>
+
+  <!-- cleanup: setup webpack and babel-->
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 	
 	<!-- application javascript files -->
-  <script>
-    var ReactTable = window.ReactTable.default
-  </script>
 	<script type="text/babel" src="./javascripts/table.jsx"></script>
   </body>
 </html>

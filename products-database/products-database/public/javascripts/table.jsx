@@ -1,3 +1,4 @@
+const ReactTable = window.ReactTable.default
 class TransactionTable extends React.Component {
 	constructor(props) {
 		super(props);

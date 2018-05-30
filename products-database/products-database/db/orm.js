@@ -18,6 +18,14 @@ const sequelize = new Sequelize('products', 'admin', 'p@ssw0rd', {
 });
 let Products;
 
+/**
+* TODO:
+* 1.) check if products.sqlite exists
+* 2.) if not exits, create it, and seed the DB
+* 3.) if exists, do nothing
+* Might also be worth checking if the file is empty,
+* or even doing a single query.
+*/
 function initDB() {
   sequelize
   .authenticate()
@@ -54,11 +62,6 @@ function initDB() {
         }
     });
 
-    /**
-    * 1.) check if products.sqlite exists
-    * 2.) if not exits, create it, and seed the DB
-    * 3.) if exists, do nothing
-    */
     const csvFilePath=`${path.join(__dirname)}/products.csv`;
     csv()
     .fromFile(csvFilePath)
