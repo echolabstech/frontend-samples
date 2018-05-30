@@ -1,3 +1,4 @@
+const csv=require('csvtojson');
 const path = require('path');
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('products', 'admin', 'p@ssw0rd', {
@@ -53,11 +54,7 @@ function initDB() {
         }
     });
 
-    // const csvFilePath=`${path.join(__dirname)}/products.csv`;
-    // const csvFilePath=`${path.join(__dirname)}/new-products.csv`;
-    const csvFilePath=`${path.join(__dirname)}/data-example-1.csv`;
-
-    const csv=require('csvtojson');
+    const csvFilePath=`${path.join(__dirname)}/products.csv`;
     csv()
     .fromFile(csvFilePath)
     .then((jsonObj)=>{
