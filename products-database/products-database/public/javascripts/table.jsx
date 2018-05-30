@@ -23,6 +23,12 @@ class TransactionTable extends React.Component {
 		return word.includes(searchTerm);
 	}
 
+	/*
+	* For cost and price se regex to find numbers in
+	* in '$2.99', and fuzzy search the match.
+	*/
+	priceSearch(){}
+
 	render() {
 		const columns = [
 			{
