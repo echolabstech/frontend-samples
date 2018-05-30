@@ -14,31 +14,67 @@ const sequelize = new Sequelize('products', 'admin', 'p@ssw0rd', {
   // SQLite only
   storage: './db/products.sqlite'
 });
+let Products;
 
-sequelize
-.authenticate()
-.then(() => {
-  console.log('Connection has been established successfully.');
-  const User = sequelize.define('user', {
-  firstName: {
-    type: Sequelize.STRING
-  },
-  lastName: {
-    type: Sequelize.STRING
-  }
-});
+function initDB() {
+  sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+    Products = sequelize.define('products', {
+        ID: {
+          type: Sequelize.BIGINT, // for lots of products
+          primaryKey: true
+        },
+        Description: {
+          type: Sequelize.STRING
+        },
+        lastSold: {
+          type: Sequelize.STRING // could be Sequelize.DATE or Sequelize.DATEONLY
+        },
+        ShelfLife: {
+          type: Sequelize.STRING
+        },
+        Department: {
+          type: Sequelize.STRING
+        },
+        Price: {
+          type: Sequelize.STRING
+        },
+        Unit: {
+          type: Sequelize.STRING
+        },
+        xFor: {
+          type: Sequelize.TINYINT // always a small number (i.e. single digit)
+        },
+        Cost: {
+          type: Sequelize.STRING
+        }
+    });
 
-// force: true will drop the table if it already exists
-User.sync({force: true}).then(() => {
-  // Table created
-  return User.create({
-    firstName: 'John',
-    lastName: 'Hancock'
+    // force: true will drop the table if it already exists
+    // Products.sync({force: true}).then(() => {
+    //   // Table created
+    //   return Products.create({
+    //     ID: 753542,
+    //     Description: 'banana',
+    //     lastSold: '9/5/2017',
+    //     ShelfLife: '4d',
+    //     Department: 'Produce',
+    //     Price: '$2.99',
+    //     Unit: 'lb',
+    //     xFor: 1,
+    //     Cost: '$0.44'
+    //   });
+    // });
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
   });
-});
-})
-.catch(err => {
-  console.error('Unable to connect to the database:', err);
-});
+}
 
-module.exports = sequelize;
+function getProducts() {
+  return Products.findAll();
+}
+
+module.exports = {initDB, getProducts};

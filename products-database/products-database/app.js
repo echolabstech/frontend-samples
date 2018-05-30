@@ -7,9 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var sequelize = require('./db/orm.js');
+var initDB = require('./db/orm.js').initDB;
 
 var app = express();
+
+// database setup
+initDB()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,8 +42,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// database setup
-app.set('db', sequelize);
 
 module.exports = app;
