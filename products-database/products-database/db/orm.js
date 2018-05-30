@@ -85,8 +85,17 @@ function initDB() {
   });
 }
 
+/**
+* TODO:
+* Should catch this in the handler and return
+* http status code to the client
+*/
 function getProducts() {
-  return Products.findAll();
+  try {
+    return Products.findAll();
+  } catch(error) {
+    console.log(error);
+  }
 }
 
 module.exports = {initDB, getProducts};
