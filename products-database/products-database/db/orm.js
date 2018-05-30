@@ -57,27 +57,20 @@ function initDB() {
     const csvFilePath=`${path.join(__dirname)}/products.csv`;
     csv()
     .fromFile(csvFilePath)
-    .then((jsonObj)=>{
-        console.log(jsonObj);
+    .then((products)=>{
+      console.log(products);
+      Products.sync({force: true}).then(() => {
+        products.forEach((product) => {
+          return Products.create(product);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     })
     .catch((error) => {
       console.log(error);
     });
-
-    // Products.sync({force: true}).then(() => {
-    //   // Table created
-    //   return Products.create({
-    //     ID: 753542,
-    //     Description: 'banana',
-    //     lastSold: '9/5/2017',
-    //     ShelfLife: '4d',
-    //     Department: 'Produce',
-    //     Price: '$2.99',
-    //     Unit: 'lb',
-    //     xFor: 1,
-    //     Cost: '$0.44'
-    //   });
-    // });
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err);
