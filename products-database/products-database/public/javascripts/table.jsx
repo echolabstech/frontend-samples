@@ -41,7 +41,7 @@ class TransactionTable extends React.Component {
 	}
 
 	fuzzySearch(filter, row) {
-		const word = row[filter.id].toLowerCase();
+		const word = String(row[filter.id]).toLowerCase();
 		const searchTerm = filter.value.toLowerCase();
 		return word.includes(searchTerm);
 	}
@@ -50,7 +50,9 @@ class TransactionTable extends React.Component {
 		const columns = [
 			{
 				Header: 'Product ID',
-				accessor: 'ID'
+				accessor: 'ID',
+				filterMethod: this.fuzzySearch,
+				filterable: true
 			},
 			{
 				Header: 'Description',
@@ -68,7 +70,9 @@ class TransactionTable extends React.Component {
 			},
 			{
 				Header: 'Department',
-				accessor: 'Department'
+				accessor: 'Department',
+				filterMethod: this.fuzzySearch,
+				filterable: true
 			},
 			{
 				Header: 'Price',
