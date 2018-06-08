@@ -1,0 +1,38 @@
+<!-- investigate material-ui for responsive layout https://material-ui.com/layout/grid/-->
+<link rel="stylesheet" href="../static/styles.css">
+<header class="navbar-fixed-top">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Properties</a>
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+  <div id="predict-inputs" class="row">
+    <input class="col" type="number" placeholder="LotArea" name="LotArea">
+    <input class="col" type="number" placeholder="YearBuilt" name="YearBuilt">
+    <input class="col" type="number" placeholder="1stFlrSF" name="1stFlrSF">
+    <input class="col" type="number" placeholder="2ndFlrSF" name="2ndFlrSF">
+    <input class="col" type="number" placeholder="FullBath" name="FullBath">
+    <input class="col" type="number" placeholder="BedroomAbvGr" name="BedroomAbvGr">
+    <input class="col" type="number" placeholder="TotRmsAbvGrd" name="TotRmsAbvGrd">
+    <button id="predict-button" class="col" id="predict">predict</button>
+  </div>
+</div>
+
+<div class="container">
+  <textarea placeholder="predicted price" name="price-prediction" id="price-prediction" cols="30" rows="1" disabled></textarea>
+</div>
+
+<div class="container">
+  <div id="properties-database"></div>
+</div>
+
+<footer>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid text-center">
+      <a target="_blank" href="https://www.https://www.anaconda.com/">Copyright &copy; 2018 Anaconda, Inc. All Rights Reserved.</a> &nbsp;&vert;&nbsp; <a target="_blank" href="https://www.anaconda.com/privacy-policy/">Privacy Policy</a>
+    </div>
+  </nav>
+</footer>
