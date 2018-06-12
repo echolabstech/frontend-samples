@@ -73,6 +73,23 @@ class FlagPicker extends React.Component {
 		console.log('selected ', flagOption);
 	}
 
+	checkBox(select) {
+		return (
+			<div>
+				<input
+					type="checkbox"
+					name={select.option.value}
+					value={select.option.value}
+					onClick={(select) => this.clickCheckBox(select)} />
+				<label htmlFor="{select.option.label}">{select.option.label}</label>
+			</div>
+		);
+	}
+
+	clickCheckBox(select) {
+		debugger;
+	}
+
 	render() {
 		if (this.state.show_continents) {
 			return (
@@ -85,7 +102,9 @@ class FlagPicker extends React.Component {
 					<CountriesPicker
 						countries={this.state.countries}
 						selectCountry={(countryOption) => this.selectCountry(countryOption)}
-						show_countries={this.state.show_countries} />
+						show_countries={this.state.show_countries}
+						checkBox={(select) => this.checkBox(select)}
+						clickCheckBox={(select) => this.clickCheckBox(select)} />
 
 					<FlagsView
 						flags={this.state.flags}
@@ -132,22 +151,13 @@ class CountriesPicker extends React.Component {
 		  		<Select 
 		  			options={countries}
 		  			onChange={selectCountry}
-		  			optionComponent={checkBox} />
+		  			optionComponent={this.props.checkBox} />
 	  		</div>
   		);
 		} else {
 			return <div />;
 		}
   }
-}
-
-function checkBox(select) {
-	return (
-		<div>
-			<input type="checkbox" name={select.option.value} value={select.option.value} />
-			<label htmlFor="{select.option.label}">{select.option.label}</label>
-		</div>
-	);
 }
 
 class FlagsView extends React.Component {
