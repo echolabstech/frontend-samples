@@ -134,7 +134,13 @@ class CountriesPicker extends React.Component {
 class FlagsView extends React.Component {
 	render() {
 		if (this.props.show_flags) {
-	  	return <h1>see the flags</h1>;
+			const flags = this.props.flags.map((flag) => flag.flag);
+	  	return (
+	  		<div>
+		  		<h1>see the flags</h1>
+		  		{flags}
+	  		</div>
+	  	);
 		} else {
 			return <div />;
 		}
