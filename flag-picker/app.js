@@ -10,7 +10,7 @@ const flagPickerStyle = {
 class FlagPicker extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {continents: [{}]};
+		this.state = {is_ready: false, continents: [{}]};
 
 		const options = {};
 		fetch('./continents.json', options)
@@ -20,7 +20,7 @@ class FlagPicker extends React.Component {
 		})
 		.then((continents) => {
 			console.log(continents);
-			this.setState({continents});
+			this.setState({is_ready: true, continents});
 		})
 		.catch((error) => {
 			console.log(error);
@@ -34,24 +34,26 @@ class FlagPicker extends React.Component {
 	}
 
 	render() {
-		return (
-			<div style={flagPickerStyle}>
-				<ContinentPicker continents={this.state.continents} />
-				<CountriesPicker />
-				<FlagsView />
-			</div>
-		);
+		if (this.state.is_ready) {
+			return (
+				<div style={flagPickerStyle}>
+					<ContinentPicker continents={this.state.continents} />
+					<CountriesPicker />
+					<FlagsView />
+				</div>
+			);
+		} else {
+			return <h1>Loading...</h1>
+		}
 	}
 }
 
 class ContinentPicker extends React.Component {
 	render() {
-		const continents = [1,2,3];
-
   	return (
   		<div>
 				<h1>choose a continent</h1>
-	  		<Select />
+	  		<Select options={this.props.continents} />
   		</div>
   	);
   }
