@@ -28,19 +28,35 @@ class FlagPicker extends React.Component {
 
 	render() {
 		return (
-			<div>test</div>
+			<div>
+				<ContinentPicker />
+				<CountriesPicker />
+				<FlagsView />
+			</div>
 		);
 	}
 }
 
 class ContinentPicker extends React.Component {
 	render() {
-  	return <h1>Hello</h1>;
+  	return <h1>choose a continent</h1>;
+  }
+}
+
+class CountriesPicker extends React.Component {
+	render() {
+  	return <h1>choose countries</h1>;
+  }
+}
+
+class FlagsView extends React.Component {
+	render() {
+  	return <h1>see the flags</h1>;
   }
 }
 
 const mountPoint = document.querySelector('#flag-picker');
 ReactDOM.render(
-	<ContinentPicker />,
+	<FlagPicker />,
 	mountPoint
 );
