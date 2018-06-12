@@ -101,7 +101,18 @@ class ContinentPicker extends React.Component {
 class CountriesPicker extends React.Component {
 	render() {
 		if (this.props.show_countries) {
-	  	return <h1>choose countries</h1>;
+			const countries = this.props.countries.map((country)=> {
+				return {value: country.name, label: country.name};
+			});
+			const selectCountry = this.props.selectCountry;
+	  	return (
+	  		<div>
+					<h1>choose countries</h1>
+		  		<Select 
+		  			options={countries}
+		  			onChange={selectCountry} />
+	  		</div>
+  		);
 		} else {
 			return <div />;
 		}
