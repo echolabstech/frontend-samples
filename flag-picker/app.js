@@ -1,5 +1,12 @@
 // this should be compiled by a bundler (i.e. webpack)
 
+const flagPickerStyle = {
+	display: 'flex',
+	flexDirection: 'row',
+	flexWrap: 'no-wrap',
+	justifyContent: 'space-evenly',
+}
+
 class FlagPicker extends React.Component {
 	constructor(props) {
 		super(props);
@@ -28,7 +35,7 @@ class FlagPicker extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div style={flagPickerStyle}>
 				<ContinentPicker />
 				<CountriesPicker />
 				<FlagsView />
