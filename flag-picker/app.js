@@ -42,8 +42,10 @@ class FlagPicker extends React.Component {
 
 	selectContinent(continentOption) {
 		console.log('selected ', continentOption);
-		debugger;
-		this.setState({show_countries: true, countries})
+		const continent = this.state.continents.find((continent) => {
+			return continent.continent === continentOption.value;
+		});
+		this.setState({show_countries: true, countries: continent.countries})
 	}
 
 	selectCountry(countryOption) {
@@ -64,11 +66,13 @@ class FlagPicker extends React.Component {
 
 					<CountriesPicker
 						countries={this.state.countries}
-						selectCountry={(countryOption) => this.selectCountry(countryOption)} />
+						selectCountry={(countryOption) => this.selectCountry(countryOption)}
+						show_countries={this.state.show_countries} />
 
 					<FlagsView
 						flags={this.state.flags}
-						selectFlag={(flagOption) => this.selectFlag(flagOption)} />
+						selectFlag={(flagOption) => this.selectFlag(flagOption)}
+						show_flag={this.state.show_flag} />
 				</div>
 			);
 		} else {
