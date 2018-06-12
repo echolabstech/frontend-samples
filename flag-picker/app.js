@@ -12,11 +12,11 @@ class FlagPicker extends React.Component {
 		super(props);
 		this.state = {
 			show_continents: false,
-			continents: [{}],
+			continents: [],
 			show_countries: false,
-			countries: [{}],
+			countries: [],
 			show_flags: false,
-			flags: [{}],
+			flags: [],
 		};
 
 		const options = {};
@@ -45,11 +45,23 @@ class FlagPicker extends React.Component {
 		const continent = this.state.continents.find((continent) => {
 			return continent.continent === continentOption.value;
 		});
-		this.setState({show_countries: true, countries: continent.countries})
+		this.setState({show_countries: true, countries: continent.countries});
 	}
 
 	selectCountry(countryOption) {
 		console.log('selected ', countryOption);
+		const country = this.state.countries.find((country) => {
+			return country.name === countryOption.value;
+		});
+		let flags = this.state.flags.find((flag) => {
+			return flag.name === country.name;
+		});
+		if (!flags) {
+			flags = [];
+			flags.push(country);
+		}
+		flags = [...flags, ...this.state.flags];
+		this.setState({show_flags: true, flags});
 	}
 
 	selectFlag(flagOption) {
