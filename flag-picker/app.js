@@ -69,8 +69,9 @@ class FlagPicker extends React.Component {
 		this.setState({show_flags: true, flags});
 	}
 
-	selectFlag(flagOption) {
-		console.log('selected ', flagOption);
+	clearFlags() {
+		console.log('removing flags');
+		this.setState({flags: []});
 	}
 
 	checkBox(select) {
@@ -108,7 +109,7 @@ class FlagPicker extends React.Component {
 
 					<FlagsView
 						flags={this.state.flags}
-						selectFlag={(flagOption) => this.selectFlag(flagOption)}
+						clearFlags={(flagOption) => this.clearFlags(flagOption)}
 						show_flags={this.state.show_flags} />
 				</div>
 			);
@@ -168,7 +169,8 @@ class FlagsView extends React.Component {
 	  	return (
 	  		<div>
 		  		<h1>see the flags</h1>
-		  		{flags}
+		  		<div>{flags}</div>
+		  		<button onClick={this.props.clearFlags}>clear flags</button>
 	  		</div>
 	  	);
 		} else {
