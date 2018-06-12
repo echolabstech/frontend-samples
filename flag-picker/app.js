@@ -74,13 +74,17 @@ class FlagPicker extends React.Component {
 	}
 
 	checkBox(select) {
+		const checked = this.state.flags.find((flag) => {
+			return flag.name === select.option.value;
+		});
 		return (
 			<div>
 				<input
 					type="checkbox"
 					name={select.option.value}
 					value={select.option.value}
-					onClick={(select) => this.clickCheckBox(select)} />
+					onChange={(select) => this.clickCheckBox(select)}
+					checked={checked} />
 				<label htmlFor="{select.option.label}">{select.option.label}</label>
 			</div>
 		);
