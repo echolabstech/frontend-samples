@@ -10,7 +10,14 @@ const flagPickerStyle = {
 class FlagPicker extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {is_ready: false, continents: [{}]};
+		this.state = {
+			show_continents: false,
+			continents: [{}],
+			show_countries: false,
+			countries: [{}],
+			show_flags: false,
+			flags: [{}],
+		};
 
 		const options = {};
 		fetch('./continents.json', options)
@@ -20,7 +27,7 @@ class FlagPicker extends React.Component {
 		})
 		.then((continents) => {
 			console.log(continents);
-			this.setState({is_ready: true, continents});
+			this.setState({show_continents: true, continents});
 		})
 		.catch((error) => {
 			console.log(error);
@@ -33,23 +40,37 @@ class FlagPicker extends React.Component {
 		return word.includes(searchTerm);
 	}
 
-	selectContinent(countryOption) {
+	selectContinent(continentOption) {
+		console.log('selected ', continentOption);
+	}
+
+	selectCountry(countryOption) {
 		console.log('selected ', countryOption);
 	}
 
+	selectFlag(flagOption) {
+		console.log('selected ', flagOption);
+	}
+
 	render() {
-		if (this.state.is_ready) {
+		if (this.state.show_continents) {
 			return (
 				<div style={flagPickerStyle}>
 					<ContinentPicker
 						continents={this.state.continents}
 						selectContinent={this.selectContinent} />
-					<CountriesPicker />
-					<FlagsView />
+
+					<CountriesPicker
+						countries={this.state.countries}
+						selectCountry={this.selectCountry} />
+
+					<FlagsView
+						flags={this.state.flags}
+						selectFlag={this.selectFlag} />
 				</div>
 			);
 		} else {
-			return <h1>Loading...</h1>
+			return <h1>Loading json...</h1>
 		}
 	}
 }
@@ -73,13 +94,21 @@ class ContinentPicker extends React.Component {
 
 class CountriesPicker extends React.Component {
 	render() {
-  	return <h1>choose countries</h1>;
+		if (this.props.show_countries) {
+	  	return <h1>choose countries</h1>;
+		} else {
+			return <div />;
+		}
   }
 }
 
 class FlagsView extends React.Component {
 	render() {
-  	return <h1>see the flags</h1>;
+		if (this.props.show_flags) {
+	  	return <h1>see the flags</h1>;
+		} else {
+			return <div />;
+		}
   }
 }
 
