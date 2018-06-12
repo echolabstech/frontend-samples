@@ -84,7 +84,7 @@ class FlagPicker extends React.Component {
 					<FlagsView
 						flags={this.state.flags}
 						selectFlag={(flagOption) => this.selectFlag(flagOption)}
-						show_flag={this.state.show_flag} />
+						show_flags={this.state.show_flags} />
 				</div>
 			);
 		} else {
