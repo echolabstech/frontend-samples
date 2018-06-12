@@ -87,7 +87,7 @@ class FlagPicker extends React.Component {
 	}
 
 	clickCheckBox(select) {
-		debugger;
+		this.selectCountry({value: select.target.name});
 	}
 
 	render() {
