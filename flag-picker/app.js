@@ -36,7 +36,7 @@ class FlagPicker extends React.Component {
 	render() {
 		return (
 			<div style={flagPickerStyle}>
-				<ContinentPicker />
+				<ContinentPicker continents={this.state.continents} />
 				<CountriesPicker />
 				<FlagsView />
 			</div>
@@ -46,7 +46,14 @@ class FlagPicker extends React.Component {
 
 class ContinentPicker extends React.Component {
 	render() {
-  	return <h1>choose a continent</h1>;
+		const continents = [1,2,3];
+
+  	return (
+  		<div>
+				<h1>choose a continent</h1>
+	  		<Select />
+  		</div>
+  	);
   }
 }
 
