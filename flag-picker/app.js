@@ -33,11 +33,17 @@ class FlagPicker extends React.Component {
 		return word.includes(searchTerm);
 	}
 
+	selectContinent(countryOption) {
+		console.log('selected ', countryOption);
+	}
+
 	render() {
 		if (this.state.is_ready) {
 			return (
 				<div style={flagPickerStyle}>
-					<ContinentPicker continents={this.state.continents} />
+					<ContinentPicker
+						continents={this.state.continents}
+						selectContinent={this.selectContinent} />
 					<CountriesPicker />
 					<FlagsView />
 				</div>
@@ -50,13 +56,16 @@ class FlagPicker extends React.Component {
 
 class ContinentPicker extends React.Component {
 	render() {
-		const options = this.props.continents.map((continent)=> {
+		const continents = this.props.continents.map((continent)=> {
 			return {value: continent.continent, label: continent.continent};
 		});
+		const selectContinent = this.props.selectContinent;
   	return (
   		<div>
 				<h1>choose a continent</h1>
-	  		<Select options={options} />
+	  		<Select 
+	  			options={continents}
+	  			onChange={selectContinent} />
   		</div>
   	);
   }
