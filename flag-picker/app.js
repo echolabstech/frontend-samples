@@ -104,7 +104,8 @@ class ContinentPicker extends React.Component {
 				<h1>choose a continent</h1>
 	  		<Select 
 	  			options={continents}
-	  			onChange={selectContinent} />
+	  			onChange={selectContinent}
+	  			searchable={true} />
   		</div>
   	);
   }
