@@ -131,13 +131,23 @@ class CountriesPicker extends React.Component {
 					<h1>choose countries</h1>
 		  		<Select 
 		  			options={countries}
-		  			onChange={selectCountry} />
+		  			onChange={selectCountry}
+		  			optionComponent={checkBox} />
 	  		</div>
   		);
 		} else {
 			return <div />;
 		}
   }
+}
+
+function checkBox(select) {
+	return (
+		<div>
+			<input type="checkbox" name={select.option.value} value={select.option.value} />
+			<label htmlFor="{select.option.label}">{select.option.label}</label>
+		</div>
+	);
 }
 
 class FlagsView extends React.Component {
