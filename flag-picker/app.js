@@ -50,10 +50,13 @@ class FlagPicker extends React.Component {
 
 class ContinentPicker extends React.Component {
 	render() {
+		const options = this.props.continents.map((continent)=> {
+			return {value: continent.continent, label: continent.continent};
+		});
   	return (
   		<div>
 				<h1>choose a continent</h1>
-	  		<Select options={this.props.continents} />
+	  		<Select options={options} />
   		</div>
   	);
   }
