@@ -6,8 +6,44 @@
 	</head>
 	<style>
 		#clipped {
-		  margin-bottom: 20px;
 		  clip-path: url(#cross);
+		  left: 500px;
+		  position: absolute;
+		  left: 0px;
+		}
+
+		#qa_forum {
+			position: absolute;
+
+			width: 325px;
+			height: 150px;
+			background-color: red;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+
+		.questions {
+			display: flex;
+			justify-content: space-around;	
+		}
+
+		.question {
+			width: 100px;
+			height: 50px;
+			background-color: blue;
+		}
+
+		.replies {
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.reply {
+			width: 100px;
+			height: 50px;
+			background-color: green;
 		}
 	</style>
 	<body>
@@ -27,10 +63,25 @@
 		<select id="clipPath">
 		  <option value="none">none</option>
 		  <option value="circle(100px at 110px 100px)">circle</option>
+		  <option value="polygon(3px 186px,354px 185px,353px 7px,0px 0px)">polygon</option>
 		  <option value="url(#cross)" selected>cross</option>
 		  <option value="inset(20px round 20px)">inset</option>
 		  <option value="path('M 0 200 L 0,110 A 110,90 0,0,1 240,100 L 200 340 z')">path</option>
 		</select>
+
+		<div id="qa_forum">
+			<div class="questions">
+				<div class="question"></div>
+				<div class="question"></div>
+				<div class="question"></div>
+			</div>
+
+			<div class="replies">
+				<div class="reply"></div>
+				<div class="reply"></div>
+				<div class="reply"></div>
+			</div>
+		</div>
 
 
 		<script>
