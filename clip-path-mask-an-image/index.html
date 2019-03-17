@@ -15,7 +15,6 @@
 		}
 
 		#clipped {
-		  clip-path: url(#cross);
 			height: 300px;
 		}
 
@@ -54,31 +53,30 @@
 			height: 50px;
 			background-color: green;
 		}
+
+		.activateMapButton {
+			position: absolute;
+			z-index: 4;
+			left: 260px;
+		}
+
+		.shrink {
+			clip-path: inset(0% 0% 40% 0%);
+		}
+
+		.enlarge {
+			clip-path: inset(0% 0% 0% 0%);
+		}
 	</style>
 	<body>
 		<div class="main">
+			<button class="activateMapButton shrink">enlarge</button>
 			<div class="map">
-				<img id="clipped" src="https://mdn.mozillademos.org/files/12668/MDN.svg"
-				    alt="MDN logo">
-				<svg height="0" width="0">
-				  <defs>
-				    <clipPath id="cross">
-				      <rect y="110" x="137" width="90" height="90"/>
-				      <rect x="0" y="110" width="90" height="90"/>
-				      <rect x="137" y="0" width="90" height="90"/>
-				      <rect x="0" y="0" width="90" height="90"/>
-				    </clipPath>
-				  </defs>
-				</svg>
+				<img id="clipped" class="shrink" src="https://mdn.mozillademos.org/files/12668/MDN.svg" alt="MDN logo">
 
 				<select id="clipPath">
-				  <option selected value="inset(20% 25% 20% 10%)">half</option>
-				  <option value="inset(20% 25% 20% 10%)">full</option>
-				  <option value="none">none</option>
-				  <option value="circle(100px at 110px 100px)">circle</option>
-				  <option value="url(#cross)">cross</option>
-				  <option value="inset(20% 25% 20% 10%)">inset</option>
-				  <option value="path('M 0 200 L 0,110 A 110,90 0,0,1 240,100 L 200 340 z')">path</option>
+				  <option selected value="inset(0% 0% 40% 0%)">half</option>
+				  <option value="inset(0% 0% 0% 0%)">full</option>
 				</select>
 			</div>
 
@@ -98,10 +96,28 @@
 		</div>
 
 		<script>
-			var clipPathSelect = document.getElementById("clipPath");
+			let is_map_enlarged = false;
+
+			const activateMapButton = document.querySelector('.activateMapButton');
+			const clipped = document.querySelector('#clipped');
+			activateMapButton.addEventListener('click', (event) => {
+				if (is_map_enlarged) {
+					// change button icon to shrink with css
+					// shrink the map
+					clipped.setAttribute('class', 'shrink')
+					is_map_enlarged = false;
+				} else {
+					// change button icon to enlarge with css
+					// enlarge the map
+					clipped.setAttribute('class', 'enlarge')
+					is_map_enlarged = true;
+				}
+			});
+
+			const clipPathSelect = document.getElementById("clipPath");
 			clipPathSelect.addEventListener("change", function (evt) {
 			  document.getElementById("clipped").style.clipPath = evt.target.value;
 			});
-		</script>	
+		</script>
 	</body>
 </html>
