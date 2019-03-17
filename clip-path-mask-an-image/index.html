@@ -5,15 +5,24 @@
 		<title>clipping path demo</title>
 	</head>
 	<style>
+		.main {
+			position: relative;
+		}
+
+		.map {
+			position: absolute;
+			z-index: 3;
+		}
+
 		#clipped {
 		  clip-path: url(#cross);
-		  left: 500px;
-		  position: absolute;
-		  left: 0px;
+			height: 300px;
 		}
 
 		#qa_forum {
 			position: absolute;
+			z-index: 2;
+			top: 210px;
 
 			width: 325px;
 			height: 150px;
@@ -47,42 +56,46 @@
 		}
 	</style>
 	<body>
-		<img id="clipped" src="https://mdn.mozillademos.org/files/12668/MDN.svg"
-		    alt="MDN logo">
-		<svg height="0" width="0">
-		  <defs>
-		    <clipPath id="cross">
-		      <rect y="110" x="137" width="90" height="90"/>
-		      <rect x="0" y="110" width="90" height="90"/>
-		      <rect x="137" y="0" width="90" height="90"/>
-		      <rect x="0" y="0" width="90" height="90"/>
-		    </clipPath>
-		  </defs>
-		</svg>
+		<div class="main">
+			<div class="map">
+				<img id="clipped" src="https://mdn.mozillademos.org/files/12668/MDN.svg"
+				    alt="MDN logo">
+				<svg height="0" width="0">
+				  <defs>
+				    <clipPath id="cross">
+				      <rect y="110" x="137" width="90" height="90"/>
+				      <rect x="0" y="110" width="90" height="90"/>
+				      <rect x="137" y="0" width="90" height="90"/>
+				      <rect x="0" y="0" width="90" height="90"/>
+				    </clipPath>
+				  </defs>
+				</svg>
 
-		<select id="clipPath">
-		  <option value="none">none</option>
-		  <option value="circle(100px at 110px 100px)">circle</option>
-		  <option value="polygon(3px 186px,354px 185px,353px 7px,0px 0px)">polygon</option>
-		  <option value="url(#cross)" selected>cross</option>
-		  <option value="inset(20px round 20px)">inset</option>
-		  <option value="path('M 0 200 L 0,110 A 110,90 0,0,1 240,100 L 200 340 z')">path</option>
-		</select>
-
-		<div id="qa_forum">
-			<div class="questions">
-				<div class="question"></div>
-				<div class="question"></div>
-				<div class="question"></div>
+				<select id="clipPath">
+				  <option selected value="polygon(23px 245px,322px 247px,324px 24px,22px 22px">half</option>
+				  <option value="polygon(9px 406px,302px 407px,305px 15px,5px 13px)">full</option>
+				  <option value="none">none</option>
+				  <option value="circle(100px at 110px 100px)">circle</option>
+				  <option value="url(#cross)">cross</option>
+				  <option value="inset(20px round 20px)">inset</option>
+				  <option value="path('M 0 200 L 0,110 A 110,90 0,0,1 240,100 L 200 340 z')">path</option>
+				</select>
 			</div>
 
-			<div class="replies">
-				<div class="reply"></div>
-				<div class="reply"></div>
-				<div class="reply"></div>
+			<div id="qa_forum">
+				<div class="questions">
+					<div class="question"></div>
+					<div class="question"></div>
+					<div class="question"></div>
+				</div>
+
+				<div class="replies">
+					<div class="reply"></div>
+					<div class="reply"></div>
+					<div class="reply"></div>
+				</div>
 			</div>
 		</div>
-
 
 		<script>
 			var clipPathSelect = document.getElementById("clipPath");
