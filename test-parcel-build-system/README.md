@@ -6,6 +6,10 @@
 ```
 https://parceljs.org/recipes.html
 ```
+4. install react router dom
+```
+npm install --save react-router-dom
+```
 
 ### Run Existing Application ###
 1. clone this repo and checkout this branch
