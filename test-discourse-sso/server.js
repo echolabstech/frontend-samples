@@ -9,13 +9,12 @@ const API_USERNAME = 'majorflight';
 const jsonParser = bodyParser.json();
 const sso = new discourse_sso("majorsapp1234");
 
-server.use('/', express.static(__dirname + './'));
+// server.use('/', express.static(__dirname + './'));
 
-server.get('/api/login', (request, response) => {
-	console.log('endpoint: /api/login');
+server.get('/', jsonParser, (request, response) => {
 	const payload = request.body.payload;
 	const sig = request.body.sig;
-	if(sso.validate(payload, sig)) {
+	if (sso.validate(payload, sig)) {
 		const nonce = sso.getNonce(payload);
 		const userparams = {
 			// required
@@ -27,8 +26,14 @@ server.get('/api/login', (request, response) => {
 	    "name": "Major A Sapp III"
 		};
 		const q = sso.buildLoginString(userparams);
+		const ssoUrl = 'https://discourse.atlasaitech.com/session/sso_login?';
+		console.error('redirecting to '+ssoUrl);
 		response.redirect('https://discourse.atlasaitech.com/session/sso_login?' + q);
+	} else {
+		const error = 'failed sso validation';
+		console.error(error);
+		response.send(error);
 	}
 });
 
-server.listen(8081);
+server.listen(8000);
