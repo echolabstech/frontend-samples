@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "crypto": "^1.0.1",
     "discourse-sso": "^1.0.3",
     "express": "^4.16.4",
     "pm2": "^3.4.0",
