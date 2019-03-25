@@ -1,0 +1,19 @@
+{
+  "name": "test-discourse-sso",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "discourse-sso": "^1.0.3",
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  }
+}
