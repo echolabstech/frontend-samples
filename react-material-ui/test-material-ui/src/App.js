@@ -105,16 +105,6 @@ class SimpleMenu extends React.Component {
 }
 
 class App extends Component {
-  state = {
-    age: '',
-    name: 'hai',
-    labelWidth: 0,
-  };
-
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
   render() {
     return (
       <div className="App">
