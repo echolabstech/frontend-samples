@@ -21,10 +21,16 @@ const selectStyle = {
   height: '5vh',
 }
 
+const arrowIconStyle = {
+  backgroundColor: 'black',
+  zIndex: '100',
+  position: 'absolute',
+}
+
 class SimpleMenu extends React.Component {
   state = {
     anchorEl: null,
-    inputValue: 'username',
+    role: 'IT Manager',
   };
 
   handleClick = event => {
@@ -32,20 +38,18 @@ class SimpleMenu extends React.Component {
   };
 
   handleClose = (event) => {
-    const inputValue = event.target.innerText;
-    this.setState({ anchorEl: null , inputValue});
+    const role = event.target.innerText;
+    this.setState({ anchorEl: null , role});
   };
 
   render() {
     const { anchorEl } = this.state;
-    console.log(anchorEl);
 
     return (
       <div>
-        <Select
-          type="text"
-          value={this.state.inputValue}
+        <Input
           disabled
+          value={this.state.role}
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}
@@ -53,7 +57,8 @@ class SimpleMenu extends React.Component {
           onChange={this.handleChange}
           IconComponent={ArrowDropUp}
         >
-        </Select>
+        <ArrowDropUp style={arrowIconStyle} />
+        </Input>
         <Menu
           id="simple-menu"
           style={menuStyles}
