@@ -1,25 +1,65 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
+import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { styled } from '@material-ui/styles';
 
-const CustomInput = styled(Input)({
+const ButtonCustom = styled(Button)({
   color: 'black',
   'background-color': 'white',
   'border-bottom': 'solid white 0.25em',
   width: '50%',
-  'margin-bottom': '1em',
 });
 
-const CustomSelect = styled(Select)({
-  color: 'black',
-  'background-color': 'white',
-  'border-bottom': 'solid white 0.25em',
-  width: '15%',
-});
+const menuStyles = {
+  top: '10vh',
+}
+
+class SimpleMenu extends React.Component {
+  state = {
+    anchorEl: null,
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
+  render() {
+    const { anchorEl } = this.state;
+    console.log(anchorEl);
+
+    return (
+      <div>
+        <ButtonCustom
+          aria-owns={anchorEl ? 'simple-menu' : undefined}
+          aria-haspopup="true"
+          onClick={this.handleClick}
+        >
+          Open Menu
+        </ButtonCustom>
+        <Menu
+          id="simple-menu"
+          style={menuStyles}
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
+        >
+          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+          <MenuItem onClick={this.handleClose}>My account</MenuItem>
+          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+        </Menu>
+      </div>
+    );
+  }
+}
 
 class App extends Component {
   state = {
@@ -48,28 +88,7 @@ class App extends Component {
           >
             Learn React
           </a>
-          <CustomInput
-            defaultValue="Hello world"
-            inputProps={{
-              'aria-label': 'Description',
-            }}
-          />
-
-          <CustomSelect
-            value={this.state.age}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'age',
-              id: 'age-simple',
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </CustomSelect>
+          <SimpleMenu />
         </header>
       </div>
     );
