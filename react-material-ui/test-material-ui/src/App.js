@@ -22,14 +22,16 @@ const selectButtonStyle = {
 class SimpleMenu extends React.Component {
   state = {
     anchorEl: null,
+    inputValue: 'username',
   };
 
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
+  handleClose = (event) => {
+    const inputValue = event.target.innerText;
+    this.setState({ anchorEl: null , inputValue});
   };
 
   render() {
@@ -38,14 +40,18 @@ class SimpleMenu extends React.Component {
 
     return (
       <div>
-        <Button
+        <Input
+          type="text"
+          value={this.state.inputValue}
+          disabled
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}
           style={selectButtonStyle}
+          onChange={this.handleChange}
         >
           Open Menu
-        </Button>
+        </Input>
         <Menu
           id="simple-menu"
           style={menuStyles}
