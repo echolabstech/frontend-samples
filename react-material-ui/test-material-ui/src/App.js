@@ -16,11 +16,11 @@ const menuStyles = {
   marginTop: '7vh',
 }
 
-const selectButtonStyle = {
+const selectStyle = {
   color: 'black',
   backgroundColor: 'white',
   borderBottom: 'solid white 0.25em',
-  width: '100%',
+  width: '25vw',
   height: '5vh',
 }
 
@@ -45,18 +45,18 @@ class SimpleMenu extends React.Component {
 
     return (
       <div>
-        <Input
+        <Select
           type="text"
           value={this.state.inputValue}
           disabled
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}
-          style={selectButtonStyle}
+          style={selectStyle}
           onChange={this.handleChange}
         >
           Open Menu
-        </Input>
+        </Select>
         <Menu
           id="simple-menu"
           style={menuStyles}
