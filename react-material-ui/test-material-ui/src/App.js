@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Input from '@material-ui/core/Input';
+import { styled } from '@material-ui/styles';
+
+const CustomInput = styled(Input)({
+  color: 'black',
+  'background-color': 'white',
+  'border-bottom': 'solid white 0.25em',
+  width: '50%',
+});
+
 
 class App extends Component {
   render() {
@@ -19,6 +29,12 @@ class App extends Component {
           >
             Learn React
           </a>
+          <CustomInput
+            defaultValue="Hello world"
+            inputProps={{
+              'aria-label': 'Description',
+            }}
+          />
         </header>
       </div>
     );
