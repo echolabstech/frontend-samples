@@ -30,23 +30,39 @@ const arrowIconStyle = {
 class SimpleMenu extends React.Component {
   state = {
     anchorEl: null,
-    inputValue: 'username',
     age: 30,
+    arrow: ArrowDropDown,
   };
 
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  showMenu = event => {
+    this.setState({
+      anchorEl: event.currentTarget,
+    });
   };
 
-  handleClose = (event) => {
-    const inputValue = event.target.innerText;
+  selectMenuItem = (event) => {
     const value = event.target.value;
-    this.setState({ anchorEl: null , inputValue, age: value});
+    this.setState({
+      anchorEl: null,
+      age: value,
+    });
   };
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+  menuOpen = (event) => {
+    this.setState({
+      arrow: ArrowDropUp,
+    });
+  }
+
+  menuClose = (event) => {
+    this.setState({
+      arrow: ArrowDropDown,
+    });
+  }
 
   render() {
     const { anchorEl } = this.state;
@@ -58,19 +74,15 @@ class SimpleMenu extends React.Component {
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
           value={this.state.age}
-          onChange={this.handleChange}
           inputProps={{
             name: 'age',
             id: 'age-simple',
           }}
-          onClick={this.handleClick}
+          onClick={this.showMenu}
           style={selectStyle}
           onChange={this.handleChange}
-          IconComponent={ArrowDropUp}
+          IconComponent={this.state.arrow}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
           <MenuItem value={10}>IT Manager</MenuItem>
           <MenuItem value={20}>Salesperson</MenuItem>
           <MenuItem value={30}>HR Manager</MenuItem>
@@ -80,11 +92,12 @@ class SimpleMenu extends React.Component {
           style={menuStyles}
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onClose={this.handleClose}
+          onEntering={this.menuOpen}
+          onExiting={this.menuClose}
         >
-          <MenuItem value={10} onClick={this.handleClose}>IT Manager</MenuItem>
-          <MenuItem value={20} onClick={this.handleClose}>Salesperson</MenuItem>
-          <MenuItem value={30} onClick={this.handleClose}>HR Manager</MenuItem>
+          <MenuItem value={10} onClick={this.selectMenuItem}>IT Manager</MenuItem>
+          <MenuItem value={20} onClick={this.selectMenuItem}>Salesperson</MenuItem>
+          <MenuItem value={30} onClick={this.selectMenuItem}>HR Manager</MenuItem>
         </Menu>
       </div>
     );
