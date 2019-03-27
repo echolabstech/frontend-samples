@@ -6,6 +6,11 @@ import Input from '@material-ui/core/Input';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+//Font Awesome Library
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
+library.add(faCog)
 
 const menuStyles = {
   marginTop: '7vh',
