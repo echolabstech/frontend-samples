@@ -30,7 +30,8 @@ const arrowIconStyle = {
 class SimpleMenu extends React.Component {
   state = {
     anchorEl: null,
-    role: 'IT Manager',
+    inputValue: 'username',
+    age: 30,
   };
 
   handleClick = event => {
@@ -38,8 +39,13 @@ class SimpleMenu extends React.Component {
   };
 
   handleClose = (event) => {
-    const role = event.target.innerText;
-    this.setState({ anchorEl: null , role});
+    const inputValue = event.target.innerText;
+    const value = event.target.value;
+    this.setState({ anchorEl: null , inputValue, age: value});
+  };
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
@@ -47,18 +53,28 @@ class SimpleMenu extends React.Component {
 
     return (
       <div>
-        <Input
+        <Select
           disabled
-          value={this.state.role}
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
+          value={this.state.age}
+          onChange={this.handleChange}
+          inputProps={{
+            name: 'age',
+            id: 'age-simple',
+          }}
           onClick={this.handleClick}
           style={selectStyle}
           onChange={this.handleChange}
           IconComponent={ArrowDropUp}
-        >
-        <ArrowDropUp style={arrowIconStyle} />
-        </Input>
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+          <MenuItem value={10}>IT Manager</MenuItem>
+          <MenuItem value={20}>Salesperson</MenuItem>
+          <MenuItem value={30}>HR Manager</MenuItem>
+        </Select>
         <Menu
           id="simple-menu"
           style={menuStyles}
@@ -66,9 +82,9 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-          <MenuItem onClick={this.handleClose}>My account</MenuItem>
-          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+          <MenuItem value={10} onClick={this.handleClose}>IT Manager</MenuItem>
+          <MenuItem value={20} onClick={this.handleClose}>Salesperson</MenuItem>
+          <MenuItem value={30} onClick={this.handleClose}>HR Manager</MenuItem>
         </Menu>
       </div>
     );
