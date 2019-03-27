@@ -6,17 +6,17 @@ import Input from '@material-ui/core/Input';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { styled } from '@material-ui/styles';
-
-const ButtonCustom = styled(Button)({
-  color: 'black',
-  'background-color': 'white',
-  'border-bottom': 'solid white 0.25em',
-  width: '50%',
-});
 
 const menuStyles = {
-  top: '10vh',
+  marginTop: '7vh',
+}
+
+const selectButtonStyle = {
+  color: 'black',
+  backgroundColor: 'white',
+  borderBottom: 'solid white 0.25em',
+  width: '100%',
+  height: '5vh',
 }
 
 class SimpleMenu extends React.Component {
@@ -38,13 +38,14 @@ class SimpleMenu extends React.Component {
 
     return (
       <div>
-        <ButtonCustom
+        <Button
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}
+          style={selectButtonStyle}
         >
           Open Menu
-        </ButtonCustom>
+        </Button>
         <Menu
           id="simple-menu"
           style={menuStyles}
