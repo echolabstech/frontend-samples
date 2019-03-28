@@ -25,7 +25,7 @@ const arrowIconStyle = {
   position: 'absolute',
 }
 
-class SimpleMenu extends React.Component {
+class RoleMenu extends React.Component {
   state = {
     anchorEl: null,
     role: 30,
@@ -46,7 +46,7 @@ class SimpleMenu extends React.Component {
     });
   };
 
-  handleChange = event => {
+  updateRole = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -77,7 +77,7 @@ class SimpleMenu extends React.Component {
           }}
           onClick={this.showMenu}
           style={selectStyle}
-          onChange={this.handleChange}
+          onChange={this.updateRole}
           IconComponent={this.state.arrow}
           >
           <MenuItem value={10}>IT Manager</MenuItem>
@@ -118,7 +118,7 @@ class App extends Component {
           >
             Learn React
           </a>
-          <SimpleMenu />
+          <RoleMenu />
         </header>
       </div>
     );
