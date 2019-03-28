@@ -6,30 +6,36 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ExpandLess from '@material-ui/icons/ExpandLess';
+import { styled } from '@material-ui/styles';
 
 const menuStyles = {
   marginTop: '7vh',
 }
 
 const selectStyle = {
-  backgroundColor: 'white',
-  color: 'black',
+  backgroundColor: '#282c34',
+  color: 'white',
   borderBottom: 'solid white 0.25em',
   width: '25vw',
   height: '5vh',
 }
 
-const arrowIconStyle = {
-  backgroundColor: 'black',
-  zIndex: '100',
+const arrowStyle = {
+  color: 'white',
   position: 'absolute',
+  height: '5vh',
+  width: '5vw',
 }
+
+const ExpandMoreCustom = styled(ExpandMore)(arrowStyle);
+
+const ExpandLessCustom = styled(ExpandLess)(arrowStyle);
 
 class RoleMenu extends React.Component {
   state = {
     anchorEl: null,
     role: 30,
-    arrow: ExpandMore,
+    arrow: ExpandMoreCustom,
   };
 
   showMenu = event => {
@@ -52,13 +58,13 @@ class RoleMenu extends React.Component {
 
   menuOpen = (event) => {
     this.setState({
-      arrow: ExpandLess,
+      arrow: ExpandLessCustom,
     });
   }
 
   menuClose = (event) => {
     this.setState({
-      arrow: ExpandMore,
+      arrow: ExpandMoreCustom,
     });
   }
 
