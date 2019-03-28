@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -72,7 +70,6 @@ class SimpleMenu extends React.Component {
         <Select
           disabled
           aria-owns={anchorEl ? 'simple-menu' : undefined}
-          aria-haspopup="true"
           value={this.state.role}
           inputProps={{
             name: 'role',
