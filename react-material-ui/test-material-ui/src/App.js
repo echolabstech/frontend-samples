@@ -30,7 +30,7 @@ const arrowIconStyle = {
 class SimpleMenu extends React.Component {
   state = {
     anchorEl: null,
-    age: 30,
+    role: 30,
     arrow: ArrowDropDown,
   };
 
@@ -44,7 +44,7 @@ class SimpleMenu extends React.Component {
     const value = event.target.value;
     this.setState({
       anchorEl: null,
-      age: value,
+      role: value,
     });
   };
 
@@ -73,10 +73,10 @@ class SimpleMenu extends React.Component {
           disabled
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
-          value={this.state.age}
+          value={this.state.role}
           inputProps={{
-            name: 'age',
-            id: 'age-simple',
+            name: 'role',
+            id: 'role-simple',
           }}
           onClick={this.showMenu}
           style={selectStyle}
