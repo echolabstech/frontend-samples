@@ -4,8 +4,8 @@ import './App.css';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import ExpandLess from '@material-ui/icons/ExpandLess';
 
 const menuStyles = {
   marginTop: '7vh',
@@ -29,7 +29,7 @@ class RoleMenu extends React.Component {
   state = {
     anchorEl: null,
     role: 30,
-    arrow: ArrowDropDown,
+    arrow: ExpandMore,
   };
 
   showMenu = event => {
@@ -52,13 +52,13 @@ class RoleMenu extends React.Component {
 
   menuOpen = (event) => {
     this.setState({
-      arrow: ArrowDropUp,
+      arrow: ExpandLess,
     });
   }
 
   menuClose = (event) => {
     this.setState({
-      arrow: ArrowDropDown,
+      arrow: ExpandMore,
     });
   }
 
