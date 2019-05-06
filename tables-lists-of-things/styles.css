@@ -4,6 +4,12 @@
   width: 100%;
 }
 
+.border-shadow {
+	-webkit-box-shadow: 0px 2px 0px 2px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0px 2px 0px 2px rgba(0,0,0,0.25);
+	box-shadow: 0px 2px 0px 2px rgba(0,0,0,0.25);
+}
+
 #customers td, #customers th {
   border: 1px solid #ddd;
   padding: 8px;
@@ -19,4 +25,8 @@
   text-align: left;
   background-color: #4CAF50;
   color: white;
+}
+
+#customers tr th, #customers tr td {
+	border: 0px;
 }
