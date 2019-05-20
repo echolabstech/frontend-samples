@@ -7,33 +7,43 @@
 <body>
 
 	<script>
-		function myAsyncFunc() {
-			const asyncTask1 = new Promise((resolve, reject) => {
+		function animations() {
+			const spriteAnimation = new Promise((resolve, reject) => {
 				setTimeout(() => {
-					console.log('retrieve questions');
+					console.log('sprite animation complete');
+					resolve(100);
+				}, 1000)
+			});
+
+			const badgeAnimation = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					console.log('badge animation complete');
 					resolve(100);
 				}, 3000)
 			});
 
-			const asyncTask2 = new Promise((resolve, reject) => {
+			return Promise.all([spriteAnimation, badgeAnimation]);
+		}
+
+		function popups() {
+			return new Promise((resolve, reject) => {
 				setTimeout(() => {
 					console.log('show popup');
 					const button = document.createElement('button');
-					button.onclick = () => resolve(100);
+					button.onclick = () => {
+						console.log('close popup');
+						resolve(100);
+					}
 					button.textContent = 'close popup';
 					document.body.appendChild(button);
-				}, 2000)
-			});
-
-			return Promise.all([asyncTask1, asyncTask2]).
-			then((values) => {
-
+				}, 1000)
 			});
 		}
 
 		async function main() {
 			console.log('before');
-			await myAsyncFunc();
+			await popups();
+			await animations();
 			console.log('after');
 		}
 		main();
