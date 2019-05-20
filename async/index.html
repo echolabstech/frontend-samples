@@ -7,27 +7,33 @@
 <body>
 
 	<script>
-		const asyncTask1 = new Promise((resolve, reject) => {
-			setTimeout(() => {
-				console.log('retrieve questions');
-				resolve(100);
-			}, 3000)
-		});
+		function myAsyncFunc() {
+			const asyncTask1 = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					console.log('retrieve questions');
+					resolve(100);
+				}, 3000)
+			});
 
-		const asyncTask2 = new Promise((resolve, reject) => {
-			setTimeout(() => {
-				console.log('retrieve replies');
-				const button = document.createElement('button');
-				button.textContent = 'clickme';
-				document.body.appendChild(button);
-				resolve(100);
-			}, 2000)
-		});
+			const asyncTask2 = new Promise((resolve, reject) => {
+				setTimeout(() => {
+					console.log('retrieve replies');
+					const button = document.createElement('button');
+					button.textContent = 'clickme';
+					document.body.appendChild(button);
+					resolve(100);
+				}, 2000)
+			});
 
-		Promise.all([asyncTask1, asyncTask2]).
-		then(values => {
-			console.log(values);
-		});
+			return Promise.all([asyncTask1, asyncTask2]);
+		}
+
+		async function main() {
+			console.log('before');
+			await myAsyncFunc();
+			console.log('after');
+		}
+		main();
 	</script>
 </body>
 </html>
