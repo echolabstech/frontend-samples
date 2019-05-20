@@ -3,60 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>promise.all async example</title>
-	<style>
-		.box:hover {
-		  background-color: green;
-		  cursor: pointer;
-		  -webkit-transition: background-color 2s ease-out;
-		  -moz-transition: background-color 2s ease-out;
-		  -o-transition: background-color 2s ease-out;
-		  transition: background-color 2s ease-out;
-		}
-
-		.box {
-			height: 100px;
-			width: 100px;
-		}
-		.red {
-			background-color: red;
-		}
-
-		.blue {
-			background-color: blue;
-		}
-	</style>
 </head>
 <body>
 
-	<div class="box red"></div>
-	
-	<!-- animation dependent on async task somewhere else in your application -->
 	<script>
-		const box = document.querySelector('.box');
-		box.addEventListener('transitionend', () =>{
-			console.log('transition ended');
-			const event = new CustomEvent('BoxTransitionEnd');
-      window.dispatchEvent(event);
-		});
-	</script>
-
-	<!-- listen when animation finishes -->
-	<script>
-		const waitForBoxTransition = new Promise((resolve, reject) => {
-			window.addEventListener('BoxTransitionEnd', event => {
-				resolve(100);
-			});
-		});
-
 		const asyncTask1 = new Promise((resolve, reject) => {
-			resolve(200);
+			setTimeout(() => {
+				console.log('retrieve questions');
+				resolve(100);
+			}, 3000)
 		});
 
 		const asyncTask2 = new Promise((resolve, reject) => {
-			resolve(300);
+			setTimeout(() => {
+				console.log('retrieve replies');
+				const button = document.createElement('button');
+				button.textContent = 'clickme';
+				document.body.appendChild(button);
+				resolve(100);
+			}, 2000)
 		});
 
-		Promise.all([waitForBoxTransition, asyncTask1, asyncTask2]).
+		Promise.all([asyncTask1, asyncTask2]).
 		then(values => {
 			console.log(values);
 		});
