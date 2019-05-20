@@ -17,15 +17,18 @@
 
 			const asyncTask2 = new Promise((resolve, reject) => {
 				setTimeout(() => {
-					console.log('retrieve replies');
+					console.log('show popup');
 					const button = document.createElement('button');
-					button.textContent = 'clickme';
+					button.onclick = () => resolve(100);
+					button.textContent = 'close popup';
 					document.body.appendChild(button);
-					resolve(100);
 				}, 2000)
 			});
 
-			return Promise.all([asyncTask1, asyncTask2]);
+			return Promise.all([asyncTask1, asyncTask2]).
+			then((values) => {
+
+			});
 		}
 
 		async function main() {
