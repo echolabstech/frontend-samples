@@ -1,6 +1,7 @@
 const regex = {
 	alphabetOnly: /[a-zA-Z]+/,
 }
+
 function compare(firstElement, secondElement, lang) {
 	/*
 		left.localeCompare(right) returns:
@@ -30,8 +31,8 @@ function sortTable(table) {
 			shouldSwitch = false;
 			/* Get the two elements you want to compare,
 			one from current row and one from the next: */
-			x = rows[i].getElementsByTagName("TD")[2].innerText;
-			y = rows[i + 1].getElementsByTagName("TD")[2].innerText;
+			x = rows[i].cells[2].textContent;
+			y = rows[i + 1].cells[2].textContent;
 			// Check if the two rows should switch place:
 			if (compare(x, y, 'en') > 0) {
 				// If so, mark as a switch and break the loop:
@@ -47,3 +48,5 @@ function sortTable(table) {
 		}
 	}
 }
+
+module.exports = sortTable;

@@ -1,3 +1,4 @@
+# defaults
 *.DS_Store
 *.png
 *.jpg
@@ -12,3 +13,6 @@
 *.mov
 *.avi
 *.zip
+
+# node
+node_modules/
