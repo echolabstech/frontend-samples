@@ -31,8 +31,12 @@ function sortTable(table) {
 			shouldSwitch = false;
 			/* Get the two elements you want to compare,
 			one from current row and one from the next: */
-			x = rows[i].cells[2].textContent;
-			y = rows[i + 1].cells[2].textContent;
+			try {
+				x = rows[i].cells[2].textContent;
+				y = rows[i + 1].cells[2].textContent;
+			} catch(e) {
+				continue;
+			}
 			// Check if the two rows should switch place:
 			if (compare(x, y, 'en') > 0) {
 				// If so, mark as a switch and break the loop:

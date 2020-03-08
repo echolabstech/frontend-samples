@@ -3,78 +3,26 @@
 const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const sortTable = require('./combine_tables');
+const combineTables = require('./combine_tables');
+const sortTable = require('./sort_table');
 const TABLES_PATH = './tables';
+const template = 'template.html';
+const filename = `${TABLES_PATH}/${template}`;
+const encoding = 'utf-8';
 
-// look at file system to find all tables
-function readHTMLFileNames() {
-	/*
-		return array of table filenames, or error object
-	*/
-	try {
-	  const fileNames = fs.readdirSync(TABLES_PATH);
-	  return fileNames;
-	} catch(e) {
-	  return e;
-	}
-}
+fs.readFile(filename, encoding, async (err, html) => {
+	if (err) console.error(err);
+	const dom = new JSDOM(html);
+	const document = dom.window.document;
+	const table = document.querySelector('table');
+	await combineTables(table);
+	sortTable(table);
+	writeFile('sample.html', dom.serialize());
+});
 
-function extractTableRows(html) {
-	return new Promise((resolve, reject) => {
-		const dom = new JSDOM(html);
-		const document = dom.window.document;
-		const table = document.querySelector('table');
-		if (table && table.rows) return resolve(table.rows);
-		reject('table not found or table empty');
+function writeFile(filename, data, encoding='utf-8') {
+	fs.writeFile(filename, data, encoding, err => {
+		if (err) return console.error(err);
+		console.log(`write to ${filename} succesful`);
 	});
 }
-
-function getHTMLFile(filename, encoding='utf-8') {
-	return new Promise((resolve, reject) => {
-		fs.readFile(filename, encoding, (err, data) => {
-			if (err) reject(err);
-			resolve(data);
-		});
-	});
-}
-
-function _combineTableRows(tablerows) {
-	const table = [];
-	tablerows.forEach(tablerow => {
-		for (var i = 0; i < tablerow.length; i++) {
-			table.push(tablerow[i]);
-		}
-	});
-	return table;
-}
-
-function combineTables() {
-	const fileNames = readHTMLFileNames();
-	if (!Array.isArray(fileNames)) throw new Error(fileNames);
-
-	const promises = [];
-	fileNames.forEach(async filename => {
-		const promise = new Promise(async (resolve, reject) => {
-			const html = await getHTMLFile(`${TABLES_PATH}/${filename}`)
-			.then(html=>{return html;})
-			.catch(err=>{reject(err);});
-
-			const tablerows = await extractTableRows(html)
-			.then(tablerows => {return tablerows;})
-			.catch(err=>{reject(err);});
-
-			resolve(tablerows);
-		});
-		promises.push(promise);
-	});
-
-	Promise.all(promises)
-	.then(tablesrows => {
-		const table = _combineTableRows(tablesrows);
-		console.log(table.length);
-	})
-	.catch(err => {console.error(err);});
-}
-combineTables();
-
-module.exports = combineTables;
