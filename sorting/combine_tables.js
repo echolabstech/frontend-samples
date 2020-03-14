@@ -6,7 +6,7 @@ const { JSDOM } = jsdom;
 const TABLES_PATH = './tables';
 
 // look at file system to find all tables
-function readHTMLFileNames() {
+const readHTMLFileNames = () => {
 	/*
 		return array of table filenames, or error object
 	*/
@@ -18,7 +18,7 @@ function readHTMLFileNames() {
 	}
 }
 
-function getHTMLFile(filename, encoding='utf-8') {
+const getHTMLFile = (filename, encoding='utf-8') => {
 	return new Promise((resolve, reject) => {
 		fs.readFile(filename, encoding, (err, data) => {
 			if (err) reject(err);
@@ -27,7 +27,7 @@ function getHTMLFile(filename, encoding='utf-8') {
 	});
 }
 
-function insertRows(destTable, html) {
+const insertRows = (destTable, html) => {
 	const dom = new JSDOM(html);
 	const document = dom.window.document;
 	const srcTable = document.querySelector('table');
@@ -40,7 +40,7 @@ function insertRows(destTable, html) {
 	}
 }
 
-async function combineTables(table) {
+const combineTables = async (table) => {
 	const fileNames = readHTMLFileNames();
 	if (!Array.isArray(fileNames)) throw new Error(fileNames);
 
