@@ -16,7 +16,7 @@ function compare(firstElement, secondElement, lang) {
 	return fe.localeCompare(se, lang);
 }
 
-function sortTable(table) {
+function sortTable(table, sortColumn) {
 	var rows, switching, i, x, y, shouldSwitch;
 	switching = true;
 	/* Make a loop that will continue until
@@ -32,8 +32,8 @@ function sortTable(table) {
 			/* Get the two elements you want to compare,
 			one from current row and one from the next: */
 			try {
-				x = rows[i].cells[2].textContent;
-				y = rows[i + 1].cells[2].textContent;
+				x = rows[i].cells[sortColumn].textContent;
+				y = rows[i + 1].cells[sortColumn].textContent;
 			} catch(e) {
 				continue;
 			}

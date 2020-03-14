@@ -16,3 +16,6 @@
 
 # node
 node_modules/
+
+# sorting app
+output/

@@ -8,11 +8,16 @@ const {
 	getHTMLFile,
 } = require('./combine_tables');
 const sortTable = require('./sort_table');
-const tablesPath = './tables';
-const template = 'template.html';
+const appPath = '.';
+const tableDir = 'tables';
+const tablesPath = `${appPath}/${tableDir}/`;
 const encoding = 'utf-8';
+const outputFile = 'sample.html';
+const outputDir = 'output';
+const outputPath = `${appPath}/${outputDir}`;
+const templateFile = 'template.html';
+const templatePath = `${appPath}/${templateFile}`;
 
-const templatePath = `./${template}`;
 fs.readFile(templatePath, encoding, async (err, templateHTML) => {
 	if (err) console.error(err);
 
@@ -23,8 +28,8 @@ fs.readFile(templatePath, encoding, async (err, templateHTML) => {
 	const templateDocument = templateDom.window.document;
 	const templateTable = templateDocument.querySelector('table');
 	for (var i = 0; i < fileNames.length; i++) {
-		const fileName = fileNames[i];
-		const html = await getHTMLFile(`${tablesPath}/${fileName}`);
+		const filePath = fileNames[i];
+		const html = await getHTMLFile(filePath);
 		const dom = new JSDOM(html);
 		const document = dom.window.document;
 		const table = document.querySelector('table');
@@ -37,13 +42,17 @@ fs.readFile(templatePath, encoding, async (err, templateHTML) => {
 			}
 		}
 	}
-	sortTable(templateTable);
-	writeFile('sample.html', templateDom.serialize());
+	sortTable(templateTable, 0);
+	if (!fs.existsSync(outputPath)){
+	    fs.mkdirSync(outputPath);
+	}
+	const output = `${outputPath}/${outputFile}`;
+	writeFile(output, templateDom.serialize());
 });
 
-function writeFile(filename, data, encoding='utf-8') {
-	fs.writeFile(filename, data, encoding, err => {
+function writeFile(fileName, data, encoding='utf-8') {
+	fs.writeFile(fileName, data, encoding, err => {
 		if (err) return console.error(err);
-		console.log(`write to ${filename} succesful`);
+		console.log(`write to ${fileName} succesful`);
 	});
 }

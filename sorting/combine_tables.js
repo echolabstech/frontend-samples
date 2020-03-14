@@ -11,6 +11,9 @@ const readHTMLFileNames = (tablesPath) => {
 	*/
 	try {
 	  const fileNames = fs.readdirSync(tablesPath);
+	  for (var i = 0; i < fileNames.length; i++) {
+	  	fileNames[i] = `${tablesPath}/${fileNames[i]}`;
+	  }
 	  return fileNames;
 	} catch(e) {
 	  return e;
