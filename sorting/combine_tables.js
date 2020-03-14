@@ -3,15 +3,14 @@
 const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const TABLES_PATH = './tables';
 
 // look at file system to find all tables
-const readHTMLFileNames = () => {
+const readHTMLFileNames = (tablesPath) => {
 	/*
 		return array of table filenames, or error object
 	*/
 	try {
-	  const fileNames = fs.readdirSync(TABLES_PATH);
+	  const fileNames = fs.readdirSync(tablesPath);
 	  return fileNames;
 	} catch(e) {
 	  return e;

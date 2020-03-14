@@ -3,21 +3,42 @@
 const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const { combineTables } = require('./combine_tables');
+const { 
+	readHTMLFileNames,
+	getHTMLFile,
+} = require('./combine_tables');
 const sortTable = require('./sort_table');
-const TABLES_PATH = './tables';
+const tablesPath = './tables';
 const template = 'template.html';
-const filename = `${TABLES_PATH}/${template}`;
 const encoding = 'utf-8';
 
-fs.readFile(filename, encoding, async (err, html) => {
+const templatePath = `./${template}`;
+fs.readFile(templatePath, encoding, async (err, templateHTML) => {
 	if (err) console.error(err);
-	const dom = new JSDOM(html);
-	const document = dom.window.document;
-	const table = document.querySelector('table');
-	await combineTables(table);
-	sortTable(table);
-	writeFile('sample.html', dom.serialize());
+
+	const fileNames = readHTMLFileNames(tablesPath);
+	if (!Array.isArray(fileNames)) throw new Error(fileNames);
+
+	const templateDom = new JSDOM(templateHTML);
+	const templateDocument = templateDom.window.document;
+	const templateTable = templateDocument.querySelector('table');
+	for (var i = 0; i < fileNames.length; i++) {
+		const fileName = fileNames[i];
+		const html = await getHTMLFile(`${tablesPath}/${fileName}`);
+		const dom = new JSDOM(html);
+		const document = dom.window.document;
+		const table = document.querySelector('table');
+		for (var j = 0; j < table.rows.length; j++) {
+			let row = table.rows[j];
+			row = templateTable.insertRow(row);
+			for (var k = 0; k < table.rows[j].cells.length; k++) {
+				const cell = row.insertCell(table.rows[j].cells[k]);
+				cell.textContent = table.rows[j].cells[k].textContent;
+			}
+		}
+	}
+	sortTable(templateTable);
+	writeFile('sample.html', templateDom.serialize());
 });
 
 function writeFile(filename, data, encoding='utf-8') {
