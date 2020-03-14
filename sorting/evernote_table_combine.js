@@ -3,7 +3,7 @@
 const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const combineTables = require('./combine_tables');
+const { combineTables } = require('./combine_tables');
 const sortTable = require('./sort_table');
 const TABLES_PATH = './tables';
 const template = 'template.html';

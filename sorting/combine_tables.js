@@ -54,4 +54,9 @@ const combineTables = async (table) => {
 	}
 }
 
-module.exports = combineTables;
+module.exports = {
+	readHTMLFileNames,
+	getHTMLFile,
+	insertRows,
+	combineTables,
+};
