@@ -15,4 +15,12 @@ def get_country_by_visa_free():
 			country_names.append(country['name'])
 	return country_names
 
-pprint(get_country_by_climate())
+countries_by_climate = get_country_by_climate()
+print(len(countries_by_climate), 'countries by climate')
+no_visa_countries = get_country_by_visa_free()
+print(len(no_visa_countries), 'countries requires no visa for Chinese citizens')
+countries = []
+for country in no_visa_countries:
+	if country in countries_by_climate:
+		countries.append(country)
+print(len(countries), 'countries to choose from')
