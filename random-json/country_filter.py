@@ -1,9 +1,12 @@
 import json
 
 with open('countries-by-climate.json') as file:
-	countriesByClimate = json.load(file)
+	countries_by_climate = json.load(file)
 
 with open('visa-free-countries-for-chinese.json') as file:
-	noVisaCountries = json.load(file) # countries chinese citizens can enter w/o visa
+	no_visa_countries = json.load(file) # countries chinese citizens can enter w/o visa
 
-print(noVisaCountries)
+from pprint import pprint
+for continent in no_visa_countries:
+	for country in continent['flags']:
+		pprint(country['name'])
