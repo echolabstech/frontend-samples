@@ -1,0 +1,2 @@
+## majorrose beach bar
+Found list of countries by climate from the [cia's website](https://www.cia.gov/library/publications/the-world-factbook/fields/284.html), and countries Chinese citizens can enter without visa from the [henley passport index website](https://www.henleypassportindex.com/passport), which has a public facing [API](https://www.henleypassportindex.com/fetch?entity=regions&code=CN&is_visa_free=1&url=passports%2FCN%2Fcountries).
