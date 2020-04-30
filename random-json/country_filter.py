@@ -20,19 +20,19 @@ def get_countries():
 	no_visa_countries = get_country_by_visa_free()
 	countries = {}
 	for country in no_visa_countries:
-		if country.lower().strip() in [c.lower().strip() for c in countries_by_climate]:
+		if country.lower() in [c.lower() for c in countries_by_climate]:
 			countries[country] = countries_by_climate[country]
 	return countries
 
 def filter_countries_by_climate(countries, climates):
 	matching_countries = {}
 	for country in countries:
-		if any(climate in countries[country] for climate in climates):
+		if any(climate.lower() in countries[country].lower() for climate in climates):
 			matching_countries[country] = countries[country]
 	return matching_countries
 
 countries = get_countries()
-climates = ['tropical']
+climates = ['tropical', 'mediterranean', 'hot', 'humid']
 tropical_countries = filter_countries_by_climate(countries, climates)
 pprint(tropical_countries)
 pprint(len(tropical_countries))
