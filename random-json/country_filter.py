@@ -24,13 +24,15 @@ def get_countries():
 			countries[country] = countries_by_climate[country]
 	return countries
 
-def filter_countries_by_climate(countries, climate):
+def filter_countries_by_climate(countries, climates):
 	matching_countries = {}
 	for country in countries:
-		if climate in countries[country]:
+		if any(climate in countries[country] for climate in climates):
 			matching_countries[country] = countries[country]
 	return matching_countries
 
 countries = get_countries()
-tropical_countries = filter_countries_by_climate(countries, 'tropical')
+climates = ['tropical']
+tropical_countries = filter_countries_by_climate(countries, climates)
 pprint(tropical_countries)
+pprint(len(tropical_countries))
