@@ -49,7 +49,7 @@ def filter_countries_by_median_income(countries):
 	return affordable_countries
 
 countries = get_countries()
-climates = ['tropical', 'mediterranean', 'hot', 'humid']
+climates = ['tropical', 'mediterranean', 'humid']
 tropical_countries = filter_countries_by_climate(countries, climates)
 
 affordable_countries = filter_countries_by_median_income(tropical_countries)
