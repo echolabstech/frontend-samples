@@ -21,6 +21,6 @@ no_visa_countries = get_country_by_visa_free()
 print(len(no_visa_countries), 'countries requires no visa for Chinese citizens')
 countries = []
 for country in no_visa_countries:
-	if country in countries_by_climate:
+	if country.lower() in [c.lower() for c in countries_by_climate]:
 		countries.append(country)
 print(len(countries), 'countries to choose from')
