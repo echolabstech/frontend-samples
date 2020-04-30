@@ -1,0 +1,748 @@
+{
+    "data": [
+        {
+            "name": "Luxembourg",
+            "medianHouseholdIncome": 52493,
+            "medianPerCapitaIncome": 18418,
+            "pop2020": "625.9780"
+        },
+        {
+            "name": "Norway",
+            "medianHouseholdIncome": 51489,
+            "medianPerCapitaIncome": 19308,
+            "pop2020": "5421.2410"
+        },
+        {
+            "name": "Sweden",
+            "medianHouseholdIncome": 50514,
+            "medianPerCapitaIncome": 18632,
+            "pop2020": "10099.2650"
+        },
+        {
+            "name": "Australia",
+            "medianHouseholdIncome": 46555,
+            "medianPerCapitaIncome": 15026,
+            "pop2020": "25499.8840"
+        },
+        {
+            "name": "Denmark",
+            "medianHouseholdIncome": 44360,
+            "medianPerCapitaIncome": 18262,
+            "pop2020": "5792.2020"
+        },
+        {
+            "name": "United States",
+            "medianHouseholdIncome": 43585,
+            "medianPerCapitaIncome": 15480,
+            "pop2020": "331002.6510"
+        },
+        {
+            "name": "Canada",
+            "medianHouseholdIncome": 41280,
+            "medianPerCapitaIncome": 15181,
+            "pop2020": "37742.1540"
+        },
+        {
+            "name": "South Korea",
+            "medianHouseholdIncome": 40861,
+            "medianPerCapitaIncome": 11950,
+            "pop2020": "51269.1850"
+        },
+        {
+            "name": "Kuwait",
+            "medianHouseholdIncome": 40854,
+            "medianPerCapitaIncome": 7487,
+            "pop2020": "4270.5710"
+        },
+        {
+            "name": "Netherlands",
+            "medianHouseholdIncome": 38584,
+            "medianPerCapitaIncome": 14450,
+            "pop2020": "17134.8720"
+        },
+        {
+            "name": "New Zealand",
+            "medianHouseholdIncome": 35562,
+            "medianPerCapitaIncome": 12147,
+            "pop2020": "4822.2330"
+        },
+        {
+            "name": "Hong Kong",
+            "medianHouseholdIncome": 35443,
+            "medianPerCapitaIncome": 9705,
+            "pop2020": "7496.9810"
+        },
+        {
+            "name": "Austria",
+            "medianHouseholdIncome": 34911,
+            "medianPerCapitaIncome": 12284,
+            "pop2020": "9006.3980"
+        },
+        {
+            "name": "Japan",
+            "medianHouseholdIncome": 33822,
+            "medianPerCapitaIncome": 10840,
+            "pop2020": "126476.4610"
+        },
+        {
+            "name": "Germany",
+            "medianHouseholdIncome": 33333,
+            "medianPerCapitaIncome": 14098,
+            "pop2020": "83783.9420"
+        },
+        {
+            "name": "Taiwan",
+            "medianHouseholdIncome": 32762,
+            "medianPerCapitaIncome": 6882,
+            "pop2020": "23816.7750"
+        },
+        {
+            "name": "Singapore",
+            "medianHouseholdIncome": 32360,
+            "medianPerCapitaIncome": 7345,
+            "pop2020": "5850.3420"
+        },
+        {
+            "name": "United Kingdom",
+            "medianHouseholdIncome": 31617,
+            "medianPerCapitaIncome": 12399,
+            "pop2020": "67886.0110"
+        },
+        {
+            "name": "France",
+            "medianHouseholdIncome": 31112,
+            "medianPerCapitaIncome": 12445,
+            "pop2020": "65273.5110"
+        },
+        {
+            "name": "Israel",
+            "medianHouseholdIncome": 30364,
+            "medianPerCapitaIncome": 7847,
+            "pop2020": "8655.5350"
+        },
+        {
+            "name": "Belgium",
+            "medianHouseholdIncome": 26703,
+            "medianPerCapitaIncome": 10189,
+            "pop2020": "11589.6230"
+        },
+        {
+            "name": "Qatar",
+            "medianHouseholdIncome": 26555,
+            "medianPerCapitaIncome": 5117,
+            "pop2020": "2881.0530"
+        },
+        {
+            "name": "Slovenia",
+            "medianHouseholdIncome": 25969,
+            "medianPerCapitaIncome": 8656,
+            "pop2020": "2078.9380"
+        },
+        {
+            "name": "Saudi Arabia",
+            "medianHouseholdIncome": 24980,
+            "medianPerCapitaIncome": 4762,
+            "pop2020": "34813.8710"
+        },
+        {
+            "name": "Bahrain",
+            "medianHouseholdIncome": 24693,
+            "medianPerCapitaIncome": 4778,
+            "pop2020": "1701.5750"
+        },
+        {
+            "name": "Finland",
+            "medianHouseholdIncome": 24615,
+            "medianPerCapitaIncome": 15725,
+            "pop2020": "5540.7200"
+        },
+        {
+            "name": "Czech Republic",
+            "medianHouseholdIncome": 22913,
+            "medianPerCapitaIncome": 7821,
+            "pop2020": "10708.9810"
+        },
+        {
+            "name": "Spain",
+            "medianHouseholdIncome": 21959,
+            "medianPerCapitaIncome": 7284,
+            "pop2020": "46754.7780"
+        },
+        {
+            "name": "Malta",
+            "medianHouseholdIncome": 21141,
+            "medianPerCapitaIncome": 6869,
+            "pop2020": "441.5430"
+        },
+        {
+            "name": "Italy",
+            "medianHouseholdIncome": 20085,
+            "medianPerCapitaIncome": 6874,
+            "pop2020": "60461.8260"
+        },
+        {
+            "name": "Cyprus",
+            "medianHouseholdIncome": 18242,
+            "medianPerCapitaIncome": 4932,
+            "pop2020": "1207.3590"
+        },
+        {
+            "name": "Greece",
+            "medianHouseholdIncome": 17777,
+            "medianPerCapitaIncome": 6086,
+            "pop2020": "10423.0540"
+        },
+        {
+            "name": "Slovakia",
+            "medianHouseholdIncome": 17415,
+            "medianPerCapitaIncome": 5455,
+            "pop2020": "5459.6420"
+        },
+        {
+            "name": "Croatia",
+            "medianHouseholdIncome": 16231,
+            "medianPerCapitaIncome": 5177,
+            "pop2020": "4105.2670"
+        },
+        {
+            "name": "Portugal",
+            "medianHouseholdIncome": 16186,
+            "medianPerCapitaIncome": 5519,
+            "pop2020": "10196.7090"
+        },
+        {
+            "name": "Poland",
+            "medianHouseholdIncome": 15338,
+            "medianPerCapitaIncome": 4578,
+            "pop2020": "37846.6110"
+        },
+        {
+            "name": "Belarus",
+            "medianHouseholdIncome": 15085,
+            "medianPerCapitaIncome": 5236,
+            "pop2020": "9449.3230"
+        },
+        {
+            "name": "Argentina",
+            "medianHouseholdIncome": 14432,
+            "medianPerCapitaIncome": 4109,
+            "pop2020": "45195.7740"
+        },
+        {
+            "name": "Lebanon",
+            "medianHouseholdIncome": 13004,
+            "medianPerCapitaIncome": 2960,
+            "pop2020": "6825.4450"
+        },
+        {
+            "name": "Estonia",
+            "medianHouseholdIncome": 12577,
+            "medianPerCapitaIncome": 5031,
+            "pop2020": "1326.5350"
+        },
+        {
+            "name": "Hungary",
+            "medianHouseholdIncome": 12445,
+            "medianPerCapitaIncome": 4493,
+            "pop2020": "9660.3510"
+        },
+        {
+            "name": "Lithuania",
+            "medianHouseholdIncome": 12375,
+            "medianPerCapitaIncome": 4719,
+            "pop2020": "2722.2890"
+        },
+        {
+            "name": "Iran",
+            "medianHouseholdIncome": 12046,
+            "medianPerCapitaIncome": 3115,
+            "pop2020": "83992.9490"
+        },
+        {
+            "name": "Russia",
+            "medianHouseholdIncome": 11724,
+            "medianPerCapitaIncome": 4129,
+            "pop2020": "145934.4620"
+        },
+        {
+            "name": "Mexico",
+            "medianHouseholdIncome": 11680,
+            "medianPerCapitaIncome": 2900,
+            "pop2020": "128932.7530"
+        },
+        {
+            "name": "Montenegro",
+            "medianHouseholdIncome": 11519,
+            "medianPerCapitaIncome": 3123,
+            "pop2020": "628.0660"
+        },
+        {
+            "name": "Azerbaijan",
+            "medianHouseholdIncome": 11446,
+            "medianPerCapitaIncome": 2430,
+            "pop2020": "10139.1770"
+        },
+        {
+            "name": "Malaysia",
+            "medianHouseholdIncome": 11207,
+            "medianPerCapitaIncome": 2267,
+            "pop2020": "32365.9990"
+        },
+        {
+            "name": "Ukraine",
+            "medianHouseholdIncome": 11074,
+            "medianPerCapitaIncome": 3876,
+            "pop2020": "43733.7620"
+        },
+        {
+            "name": "Latvia",
+            "medianHouseholdIncome": 10461,
+            "medianPerCapitaIncome": 4000,
+            "pop2020": "1886.1980"
+        },
+        {
+            "name": "Tunisia",
+            "medianHouseholdIncome": 8966,
+            "medianPerCapitaIncome": 1646,
+            "pop2020": "11818.6190"
+        },
+        {
+            "name": "Turkey",
+            "medianHouseholdIncome": 8955,
+            "medianPerCapitaIncome": 2538,
+            "pop2020": "84339.0670"
+        },
+        {
+            "name": "Costa Rica",
+            "medianHouseholdIncome": 8929,
+            "medianPerCapitaIncome": 2032,
+            "pop2020": "5094.1180"
+        },
+        {
+            "name": "Serbia",
+            "medianHouseholdIncome": 8921,
+            "medianPerCapitaIncome": 3020,
+            "pop2020": "8737.3710"
+        },
+        {
+            "name": "Bulgaria",
+            "medianHouseholdIncome": 8487,
+            "medianPerCapitaIncome": 2829,
+            "pop2020": "6948.4450"
+        },
+        {
+            "name": "Panama",
+            "medianHouseholdIncome": 8356,
+            "medianPerCapitaIncome": 2011,
+            "pop2020": "4314.7670"
+        },
+        {
+            "name": "Jordan",
+            "medianHouseholdIncome": 8276,
+            "medianPerCapitaIncome": 1550,
+            "pop2020": "10203.1340"
+        },
+        {
+            "name": "Syria",
+            "medianHouseholdIncome": 8193,
+            "medianPerCapitaIncome": 1431,
+            "pop2020": "17500.6580"
+        },
+        {
+            "name": "Chile",
+            "medianHouseholdIncome": 8098,
+            "medianPerCapitaIncome": 2040,
+            "pop2020": "19116.2010"
+        },
+        {
+            "name": "Uruguay",
+            "medianHouseholdIncome": 7949,
+            "medianPerCapitaIncome": 2488,
+            "pop2020": "3473.7300"
+        },
+        {
+            "name": "Romania",
+            "medianHouseholdIncome": 7922,
+            "medianPerCapitaIncome": 2618,
+            "pop2020": "19237.6910"
+        },
+        {
+            "name": "Algeria",
+            "medianHouseholdIncome": 7849,
+            "medianPerCapitaIncome": 1392,
+            "pop2020": "43851.0440"
+        },
+        {
+            "name": "Brazil",
+            "medianHouseholdIncome": 7522,
+            "medianPerCapitaIncome": 2247,
+            "pop2020": "212559.4170"
+        },
+        {
+            "name": "Kazakhstan",
+            "medianHouseholdIncome": 7492,
+            "medianPerCapitaIncome": 1958,
+            "pop2020": "18776.7070"
+        },
+        {
+            "name": "Albania",
+            "medianHouseholdIncome": 7314,
+            "medianPerCapitaIncome": 1902,
+            "pop2020": "2877.7970"
+        },
+        {
+            "name": "Thailand",
+            "medianHouseholdIncome": 7029,
+            "medianPerCapitaIncome": 1795,
+            "pop2020": "69799.9780"
+        },
+        {
+            "name": "Ecuador",
+            "medianHouseholdIncome": 6858,
+            "medianPerCapitaIncome": 1682,
+            "pop2020": "17643.0540"
+        },
+        {
+            "name": "Mauritania",
+            "medianHouseholdIncome": 6679,
+            "medianPerCapitaIncome": 778,
+            "pop2020": "4649.6580"
+        },
+        {
+            "name": "Morocco",
+            "medianHouseholdIncome": 6634,
+            "medianPerCapitaIncome": 1135,
+            "pop2020": "36910.5600"
+        },
+        {
+            "name": "Colombia",
+            "medianHouseholdIncome": 6544,
+            "medianPerCapitaIncome": 1534,
+            "pop2020": "50882.8910"
+        },
+        {
+            "name": "Bolivia",
+            "medianHouseholdIncome": 6399,
+            "medianPerCapitaIncome": 1403,
+            "pop2020": "11673.0210"
+        },
+        {
+            "name": "Libya",
+            "medianHouseholdIncome": 6398,
+            "medianPerCapitaIncome": 1012,
+            "pop2020": "6871.2920"
+        },
+        {
+            "name": "Dominican Republic",
+            "medianHouseholdIncome": 6302,
+            "medianPerCapitaIncome": 1623,
+            "pop2020": "10847.9100"
+        },
+        {
+            "name": "China",
+            "medianHouseholdIncome": 6180,
+            "medianPerCapitaIncome": 1786,
+            "pop2020": "1439323.7760"
+        },
+        {
+            "name": "Paraguay",
+            "medianHouseholdIncome": 6179,
+            "medianPerCapitaIncome": 1292,
+            "pop2020": "7132.5380"
+        },
+        {
+            "name": "Mongolia",
+            "medianHouseholdIncome": 5922,
+            "medianPerCapitaIncome": 1440,
+            "pop2020": "3278.2900"
+        },
+        {
+            "name": "South Africa",
+            "medianHouseholdIncome": 5217,
+            "medianPerCapitaIncome": 1217,
+            "pop2020": "59308.6900"
+        },
+        {
+            "name": "Peru",
+            "medianHouseholdIncome": 5161,
+            "medianPerCapitaIncome": 1077,
+            "pop2020": "32971.8540"
+        },
+        {
+            "name": "Tajikistan",
+            "medianHouseholdIncome": 5137,
+            "medianPerCapitaIncome": 713,
+            "pop2020": "9537.6450"
+        },
+        {
+            "name": "Honduras",
+            "medianHouseholdIncome": 4848,
+            "medianPerCapitaIncome": 821,
+            "pop2020": "9904.6070"
+        },
+        {
+            "name": "El Salvador",
+            "medianHouseholdIncome": 4828,
+            "medianPerCapitaIncome": 1114,
+            "pop2020": "6486.2050"
+        },
+        {
+            "name": "Vietnam",
+            "medianHouseholdIncome": 4783,
+            "medianPerCapitaIncome": 1124,
+            "pop2020": "97338.5790"
+        },
+        {
+            "name": "Guatemala",
+            "medianHouseholdIncome": 4516,
+            "medianPerCapitaIncome": 898,
+            "pop2020": "17915.5680"
+        },
+        {
+            "name": "Moldova",
+            "medianHouseholdIncome": 4158,
+            "medianPerCapitaIncome": 1329,
+            "pop2020": "4033.9630"
+        },
+        {
+            "name": "Afghanistan",
+            "medianHouseholdIncome": 4121,
+            "medianPerCapitaIncome": 378,
+            "pop2020": "38928.3460"
+        },
+        {
+            "name": "Pakistan",
+            "medianHouseholdIncome": 4060,
+            "medianPerCapitaIncome": 480,
+            "pop2020": "220892.3400"
+        },
+        {
+            "name": "Kyrgyzstan",
+            "medianHouseholdIncome": 4034,
+            "medianPerCapitaIncome": 828,
+            "pop2020": "6524.1950"
+        },
+        {
+            "name": "Comoros",
+            "medianHouseholdIncome": 3912,
+            "medianPerCapitaIncome": 598,
+            "pop2020": "869.6010"
+        },
+        {
+            "name": "Senegal",
+            "medianHouseholdIncome": 3897,
+            "medianPerCapitaIncome": 402,
+            "pop2020": "16743.9270"
+        },
+        {
+            "name": "Armenia",
+            "medianHouseholdIncome": 3865,
+            "medianPerCapitaIncome": 926,
+            "pop2020": "2963.2430"
+        },
+        {
+            "name": "Sudan",
+            "medianHouseholdIncome": 3640,
+            "medianPerCapitaIncome": 579,
+            "pop2020": "43849.2600"
+        },
+        {
+            "name": "Botswana",
+            "medianHouseholdIncome": 3603,
+            "medianPerCapitaIncome": 740,
+            "pop2020": "2351.6270"
+        },
+        {
+            "name": "Angola",
+            "medianHouseholdIncome": 3534,
+            "medianPerCapitaIncome": 720,
+            "pop2020": "32866.2720"
+        },
+        {
+            "name": "Laos",
+            "medianHouseholdIncome": 3379,
+            "medianPerCapitaIncome": 615,
+            "pop2020": "7275.5600"
+        },
+        {
+            "name": "Sri Lanka",
+            "medianHouseholdIncome": 3242,
+            "medianPerCapitaIncome": 719,
+            "pop2020": "21413.2490"
+        },
+        {
+            "name": "Yemen",
+            "medianHouseholdIncome": 3178,
+            "medianPerCapitaIncome": 400,
+            "pop2020": "29825.9640"
+        },
+        {
+            "name": "India",
+            "medianHouseholdIncome": 3168,
+            "medianPerCapitaIncome": 616,
+            "pop2020": "1380004.3850"
+        },
+        {
+            "name": "Egypt",
+            "medianHouseholdIncome": 3111,
+            "medianPerCapitaIncome": 623,
+            "pop2020": "102334.4040"
+        },
+        {
+            "name": "Bangladesh",
+            "medianHouseholdIncome": 2819,
+            "medianPerCapitaIncome": 567,
+            "pop2020": "164689.3830"
+        },
+        {
+            "name": "Haiti",
+            "medianHouseholdIncome": 2735,
+            "medianPerCapitaIncome": 627,
+            "pop2020": "11402.5280"
+        },
+        {
+            "name": "Nepal",
+            "medianHouseholdIncome": 2718,
+            "medianPerCapitaIncome": 519,
+            "pop2020": "29136.8080"
+        },
+        {
+            "name": "Niger",
+            "medianHouseholdIncome": 2708,
+            "medianPerCapitaIncome": 307,
+            "pop2020": "24206.6440"
+        },
+        {
+            "name": "Nigeria",
+            "medianHouseholdIncome": 2667,
+            "medianPerCapitaIncome": 493,
+            "pop2020": "206139.5890"
+        },
+        {
+            "name": "Georgia",
+            "medianHouseholdIncome": 2591,
+            "medianPerCapitaIncome": 734,
+            "pop2020": "3989.1670"
+        },
+        {
+            "name": "Philippines",
+            "medianHouseholdIncome": 2401,
+            "medianPerCapitaIncome": 478,
+            "pop2020": "109581.0780"
+        },
+        {
+            "name": "Chad",
+            "medianHouseholdIncome": 2394,
+            "medianPerCapitaIncome": 338,
+            "pop2020": "16425.8640"
+        },
+        {
+            "name": "Sierra Leone",
+            "medianHouseholdIncome": 2330,
+            "medianPerCapitaIncome": 233,
+            "pop2020": "7976.9830"
+        },
+        {
+            "name": "Cambodia",
+            "medianHouseholdIncome": 2308,
+            "medianPerCapitaIncome": 451,
+            "pop2020": "16718.9650"
+        },
+        {
+            "name": "Indonesia",
+            "medianHouseholdIncome": 2199,
+            "medianPerCapitaIncome": 541,
+            "pop2020": "273523.6150"
+        },
+        {
+            "name": "Tanzania",
+            "medianHouseholdIncome": 2154,
+            "medianPerCapitaIncome": 384,
+            "pop2020": "59734.2180"
+        },
+        {
+            "name": "Republic of the Congo",
+            "medianHouseholdIncome": 2106,
+            "medianPerCapitaIncome": 416,
+            "pop2020": "5518.0870"
+        },
+        {
+            "name": "Cameroon",
+            "medianHouseholdIncome": 2075,
+            "medianPerCapitaIncome": 403,
+            "pop2020": "26545.8630"
+        },
+        {
+            "name": "Ghana",
+            "medianHouseholdIncome": 2050,
+            "medianPerCapitaIncome": 47,
+            "pop2020": "31072.9400"
+        },
+        {
+            "name": "DR Congo",
+            "medianHouseholdIncome": 1988,
+            "medianPerCapitaIncome": 308,
+            "pop2020": "89561.4030"
+        },
+        {
+            "name": "Kenya",
+            "medianHouseholdIncome": 1870,
+            "medianPerCapitaIncome": 402,
+            "pop2020": "53771.2960"
+        },
+        {
+            "name": "Uganda",
+            "medianHouseholdIncome": 1775,
+            "medianPerCapitaIncome": 296,
+            "pop2020": "45741.0070"
+        },
+        {
+            "name": "Burkina Faso",
+            "medianHouseholdIncome": 1530,
+            "medianPerCapitaIncome": 168,
+            "pop2020": "20903.2730"
+        },
+        {
+            "name": "Benin",
+            "medianHouseholdIncome": 1502,
+            "medianPerCapitaIncome": 237,
+            "pop2020": "12123.2000"
+        },
+        {
+            "name": "Zambia",
+            "medianHouseholdIncome": 1501,
+            "medianPerCapitaIncome": 287,
+            "pop2020": "18383.9550"
+        },
+        {
+            "name": "Rwanda",
+            "medianHouseholdIncome": 1101,
+            "medianPerCapitaIncome": 235,
+            "pop2020": "12952.2180"
+        },
+        {
+            "name": "Madagascar",
+            "medianHouseholdIncome": 1013,
+            "medianPerCapitaIncome": 205,
+            "pop2020": "27691.0180"
+        },
+        {
+            "name": "Liberia",
+            "medianHouseholdIncome": 781,
+            "medianPerCapitaIncome": 118,
+            "pop2020": "5057.6810"
+        },
+        {
+            "name": "Burundi",
+            "medianHouseholdIncome": 673,
+            "medianPerCapitaIncome": 129,
+            "pop2020": "11890.7840"
+        },
+        {
+            "name": "Togo",
+            "medianHouseholdIncome": 571,
+            "medianPerCapitaIncome": 279,
+            "pop2020": "8278.7240"
+        }
+    ]
+}
