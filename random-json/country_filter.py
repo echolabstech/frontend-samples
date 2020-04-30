@@ -29,6 +29,13 @@ def get_countries_by_median_income():
 		countries_by_median_income = json.load(file)
 	return countries_by_median_income
 
+def get_countries_by_infrastructure_rank():
+	countries_by_infrastructure_rank = {}
+	with open('countries-by-infrastructure-rank.json') as file:
+		for country in json.load(file):
+			countries_by_infrastructure_rank[country['Country']] = country['Infrastructure']
+	return countries_by_infrastructure_rank
+
 def filter_countries_by_climate(countries, climates):
 	matching_countries = {}
 	for country in countries:
@@ -43,15 +50,26 @@ def filter_countries_by_median_income(countries):
 	countries_by_median_income = get_countries_by_median_income()
 	affordable_countries = {}
 	for country in countries_by_median_income['data']:
-		if country['medianHouseholdIncome'] <= annual_expenses_usd:
-			if country['name'] in countries:
+		if country['name'] in countries:
+			if country['medianHouseholdIncome'] <= annual_expenses_usd:
 				affordable_countries[country['name']] = countries[country['name']]
 	return affordable_countries
+
+def filter_countries_by_infrastructure_rank(countries):
+	min_infrastructure_rank = 2
+	countries_with_high_infrastructure_rank = {}
+	countries_by_infrastructure_rank = get_countries_by_infrastructure_rank()
+	for country in countries:
+		if country in countries_by_infrastructure_rank:
+			if countries_by_infrastructure_rank[country] >= min_infrastructure_rank:
+				countries_with_high_infrastructure_rank[country] = countries[country]
+	return countries_with_high_infrastructure_rank
 
 countries = get_countries()
 climates = ['tropical', 'mediterranean', 'humid']
 tropical_countries = filter_countries_by_climate(countries, climates)
 
 affordable_countries = filter_countries_by_median_income(tropical_countries)
-pprint(affordable_countries)
-pprint(len(affordable_countries))
+countries_with_high_infrastructure_rank = filter_countries_by_infrastructure_rank(affordable_countries)
+pprint(countries_with_high_infrastructure_rank)
+pprint(len(countries_with_high_infrastructure_rank))
