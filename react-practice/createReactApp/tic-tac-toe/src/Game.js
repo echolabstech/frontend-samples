@@ -4,8 +4,8 @@ import './Game.css';
 class Square extends React.Component {
   render() {
     return (
-      <button className="square">
-        {/* TODO */}
+      <button className="square" value=''>
+        {this.props.value}
       </button>
     );
   }
