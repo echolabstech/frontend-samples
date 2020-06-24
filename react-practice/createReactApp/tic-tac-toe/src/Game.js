@@ -20,8 +20,17 @@ class Board extends React.Component {
       squares: Array(9).fill(undefined),
       playerTurn: 0,
     }
+    this.have_winner = false;
     this.players = {0: 'X', 1: 'O'};
     this.onClickHandler = this.onClickHandler.bind(this);
+    this.winConditions = [[0,1,2],
+                          [3,4,5],
+                          [6,7,8],
+                          [0,3,6],
+                          [1,4,7],
+                          [2,5,8],
+                          [0,4,8],
+                          [2,4,6]]
   }
 
   renderSquare(index) {
@@ -31,15 +40,39 @@ class Board extends React.Component {
   }
 
   onClickHandler(index) {
-    if (this.setSquareValue(index)) this.togglePlayerTurn();
+    if (this.have_winner) return;
+    if (this.square_already_set(index)) return;
+    this.setSquareValue(index);
+    this.togglePlayerTurn();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.check_winner();
+  }
+
+  square_already_set(index) {
+    return this.state.squares[index] !== undefined;
   }
 
   setSquareValue(index) {
-    if (this.state.squares[index] !== undefined) return false;
-    const squares = this.state.squares.splice(0);
+    const squares = this.state.squares.slice();
     squares[index] = this.state.playerTurn;
     this.setState({squares});
-    return true;
+  }
+
+  check_winner() {
+    for(let i = 0; i < this.winConditions.length - 1; i++) {
+      const winCondition = this.winConditions[i];
+      const squares = [this.state.squares[winCondition[0]],
+                       this.state.squares[winCondition[1]],
+                       this.state.squares[winCondition[2]],
+                      ];
+      if (squares.every(square => this.players[square])) {
+        console.log('winner winner chicken dinner!');
+        this.have_winner = true;
+        break;
+      }
+    };
   }
 
   togglePlayerTurn() {
