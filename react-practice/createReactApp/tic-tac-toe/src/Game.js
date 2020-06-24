@@ -18,27 +18,39 @@ class Board extends React.Component {
     super(props);
     this.state = {
       squares: Array(9).fill(undefined),
-      status: 0,
+      playerTurn: 0,
     }
-    this.statuses = {0: 'X', 1: 'O'};
+    this.players = {0: 'X', 1: 'O'};
+    this.onClickHandler = this.onClickHandler.bind(this);
   }
 
-  renderSquare(i) {
-    return <Square value={i}
-                   onClick={this.setValue}
+  renderSquare(index) {
+    return <Square value={this.state.squares[index]}
+                   onClick={()=>this.onClickHandler(index)}
            />;
   }
 
-  setValue(value) {
-    /* TODO */
+  onClickHandler(index) {
+    this.setSquareValue(index);
+    this.togglePlayerTurn();
+  }
+
+  setSquareValue(index) {
+    const squares = this.state.squares.splice(0);
+    squares[index] = this.players[this.state.playerTurn];
+    this.setState({squares});
+  }
+
+  togglePlayerTurn() {
+    this.setState({playerTurn: this.state.playerTurn ? 0 : 1});
   }
 
   render() {
-    const status = `Next player: ${this.statuses[this.state.status]}`;
+    const playerTurn = `Next player: ${this.players[this.state.playerTurn]}`;
 
     return (
       <div>
-        <div className="status">{status}</div>
+        <div className="playerTurn">{playerTurn}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -67,7 +79,7 @@ class Game extends React.Component {
           <Board />
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
+          <div>{/* playerTurn */}</div>
           <ol>{/* TODO */}</ol>
         </div>
       </div>
