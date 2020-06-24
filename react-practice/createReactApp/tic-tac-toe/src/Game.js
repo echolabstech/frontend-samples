@@ -31,14 +31,15 @@ class Board extends React.Component {
   }
 
   onClickHandler(index) {
-    this.setSquareValue(index);
-    this.togglePlayerTurn();
+    if (this.setSquareValue(index)) this.togglePlayerTurn();
   }
 
   setSquareValue(index) {
+    if (this.state.squares[index]) return false;
     const squares = this.state.squares.splice(0);
     squares[index] = this.players[this.state.playerTurn];
     this.setState({squares});
+    return true;
   }
 
   togglePlayerTurn() {
