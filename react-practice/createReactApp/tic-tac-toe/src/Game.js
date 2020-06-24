@@ -25,7 +25,7 @@ class Board extends React.Component {
   }
 
   renderSquare(index) {
-    return <Square value={this.state.squares[index]}
+    return <Square value={this.players[this.state.squares[index]]}
                    onClick={()=>this.onClickHandler(index)}
            />;
   }
@@ -35,9 +35,9 @@ class Board extends React.Component {
   }
 
   setSquareValue(index) {
-    if (this.state.squares[index]) return false;
+    if (this.state.squares[index] !== undefined) return false;
     const squares = this.state.squares.splice(0);
-    squares[index] = this.players[this.state.playerTurn];
+    squares[index] = this.state.playerTurn;
     this.setState({squares});
     return true;
   }
