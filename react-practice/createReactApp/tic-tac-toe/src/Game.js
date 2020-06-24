@@ -16,8 +16,12 @@ class Square extends React.Component {
 class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i}
-                   onClick={function() {console.log('foobar');}}
+                   onClick={this.setValue}
            />;
+  }
+
+  setValue(value) {
+    /* TODO */
   }
 
   render() {
