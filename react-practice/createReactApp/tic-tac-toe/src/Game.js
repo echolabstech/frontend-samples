@@ -47,11 +47,11 @@ class Board extends React.Component {
   }
 
   render() {
-    const playerTurn = `Next player: ${this.players[this.state.playerTurn]}`;
+    const status = `Next player: ${this.players[this.state.playerTurn]}`;
 
     return (
       <div>
-        <div className="playerTurn">{playerTurn}</div>
+        <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}

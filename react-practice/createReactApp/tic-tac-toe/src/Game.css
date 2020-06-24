@@ -13,7 +13,7 @@ ol, ul {
   display: table;
 }
 
-.playerTurn {
+.status {
   margin-bottom: 10px;
 }
 
