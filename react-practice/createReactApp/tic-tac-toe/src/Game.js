@@ -4,7 +4,9 @@ import './Game.css';
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" value=''>
+      <button className="square" value=''
+              onClick={this.props.onClick}
+      >
         {this.props.value}
       </button>
     );
@@ -13,7 +15,9 @@ class Square extends React.Component {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square value={i} />;
+    return <Square value={i}
+                   onClick={function() {console.log('foobar');}}
+           />;
   }
 
   render() {
