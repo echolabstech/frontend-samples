@@ -14,6 +14,15 @@ class Square extends React.Component {
 }
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(undefined),
+      status: 0,
+    }
+    this.statuses = {0: 'X', 1: 'O'};
+  }
+
   renderSquare(i) {
     return <Square value={i}
                    onClick={this.setValue}
@@ -25,7 +34,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = `Next player: ${this.statuses[this.state.status]}`;
 
     return (
       <div>
