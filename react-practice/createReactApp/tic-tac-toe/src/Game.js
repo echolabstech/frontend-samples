@@ -60,15 +60,13 @@ class Board extends React.Component {
     this.setState({squares});
   }
 
-  checkWinner(copyOfSquares) {
+  checkWinner(squares) {
     for(let i = 0; i < this.winConditions.length; i++) {
       const winCondition = this.winConditions[i];
-      const winConditionSquares = [copyOfSquares[winCondition[0]],
-                       copyOfSquares[winCondition[1]],
-                       copyOfSquares[winCondition[2]],
-                      ];
-      if (winConditionSquares.some(square => square === undefined)) continue; 
-      if (winConditionSquares.every(square => square === this.state.playerTurn)) {
+      if (squares[winCondition[0]] !== undefined &&
+          squares[winCondition[0]] === squares[winCondition[1]] &&
+          squares[winCondition[0]] === squares[winCondition[2]])
+      {
         this.have_winner = true;
         break;
       }
