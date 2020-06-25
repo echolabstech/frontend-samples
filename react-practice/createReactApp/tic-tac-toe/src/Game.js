@@ -1,16 +1,14 @@
 import React from 'react';
 import './Game.css';
 
-class Square extends React.Component {
-  render() {
-    return (
-      <button className="square" value=''
-              onClick={this.props.onClick}
-      >
-        {this.props.value}
-      </button>
-    );
-  }
+function Square(props) {
+  return (
+    <button className="square" value=''
+            onClick={props.onClick}
+    >
+      {props.value}
+    </button>
+  );
 }
 
 class Board extends React.Component {
