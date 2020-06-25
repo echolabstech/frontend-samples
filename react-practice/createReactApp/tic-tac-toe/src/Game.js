@@ -42,41 +42,35 @@ class Board extends React.Component {
   onClickHandler(index) {
     if (this.have_winner) return;
     if (this.square_already_set(index)) return;
-    this.setSquareValue(index);
-    this.toggle_player = true;
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    this.check_winner();
-    if (this.have_winner) {
-      console.log('winner winner chicken dinner!');
-      return;
-    }
-    if (this.toggle_player) {
-      this.togglePlayerTurn();
-      this.toggle_player = false;
-    }
+    const copyOfSquares = this.copySquares(index);
+    this.checkWinner(copyOfSquares);
+    if (!this.have_winner) this.togglePlayerTurn();
+    this.updateSquareState(copyOfSquares);
   }
 
   square_already_set(index) {
     return this.state.squares[index] !== undefined;
   }
 
-  setSquareValue(index) {
+  copySquares(index) {
     const squares = this.state.squares.slice();
     squares[index] = this.state.playerTurn;
+    return squares;
+  }
+
+  updateSquareState(squares) {
     this.setState({squares});
   }
 
-  check_winner() {
+  checkWinner(copyOfSquares) {
     for(let i = 0; i < this.winConditions.length; i++) {
       const winCondition = this.winConditions[i];
-      const squares = [this.state.squares[winCondition[0]],
-                       this.state.squares[winCondition[1]],
-                       this.state.squares[winCondition[2]],
+      const winConditionSquares = [copyOfSquares[winCondition[0]],
+                       copyOfSquares[winCondition[1]],
+                       copyOfSquares[winCondition[2]],
                       ];
-      if (squares.some(square => square === undefined)) continue; 
-      if (squares.every(square => square === this.state.playerTurn)) {
+      if (winConditionSquares.some(square => square === undefined)) continue; 
+      if (winConditionSquares.every(square => square === this.state.playerTurn)) {
         this.have_winner = true;
         break;
       }
@@ -88,7 +82,11 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = `Next player: ${this.players[this.state.playerTurn]}`;
+    const player = this.players[this.state.playerTurn];
+    let status = `Next player: ${player}`;
+    if (this.have_winner) {
+      status = `Winner winner, chicken dinner. Player ${player} wins!`;
+    }
 
     return (
       <div>
