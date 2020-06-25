@@ -43,11 +43,19 @@ class Board extends React.Component {
     if (this.have_winner) return;
     if (this.square_already_set(index)) return;
     this.setSquareValue(index);
-    this.togglePlayerTurn();
+    this.toggle_player = true;
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     this.check_winner();
+    if (this.have_winner) {
+      console.log('winner winner chicken dinner!');
+      return;
+    }
+    if (this.toggle_player) {
+      this.togglePlayerTurn();
+      this.toggle_player = false;
+    }
   }
 
   square_already_set(index) {
@@ -61,14 +69,14 @@ class Board extends React.Component {
   }
 
   check_winner() {
-    for(let i = 0; i < this.winConditions.length - 1; i++) {
+    for(let i = 0; i < this.winConditions.length; i++) {
       const winCondition = this.winConditions[i];
       const squares = [this.state.squares[winCondition[0]],
                        this.state.squares[winCondition[1]],
                        this.state.squares[winCondition[2]],
                       ];
-      if (squares.every(square => this.players[square])) {
-        console.log('winner winner chicken dinner!');
+      if (squares.some(square => square === undefined)) continue; 
+      if (squares.every(square => square === this.state.playerTurn)) {
         this.have_winner = true;
         break;
       }
