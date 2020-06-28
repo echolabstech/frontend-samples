@@ -20,17 +20,6 @@ if `np start` fails, try `react-scripts start`
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### Jest Test Runner
-1. run recursice tests - looks in all subdirectories in parent directory, i.e. src/ test/
-```
-npm run test-jest
-```
-
-2. run tests only in specific directory
-```
-npm run test-jest test/
-```
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
