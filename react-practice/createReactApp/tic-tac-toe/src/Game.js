@@ -12,15 +12,59 @@ function Square(props) {
 }
 
 class Board extends React.Component {
+  players = {0: 'X', 1: 'O'};
+  constructor(props) {
+    super(props);
+  }
+
+  renderSquare(index) {
+    return <Square value={this.players[this.props.squares[index]]}
+                   onClick={() => this.props.onClickHandler(index)}
+           />;
+  }
+
+  render() {
+    let status = `Next player: ${this.props.playerTurn}`;
+    if (this.props.have_winner) {
+      status = `Winner winner, chicken dinner. Player ${this.props.playerTurn} wins!`;
+    }
+
+    return (
+      <div>
+        <div className="status">{status}</div>
+        <div className="board-row">
+          {this.renderSquare(0)}
+          {this.renderSquare(1)}
+          {this.renderSquare(2)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(3)}
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(6)}
+          {this.renderSquare(7)}
+          {this.renderSquare(8)}
+        </div>
+      </div>
+    );
+  }
+}
+
+class Game extends React.Component {
+  /*
+    1. move state out of Board and into Game
+    2. pass state into Board props
+  */
   constructor(props) {
     super(props);
     this.state = {
       squares: Array(9).fill(undefined),
       playerTurn: 0,
     }
-    this.have_winner = false;
-    this.players = {0: 'X', 1: 'O'};
     this.onClickHandler = this.onClickHandler.bind(this);
+    this.have_winner = false;
     this.winConditions = [[0,1,2],
                           [3,4,5],
                           [6,7,8],
@@ -29,12 +73,6 @@ class Board extends React.Component {
                           [2,5,8],
                           [0,4,8],
                           [2,4,6]]
-  }
-
-  renderSquare(index) {
-    return <Square value={this.players[this.state.squares[index]]}
-                   onClick={()=>this.onClickHandler(index)}
-           />;
   }
 
   onClickHandler(index) {
@@ -78,41 +116,12 @@ class Board extends React.Component {
   }
 
   render() {
-    const player = this.players[this.state.playerTurn];
-    let status = `Next player: ${player}`;
-    if (this.have_winner) {
-      status = `Winner winner, chicken dinner. Player ${player} wins!`;
-    }
-
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
-
-class Game extends React.Component {
-  render() {
     return (
       <div className="game">
         <div className="game-board">
-          <Board />
+          <Board squares={this.state.squares}
+                 onClickHandler={this.onClickHandler} 
+                 have_winner={this.have_winner} />
         </div>
         <div className="game-info">
           <div>{/* playerTurn */}</div>
