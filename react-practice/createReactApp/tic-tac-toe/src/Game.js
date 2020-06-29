@@ -81,6 +81,7 @@ class Game extends React.Component {
     if (this.have_winner) return;
     if (this.square_already_set(index)) return;
     const copyOfSquares = this.copySquares(index);
+    this.markPlayerSquare(copyOfSquares, index);
     this.boardStateHistory.push(this.state.squares);
     this.checkWinner(copyOfSquares);
     if (!this.have_winner) this.togglePlayerTurn();
@@ -92,9 +93,11 @@ class Game extends React.Component {
   }
 
   copySquares(index) {
-    const squares = this.state.squares.slice();
+    return this.state.squares.slice();
+  }
+
+  markPlayerSquare(squares, index) {
     squares[index] = this.state.playerTurn;
-    return squares;
   }
 
   updateSquareState(squares) {
