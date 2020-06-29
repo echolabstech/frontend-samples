@@ -1,6 +1,8 @@
 import React from 'react';
 import './Game.css';
 
+const players = {0: 'X', 1: 'O'};
+
 function Square(props) {
   return (
     <button className="square" value=''
@@ -12,9 +14,8 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-  players = {0: 'X', 1: 'O'};
   renderSquare(index) {
-    return <Square value={this.players[this.props.squares[index]]}
+    return <Square value={players[this.props.squares[index]]}
                    onClick={() => this.props.onClickHandler(index)}
            />;
   }
@@ -43,7 +44,6 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
-  players = {0: 'X', 1: 'O'};
   constructor(props) {
     super(props);
     this.state = {
@@ -103,7 +103,7 @@ class Game extends React.Component {
   }
 
   render() {
-    const player = this.players[this.state.playerTurn];
+    const player = players[this.state.playerTurn];
     let status = `Next player: ${player}`;
     if (this.have_winner) {
       status = `Winner winner, chicken dinner. Player ${player} wins!`;
