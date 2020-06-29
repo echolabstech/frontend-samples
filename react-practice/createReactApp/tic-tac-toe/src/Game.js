@@ -13,10 +13,6 @@ function Square(props) {
 
 class Board extends React.Component {
   players = {0: 'X', 1: 'O'};
-  constructor(props) {
-    super(props);
-  }
-
   renderSquare(index) {
     return <Square value={this.players[this.props.squares[index]]}
                    onClick={() => this.props.onClickHandler(index)}
@@ -24,14 +20,8 @@ class Board extends React.Component {
   }
 
   render() {
-    let status = `Next player: ${this.props.playerTurn}`;
-    if (this.props.have_winner) {
-      status = `Winner winner, chicken dinner. Player ${this.props.playerTurn} wins!`;
-    }
-
     return (
       <div>
-        <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -53,10 +43,7 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
-  /*
-    1. move state out of Board and into Game
-    2. pass state into Board props
-  */
+  players = {0: 'X', 1: 'O'};
   constructor(props) {
     super(props);
     this.state = {
@@ -116,16 +103,23 @@ class Game extends React.Component {
   }
 
   render() {
+    const player = this.players[this.state.playerTurn];
+    let status = `Next player: ${player}`;
+    if (this.have_winner) {
+      status = `Winner winner, chicken dinner. Player ${player} wins!`;
+    }
+
     return (
       <div className="game">
         <div className="game-board">
           <Board squares={this.state.squares}
-                 onClickHandler={this.onClickHandler} 
-                 have_winner={this.have_winner} />
+                 onClickHandler={this.onClickHandler} />
         </div>
         <div className="game-info">
-          <div>{/* playerTurn */}</div>
-          <ol>{/* TODO */}</ol>
+          <div className="status">{status}</div>
+          <ol>
+            <li>barfoo</li>
+          </ol>
         </div>
       </div>
     );
