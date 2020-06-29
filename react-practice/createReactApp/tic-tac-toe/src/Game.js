@@ -43,14 +43,26 @@ class Board extends React.Component {
   }
 }
 
+function BoardHistory(props) {
+  return ['barfoo', 'barfoo'].map((player, index) => {
+    return (
+      <li key={index}>
+        <button onClick={() => this.onChangeBoardHistoryHandler(index)}>{player}</button>
+      </li>
+    )
+  });
+}
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      boardHistory: [],
       squares: Array(9).fill(undefined),
       playerTurn: 0,
     }
     this.onClickHandler = this.onClickHandler.bind(this);
+    this.onChangeBoardHistoryHandler = this.onChangeBoardHistoryHandler.bind(this);
     this.have_winner = false;
     this.winConditions = [[0,1,2],
                           [3,4,5],
@@ -102,6 +114,8 @@ class Game extends React.Component {
     this.setState({playerTurn: this.state.playerTurn ? 0 : 1});
   }
 
+  onChangeBoardHistoryHandler(index) {}
+
   render() {
     const player = players[this.state.playerTurn];
     let status = `Next player: ${player}`;
@@ -117,9 +131,7 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div className="status">{status}</div>
-          <ol>
-            <li>barfoo</li>
-          </ol>
+          <ol><BoardHistory /></ol>
         </div>
       </div>
     );
