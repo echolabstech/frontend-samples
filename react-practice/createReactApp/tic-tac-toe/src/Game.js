@@ -44,7 +44,6 @@ class Board extends React.Component {
 }
 
 function BoardStateHistory(props) {
-  console.log(props.boardStateHistory);
   return props.boardStateHistory.map((boardState, index) => {
     let message = 'Start!';
     if (index > 0) message = 'Go to move # ' + index;
@@ -78,30 +77,22 @@ class Game extends React.Component {
   }
 
   onClickHandler(index) {
-    if (this.have_winner) return;
-    if (this.square_already_set(index)) return;
-    const copyOfSquares = this.copySquares(index);
-    this.markPlayerSquare(copyOfSquares, index);
-    this.boardStateHistory.push(this.state.squares);
+    if (!this.have_winner && !this.square_already_set(index)) {
+      this.setState((state, props) => this.updateSquareState(index, state));
+    }
+  }
+
+  updateSquareState(index, state) {
+    const copyOfSquares = state.squares.slice();
+    copyOfSquares[index] = state.playerTurn;
+    this.boardStateHistory.push(copyOfSquares);
     this.checkWinner(copyOfSquares);
     if (!this.have_winner) this.togglePlayerTurn();
-    this.updateSquareState(copyOfSquares);
+    return {squares: copyOfSquares};
   }
 
   square_already_set(index) {
     return this.state.squares[index] !== undefined;
-  }
-
-  copySquares(index) {
-    return this.state.squares.slice();
-  }
-
-  markPlayerSquare(squares, index) {
-    squares[index] = this.state.playerTurn;
-  }
-
-  updateSquareState(squares) {
-    this.setState({squares});
   }
 
   checkWinner(squares) {
