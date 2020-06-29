@@ -60,8 +60,8 @@ class Game extends React.Component {
     super(props);
     this.state = {
       squares: Array(9).fill(undefined),
-      playerTurn: 0,
     }
+    this.playerTurn = 0;
     this.boardStateHistory = [this.state.squares];
     this.onClickHandler = this.onClickHandler.bind(this);
     this.onChangeBoardStateHistoryHandler = this.onChangeBoardStateHistoryHandler.bind(this);
@@ -83,8 +83,9 @@ class Game extends React.Component {
   }
 
   updateSquareState(index, state) {
+    debugger;
     const copyOfSquares = state.squares.slice();
-    copyOfSquares[index] = state.playerTurn;
+    copyOfSquares[index] = this.playerTurn;
     this.boardStateHistory.push(copyOfSquares);
     this.checkWinner(copyOfSquares);
     if (!this.have_winner) this.togglePlayerTurn();
@@ -109,7 +110,7 @@ class Game extends React.Component {
   }
 
   togglePlayerTurn() {
-    this.setState({playerTurn: this.state.playerTurn ? 0 : 1});
+    this.playerTurn = this.playerTurn === 1 ? 0 : 1;
   }
 
   onChangeBoardStateHistoryHandler(index) {
@@ -119,7 +120,7 @@ class Game extends React.Component {
   }
 
   render() {
-    const player = players[this.state.playerTurn];
+    const player = players[this.playerTurn];
     let status = `Next player: ${player}`;
     if (this.have_winner) {
       status = `Winner winner, chicken dinner. Player ${player} wins!`;
