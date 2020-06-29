@@ -43,11 +43,14 @@ class Board extends React.Component {
   }
 }
 
-function BoardHistory(props) {
-  return ['barfoo', 'barfoo'].map((player, index) => {
+function BoardStateHistory(props) {
+  console.log(props.boardStateHistory);
+  return props.boardStateHistory.map((boardState, index) => {
+    let message = 'Start!';
+    if (index > 0) message = 'Go to move # ' + index;
     return (
       <li key={index}>
-        <button onClick={() => this.onChangeBoardHistoryHandler(index)}>{player}</button>
+        <button onClick={() => props.onClickHandler(index)}>{message}</button>
       </li>
     )
   });
@@ -57,12 +60,12 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      boardHistory: [],
       squares: Array(9).fill(undefined),
       playerTurn: 0,
     }
+    this.boardStateHistory = [this.state.squares];
     this.onClickHandler = this.onClickHandler.bind(this);
-    this.onChangeBoardHistoryHandler = this.onChangeBoardHistoryHandler.bind(this);
+    this.onChangeBoardStateHistoryHandler = this.onChangeBoardStateHistoryHandler.bind(this);
     this.have_winner = false;
     this.winConditions = [[0,1,2],
                           [3,4,5],
@@ -78,6 +81,7 @@ class Game extends React.Component {
     if (this.have_winner) return;
     if (this.square_already_set(index)) return;
     const copyOfSquares = this.copySquares(index);
+    this.boardStateHistory.push(this.state.squares);
     this.checkWinner(copyOfSquares);
     if (!this.have_winner) this.togglePlayerTurn();
     this.updateSquareState(copyOfSquares);
@@ -114,7 +118,11 @@ class Game extends React.Component {
     this.setState({playerTurn: this.state.playerTurn ? 0 : 1});
   }
 
-  onChangeBoardHistoryHandler(index) {}
+  onChangeBoardStateHistoryHandler(index) {
+    this.boardStateHistory = this.boardStateHistory.slice(0, index+1);
+    // update playerTurn
+    // update squares
+  }
 
   render() {
     const player = players[this.state.playerTurn];
@@ -131,7 +139,10 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div className="status">{status}</div>
-          <ol><BoardHistory /></ol>
+          <ol>
+            <BoardStateHistory boardStateHistory={this.boardStateHistory}
+                               onClickHandler={this.onChangeBoardStateHistoryHandler} />
+          </ol>
         </div>
       </div>
     );
