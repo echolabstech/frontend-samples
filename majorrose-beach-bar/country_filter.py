@@ -1,5 +1,7 @@
 import json
 from pprint import pprint
+import argparse
+from pathlib import Path
 
 def get_country_by_climate():
 	with open('countries-by-climate.json') as file:
@@ -12,7 +14,7 @@ def get_country_by_visa_free():
 	country_names = []
 	for continent in no_visa_countries:
 		for country in continent['flags']:
-			country_names.append(country['name'])
+			country_names.append(str(country['name']))
 	return country_names
 
 def get_countries():
@@ -65,11 +67,29 @@ def filter_countries_by_infrastructure_rank(countries):
 				countries_with_high_infrastructure_rank[country] = countries[country]
 	return countries_with_high_infrastructure_rank
 
-countries = get_countries()
-climates = ['tropical', 'mediterranean', 'humid']
-tropical_countries = filter_countries_by_climate(countries, climates)
+def main():
+	arg_parser = argparse.ArgumentParser(description='filter countries to visit',
+									prog='country filter')
+	arg_parser.add_argument('--country', type=str, nargs=1, metavar='#', help='select your home country')
+	arg_parser.add_argument('--climate', type=str, nargs='+', help='select your desired climate(s)')
+	arg_parser.add_argument('--version', action='version', version='%(prog)s 1.0.0')
+	kwargs = vars(arg_parser.parse_args())
+	home_country = kwargs['country'][0]
+	countries = get_countries()
+	countries = filter_countries_by_median_income(countries)
+	countries = filter_countries_by_infrastructure_rank(countries)
+	if kwargs['climate']:
+		countries = filter_countries_by_climate(countries, kwargs['climate'])
+		pprint(countries)
+		pprint(len(countries))
+		print('Country choices above are based on your home country '
+					'%s, affordability, reliable internet and desired '
+					'climates:' % home_country, ', '.join(kwargs['climate']))
+	else:
+		pprint(countries)
+		pprint(len(countries))
+		print('Country choices above are based on your home country '
+					'%s, affordability and reliable internet')
 
-affordable_countries = filter_countries_by_median_income(tropical_countries)
-countries_with_high_infrastructure_rank = filter_countries_by_infrastructure_rank(affordable_countries)
-pprint(countries_with_high_infrastructure_rank)
-pprint(len(countries_with_high_infrastructure_rank))
+if __name__ == '__main__':
+	main()
