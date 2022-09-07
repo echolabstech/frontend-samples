@@ -44,6 +44,7 @@ export default class CnhHeader extends LitElement {
 						<li class="nav-list_link"><a href="#">About</a></li>
 						<li class="nav-list_link"><a href="#">Products</a></li>
 						<li class="nav-list_link"><a href="#">Contact</a></li>
+						<li class="nav-list_link"><a href="#"><slot name="nav"></slot></a></li>
 					</ol>
 				</nav>
 			</header>
