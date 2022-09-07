@@ -16,12 +16,36 @@ export default class CnhHeader extends LitElement {
 		.logo img {
 			width: 100%;
 		}
+
+		.nav {
+			width: 90%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+		}
+
+		.nav-list {
+			width: 50%;
+			display: flex;
+			justify-content: space-evenly;
+		}
+
+		.nav-list_link {
+			display: inline-block;
+		}
 	`;
 
 	render() {
 		return html`
 			<header>
 				<span class="logo"><img alt="open-wc logo" src=${logo} /></span>
+				<nav class="nav">
+					<ol class="nav-list">
+						<li class="nav-list_link"><a href="#">About</a></li>
+						<li class="nav-list_link"><a href="#">Products</a></li>
+						<li class="nav-list_link"><a href="#">Contact</a></li>
+					</ol>
+				</nav>
 			</header>
 		`;
 	}
