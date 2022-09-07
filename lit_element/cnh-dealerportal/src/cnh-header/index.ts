@@ -1,4 +1,4 @@
-import { LitElement, html, css, } from 'lit';
+import { LitElement, html, css, PropertyValues, } from 'lit';
 
 const logo = new URL('/assets/open-wc-logo.svg', import.meta.url).href;
 
@@ -35,6 +35,45 @@ export default class CnhHeader extends LitElement {
 		}
 	`;
 
+	// pre-update
+	constructor() { // standard custom element
+		super();
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	hasChanged() {
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	requestUpdate() {
+		super.requestUpdate();
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	// update
+	attributeChangedCallback() { // standard custom element
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	performUpdate() {
+		super.performUpdate();
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	shouldUpdate() {
+		console.log(this.renderRoot, this.shadowRoot);
+		return true;
+	}
+
+	willUpdate() {
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	update(changedProperties: PropertyValues) {
+		super.update(changedProperties);
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
 	render() {
 		return html`
 			<header>
@@ -49,6 +88,33 @@ export default class CnhHeader extends LitElement {
 				</nav>
 			</header>
 		`;
+	}
+
+	// post-update
+	connectedCallback() { // standard custom element
+	  super.connectedCallback()
+	  console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	adoptedCallback () { // standard custom element
+	  console.log(this.renderRoot, this.shadowRoot);	
+	}
+
+	disconnectedCallback() { // standard custom element
+	  super.disconnectedCallback()
+	  console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	firstUpdated() {
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	updated() {
+		console.log(this.renderRoot, this.shadowRoot);
+	}
+
+	updatedComplete() {
+		console.log(this.renderRoot, this.shadowRoot);
 	}
 }
 customElements.define('cnh-header', CnhHeader);
