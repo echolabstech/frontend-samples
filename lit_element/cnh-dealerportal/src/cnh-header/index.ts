@@ -1,12 +1,18 @@
 import { LitElement, html, css, PropertyValues, } from 'lit';
+import { customElement, property, } from 'lit/decorators.js';
+import { styleMap, } from 'lit/directives/style-map.js';
 
 const logo = new URL('/assets/open-wc-logo.svg', import.meta.url).href;
+const HEADER_BACKGROUND = '#fff';
 
+@customElement('cnh-header')
 export default class CnhHeader extends LitElement {
+	@property({ type: String, attribute: 'background-color', })
+	backgroundColor = HEADER_BACKGROUND;
+
 	static styles = css`
 		header {
 			display: flex;
-			background-color: #fff;
 		}
 
 		.logo {
@@ -59,7 +65,7 @@ export default class CnhHeader extends LitElement {
 		super.performUpdate();
 		console.log(this.renderRoot, this.shadowRoot);
 		const navLinks = this.shadowRoot?.querySelector('slot');
-		console.log();
+		console.log(navLinks);
 	}
 
 	shouldUpdate() {
@@ -67,8 +73,10 @@ export default class CnhHeader extends LitElement {
 		return true;
 	}
 
-	willUpdate() {
-		console.log(this.renderRoot, this.shadowRoot);
+	willUpdate(changed: PropertyValues<this>) {
+  	changed.has('backgroundColor') &&
+  	changed.backgroundColor ??
+  	this.backgroundColor = HEADER_BACKGROUND;
 	}
 
 	update(changedProperties: PropertyValues) {
@@ -77,8 +85,9 @@ export default class CnhHeader extends LitElement {
 	}
 
 	render() {
+		const headerStyles = styleMap({ 'background-color': this.backgroundColor, })
 		return html`
-			<header>
+			<header style=${headerStyles}>
 				<span class="logo"><img alt="open-wc logo" src=${logo} /></span>
 				<nav class="nav">
 					<ol class="nav-list">
@@ -130,4 +139,3 @@ export default class CnhHeader extends LitElement {
 		console.log(this.renderRoot, this.shadowRoot);
 	}
 }
-customElements.define('cnh-header', CnhHeader);
