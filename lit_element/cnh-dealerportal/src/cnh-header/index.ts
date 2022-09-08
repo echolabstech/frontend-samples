@@ -58,6 +58,8 @@ export default class CnhHeader extends LitElement {
 	performUpdate() {
 		super.performUpdate();
 		console.log(this.renderRoot, this.shadowRoot);
+		const navLinks = this.shadowRoot?.querySelector('slot');
+		console.log();
 	}
 
 	shouldUpdate() {
@@ -80,10 +82,21 @@ export default class CnhHeader extends LitElement {
 				<span class="logo"><img alt="open-wc logo" src=${logo} /></span>
 				<nav class="nav">
 					<ol class="nav-list">
-						<li class="nav-list_link"><a href="#">About</a></li>
-						<li class="nav-list_link"><a href="#">Products</a></li>
-						<li class="nav-list_link"><a href="#">Contact</a></li>
-						<li class="nav-list_link"><a href="#"><slot name="nav"></slot></a></li>
+						<li class="nav-list_link">
+							<a href="#">
+								<slot name="nav-link-1">Link1</slot>
+							</a>
+						</li>
+						<li class="nav-list_link">
+							<a href="#">
+								<slot name="nav-link-2">Link2</slot>
+							</a>
+						</li>
+						<li class="nav-list_link">
+							<a href="#">
+								<slot name="nav-link-3">Link3</slot>
+							</a>
+						</li>
 					</ol>
 				</nav>
 			</header>
